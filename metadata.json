@@ -1,0 +1,8 @@
+{
+  "name": "Machinix",
+  "description": "منصة الآليات الثقيلة المتكاملة في العراق — تأجير الآليات، بيع وشراء المعدات، سوق قطع الغيار، ودليل مراكز الصيانة والورش",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
