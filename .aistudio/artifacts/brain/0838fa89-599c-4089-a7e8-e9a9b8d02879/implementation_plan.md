@@ -1,196 +1,177 @@
-# Machinix: Revised Subscription Pricing, Maintenance Publishing & Spare Parts Listings
+# HEAVY DUTY — Official Corporate & App Promotional Website
 
-A refined architectural blueprint updating the Machinix subscription structure with the calibrated Iraqi pricing tiers (Basic 10,000 IQD, Pro Owner 20,000 IQD, Business 35,000 IQD, and Enterprise 50,000 IQD) stored in a single centralized configuration, alongside maintenance center post publishing and spare-parts shop listings.
+Comprehensive architectural blueprint for transforming the platform into the official corporate and app promotional website for **HEAVY DUTY** (*Tagline: HEAVY EQUIPMENT MARKETPLACE*), introducing the forthcoming mobile application, articulating its 4 core industrial services, offering B2B partner engagement, bilingual Arabic (RTL) & English (LTR) localization, and fixing the Vercel dependency resolution.
 
 ---
 
 ## User Review & Critical Decisions
 
 > [!IMPORTANT]
-> The subscription pricing has been updated to the following calibrated Iraqi market rates:
+> The following fundamental architectural, brand, and UX decisions have been aligned with the requirements and confirmed preferences:
 >
-> - **Basic Plan (الباقة الأساسية)**: **10,000 د.ع / شهرياً** (سنوي: 100,000 د.ع — شهران مجاناً). Target: Individual equipment owners (ملاك الآليات الفرديون).
-> - **Pro Owner Plan (المالك المحترف)**: **20,000 د.ع / شهرياً** (سنوي: 200,000 د.ع — شهران مجاناً). Target: Individual owners needing advanced listing tools and **equipment-for-sale publishing**.
-> - **Business Plan (باقة الأعمال والمتاجر)**: **35,000 د.ع / شهرياً** (سنوي: 350,000 د.ع — شهران مجاناً). Target: Spare-parts shops and maintenance centers (محلات قطع الغيار ومراكز الصيانة والورش).
-> - **Enterprise Plan (باقة الشركات والوكالات)**: **50,000 د.ع / شهرياً** (سنوي: 500,000 د.ع — شهران مجاناً). Target: Equipment rental companies, official dealerships, and fleet operators (شركات التأجير الكبرى، وكالات الآليات، وإدارة الأساطيل).
->
-> **Confirmed Core Rule**: Individual equipment-for-sale listings remain strictly restricted to **Pro Owner (20,000 IQD/mo)** or higher eligible tiers. Ineligible users receive an immediate, friendly upgrade modal referencing this exact active rate.
+> - **Brand Palette**: **Industrial Amber Gold (`#F59E0B` / `#D97706`) and Deep Slate Gray (`#0F172A` / `#1E293B`)** paired with neutral light canvas (`#F8FAFC` / `#FFFFFF`), crisp dark typographic hierarchy (`#0F172A`), and subtle industrial steel accents. Avoids dark-only aesthetics while retaining heavy machinery gravitas.
+> - **Default Localization**: **Arabic (RTL)** as the primary default upon initial load with an instant one-click toggle to **English (LTR)**, complete with proper font pairings (`IBM Plex Sans Arabic` + `Cairo` for Arabic; `Plus Jakarta Sans` for English).
+> - **Navigation & Routing**: **Client-side path routing with direct shareable URLs** (`/`, `/about`, `/services/rental`, `/services/sales`, `/services/parts`, `/services/maintenance`, `/how-it-works`, `/for-businesses`, `/download`, `/contact`, `/faq`, `/privacy`, `/terms`) integrated with browser History API (`pushState`) and fallback handling.
+> - **Strict Role & Boundary**: The website is strictly a **corporate and promotional platform**, NOT a marketplace transaction app, shopping cart, or operational user dashboard. It directs users to the forthcoming official mobile app ("Android App Coming Soon" / "iOS App Coming Soon") without fake links or mock transaction gateways.
+> - **Vercel Build Fix**: Update explicit `esbuild` dependency in `package.json` to `^0.28.2` (matching Vite `^8.3.0` requirement) to eliminate the `ERESOLVE` npm install conflict on Vercel.
 
 ---
 
 ## 1. Overview & Core Concept
 
-Machinix consolidates all subscription rates into a single centralized configuration engine (`src/data/pricingConfig.ts` & `AppContext`). Any update to a tier price, feature limit, or discount dynamically propagates across all subscription cards, upgrade modals, role dashboards, and admin editors without hardcoded string mismatches.
+**HEAVY DUTY** is an international-grade industrial technology brand connecting equipment owners, contractors, dealerships, spare parts shops, and maintenance workshops across Iraq's 18 governorates and the broader Arab region.
 
-### Scope of Changes:
-1. **Centralized Pricing Engine**: Single source of truth defining the 4 plans, monthly and annual prices in IQD, target audiences, feature flags, and sale-publishing eligibility.
-2. **Synchronized UI Elements**:
-   - `SubscriptionPlans.tsx`: Displays Basic (10k), Pro Owner (20k), Business (35k), Enterprise (50k) with monthly/annual toggle (2 months free discount).
-   - `SubscriptionUpgradeModal.tsx`: Explicitly shows the 20,000 IQD/month rate for unlocking equipment-for-sale listings.
-   - `OwnerDashboard.tsx`, `CompanyDashboard.tsx`, and `AdminDashboard.tsx`: Reflect active subscription tiers, pricing badges, and simulated renewal terms.
-   - `AdminDashboard.tsx`: Includes a dynamic settings pane to review and modify plan pricing on the fly.
-3. **Maintenance Center Post Publishing**: Promotional posts feed and studio with edit, delete, publish, and unpublish controls.
-4. **Spare Parts Shop Listings**: Inventory management with conditions (new, used, refurbished), stock status (in stock, limited, out of stock), and quantity tracking.
-5. **Role Switcher Personas**: Adds `workshop` (ورشة الرافدين) and `shop` (العراق الجديد) to test all flows directly.
+The website serves four key pillars:
+1. **Brand Authority & Legitimacy**: Establishes HEAVY DUTY as the digital infrastructure for heavy machinery through clean industrial aesthetics inspired by global leaders (CAT, Komatsu) without imitation.
+2. **Four Core Services Presentation**: In-depth dedicated explanatory pages for **Equipment Rental**, **Buy & Sell Equipment**, **Spare Parts Marketplace**, and **Maintenance Services**.
+3. **B2B Ecosystem Engagement**: A dedicated `/for-businesses` portal welcoming rental companies, equipment showrooms, parts suppliers, and certified repair workshops to join the network.
+4. **App Promotion & Pre-Launch Conversion**: Mobile app showcases, verified feature walkthroughs, notification registration for app availability, and transparent "Coming Soon" readiness states.
 
 ---
 
 ## 2. User Experience & Visual Design
 
-### A. Subscription Plans Presentation (`/plans`)
-- **Billing Switcher**: Segmented toggle between `شهري (Monthly)` and `سنوي — وفر شهرين مجاناً (Annual - 2 Months Free)`.
-- **Four Distinct Tier Cards**:
-  1. **الأساسية (Basic)**: 10,000 د.ع/شهر · للملاك الأفراد مع إدارة آليات التأجير والطلبات.
-  2. **المالك المحترف (Pro Owner - مميزة)**: 20,000 د.ع/شهر · بطاقة مميزة باللون الكهرماني، تتضمن نشر آليات البيع والشراء، أولوية في نتائج البحث، ومتابعة الاستفسارات.
-  3. **الأعمال (Business)**: 35,000 د.ع/شهر · مخصصة لمتاجر قطع الغيار ومراكز الصيانة والورش، تشمل نشر المنشورات الترويجية وإدارة المخزون.
-  4. **الشركات (Enterprise)**: 50,000 د.ع/شهر · مخصصة للوكالات وشركات الأسطول مع إدارة الساحات اللوجستية وعقود المشاريع الكبرى.
-- **Consistent Unboxed Metadata**: No pill badge clutter; clean typographic hierarchy (`Cairo` headings, `IBM Plex Sans Arabic` body, `JetBrains Mono` tabular prices).
+### A. Information Architecture & Navigation
 
-### B. Equipment Sale Publishing Restriction
-- When an individual owner attempts to list machinery for sale:
-  - If on `Basic` (10,000 IQD): Displays `SubscriptionUpgradeModal` explaining that selling machinery requires **باقة المالك المحترف (20,000 د.ع / شهرياً)** with a one-click simulated upgrade CTA.
-  - If on `Pro Owner` (20,000 IQD), `Business`, or `Enterprise`: Form opens immediately.
+The header adheres to the strict 3-zone contract:
+- **Zone 1 (Brand Wordmark & Custom Monogram)**: Original geometric **HD** emblem + **HEAVY DUTY** corporate typography and subtle subtitle kicker in hero.
+- **Zone 2 (Navigation Links)**:
+  - `الرئيسية` / `Home`
+  - `من نحن` / `About Us`
+  - `خدماتنا` / `Our Services` (with submenu / direct links to Rental, Sales, Spare Parts, Maintenance)
+  - `كيف يعمل` / `How It Works`
+  - `للشركات والوكالات` / `For Businesses`
+  - `اتصل بنا` / `Contact Us`
+- **Zone 3 (Actions & Language Switcher)**:
+  - Language toggle pill (`العربية` / `English`)
+  - Primary CTA button: `تحميل التطبيق` / `Download App` (directs to `/download`)
+  - Mobile hamburger overlay drawer with complete navigation hierarchy.
+
+### B. Page Directory & Content Flow
+
+1. **Homepage (`/`)**:
+   - **Hero Section**: Powerful headline (*"POWERING THE HEAVY EQUIPMENT INDUSTRY"* / *"تمكين وتطوير قطاع المعدات الثقيلة"*), supporting value proposition, high-resolution industrial photography, Primary CTA (*"Explore Our Services"*), and Secondary CTA (*"Download the App"* with "Android App Coming Soon" badge).
+   - **Platform Ecosystem Map**: Visual relationship between contractors, fleet owners, equipment dealers, parts merchants, and industrial technicians across Iraq.
+   - **Four Core Services Grid**: Balanced interactive cards with custom SVG monograms, photography, descriptive overviews, and dedicated page links.
+   - **Why HEAVY DUTY?**: Concrete structural benefits (all-in-one industrial ecosystem, verified specifications, regional coverage across 18 Iraqi governorates, simplified workflows).
+   - **How It Works 3-Step Teaser**: Discovery $\rightarrow$ Exploration $\rightarrow$ Direct Connection.
+   - **B2B Callout Strip**: Direct invitation for dealerships, rental yards, and workshops to register.
+   - **App Pre-Launch Showcase**: Clean Android/iOS device mockup with genuine feature highlights and release notification form.
+
+2. **Dedicated Service Pages**:
+   - **Equipment Rental (`/services/rental`)**: Explains daily/weekly/monthly rental models, machinery classifications (excavators, bulldozers, wheel loaders, cranes, dump trucks, generators), operator/transport options, and governorate filtering.
+   - **Buy & Sell Equipment (`/services/sales`)**: Explains new & certified pre-owned equipment listings, dealer showrooms vs individual owner rules, operating hours, inspection documentation, and direct inquiry channels.
+   - **Spare Parts Marketplace (`/services/parts`)**: Explains OEM and aftermarket part numbers, hydraulic/engine/filter/track categorization, merchant verification, and stock status tracking.
+   - **Maintenance Services (`/services/maintenance`)**: Explains specialized workshops (hydraulics, diesel engines, electrical diagnostics, mobile field repair units), promotional technician posts, and booking inquiries.
+
+3. **About Us Page (`/about`)**:
+   - Founding vision, industrial mission, core engineering values, initial focus on Iraq's 18 governorates, and planned Arab regional expansion.
+
+4. **How It Works Page (`/how-it-works`)**:
+   - Segmented interactive guides for **Customers / Contractors**, **Individual Equipment Owners**, and **Registered Businesses & Dealers**.
+
+5. **For Businesses Page (`/for-businesses`)**:
+   - Value propositions for rental companies, dealers, spare-parts shops, and maintenance workshops; partner inquiry lead capture form.
+
+6. **Download App Page (`/download`)**:
+   - Showcase of the upcoming mobile application, Android and iOS pre-registration badges, configurable official store URL placeholders, and platform preview cards.
+
+7. **Contact Us Page (`/contact`)**:
+   - Validated contact form (Name, Email, Subject, Message), clear explanation of frontend integration status, verified support channels, and FAQ shortcuts.
+
+8. **FAQ Page (`/faq`)**:
+   - Structured accordion addressing the 11 key platform questions (Iraqi market scope, listing requirements, app availability, subscriptions, spare parts authenticity).
+
+9. **Legal Pages (`/privacy` & `/terms`)**:
+   - Corporate terms of service and privacy disclosures tailored to industrial equipment listings and directory services.
 
 ---
 
 ## 3. Key Product Decisions & Trade-Offs
 
-| Decision | Chosen Approach | Rationale | Alternatives Rejected |
+| Decision | Chosen Approach | Rationale | Alternatives Considered |
 | :--- | :--- | :--- | :--- |
-| **Centralization Strategy** | Single `PLATFORM_PRICING` module exported to context & components | Prevents inconsistent price discrepancies across the app; allows admin adjustments in demo | Dispersed price literals across separate files |
-| **Annual Billing Ratio** | Monthly × 10 (2 months free / ~16.7% discount) | Clear, transparent arithmetic in IQD (100k, 200k, 350k, 500k) | Unrounded percentage discounts resulting in awkward dinar figures |
-| **Business vs Enterprise Split** | Business (35k) for workshops/shops; Enterprise (50k) for fleet dealerships | Matches the user's exact specification and provides targeted tools for each business type | Merging all businesses into a single flat tier |
-| **Payment Integrity** | Explicit simulated transaction / prototype disclosure | No unapproved payment gateways or mock credit card collections; maintains platform trust | Mock checkout forms pretending to process real bank cards |
+| **Separation of Concerns** | Corporate & promotional showcase website | User requested explicit distinction: website promotes and explains the app, while marketplace transactions live in the mobile app | Retaining interactive in-browser rental checkout or simulated user dashboards (rejected per prompt) |
+| **Bilingual Architecture** | First-class i18n context with full dictionary translation | Enables seamless switching between Arabic (RTL) and English (LTR) across all content, metadata, and forms | Translation via browser auto-translate or mixed bilingual text |
+| **Routing Strategy** | Custom URL path router using HTML5 History API (`window.history.pushState`) | Allows shareable links (`/services/rental`, `/contact`) while remaining 100% compatible with static hosting / Vercel SPA rewrites | Hash-only routing (`#about`) which looks less professional on corporate websites |
+| **Dependency Resolution** | Update `esbuild` to `^0.28.2` in `package.json` | Resolves the exact Vercel npm install ERESOLVE conflict with Vite 8.3 | Using `--force` or downgrading Vite (unstable / forbidden) |
+| **Visual Identity** | Original geometric HD monogram + Amber Gold & Slate Gray | Conveys industrial reliability and heavy equipment strength without imitating CAT or Komatsu trademarks | Generic construction shovel/excavator clip art |
 
 ---
 
 ## 4. Technical Architecture & Data Strategy
 
-### A. Central Pricing Configuration Schema (`src/data/pricingConfig.ts`)
-
-```typescript
-export interface PlanTierConfig {
-  id: 'basic' | 'pro_owner' | 'business' | 'enterprise';
-  nameAr: string;
-  nameEn: string;
-  targetAudienceAr: string;
-  priceMonthlyIqd: number;
-  priceAnnualIqd: number; // 10 months calculation
-  badgeAr?: string;
-  isPopular?: boolean;
-  canPublishSaleListings: boolean;
-  canPublishMaintenancePosts: boolean;
-  canManagePartsInventory: boolean;
-  maxListings: number | 'unlimited';
-  featuresAr: string[];
-}
-
-export interface PlatformPricingSettings {
-  plans: Record<string, PlanTierConfig>;
-  annualDiscountMonthsFree: number;
-  currency: 'IQD';
-  currencySymbolAr: 'د.ع';
-  saleListingRequiredTier: 'pro_owner';
-}
-
-export const INITIAL_PLATFORM_PRICING: PlatformPricingSettings = {
-  annualDiscountMonthsFree: 2,
-  currency: 'IQD',
-  currencySymbolAr: 'د.ع',
-  saleListingRequiredTier: 'pro_owner',
-  plans: {
-    basic: {
-      id: 'basic',
-      nameAr: 'الأساسية',
-      nameEn: 'Basic Owner',
-      targetAudienceAr: 'ملاك الآليات الفرديون',
-      priceMonthlyIqd: 10_000,
-      priceAnnualIqd: 100_000,
-      canPublishSaleListings: false,
-      canPublishMaintenancePosts: false,
-      canManagePartsInventory: false,
-      maxListings: 3,
-      featuresAr: [
-        'إدراج حتى 3 آليات في سوق التأجير',
-        'استقبال طلبات الاستئجار عبر المنصة',
-        'الملف الشخصي للمالك والمحافظة',
-        'دعم فني عبر الواتساب'
-      ]
-    },
-    pro_owner: {
-      id: 'pro_owner',
-      nameAr: 'المالك المحترف',
-      nameEn: 'Pro Owner',
-      targetAudienceAr: 'الملاك الفرديون الراغبون في بيع وتأجير الآليات',
-      priceMonthlyIqd: 20_000,
-      priceAnnualIqd: 200_000,
-      isPopular: true,
-      badgeAr: 'الأكثر طلباً',
-      canPublishSaleListings: true,
-      canPublishMaintenancePosts: false,
-      canManagePartsInventory: false,
-      maxListings: 10,
-      featuresAr: [
-        'كل مزايا الباقة الأساسية',
-        'صلاحية نشر آليات في سوق البيع والشراء',
-        'إدراج حتى 10 آليات مع مواصفات الفحص',
-        'أولوية الظهور في نتائج البحث',
-        'شارة مالك معتمد موثق'
-      ]
-    },
-    business: {
-      id: 'business',
-      nameAr: 'الأعمال والمتاجر',
-      nameEn: 'Business',
-      targetAudienceAr: 'محلات قطع الغيار ومراكز الصيانة والورش',
-      priceMonthlyIqd: 35_000,
-      priceAnnualIqd: 350_000,
-      canPublishSaleListings: true,
-      canPublishMaintenancePosts: true,
-      canManagePartsInventory: true,
-      maxListings: 50,
-      featuresAr: [
-        'نشر وإدارة مخزون قطع الغيار بأرقام OEM',
-        'استوديو نشر المنشورات الترويجية للورش',
-        'تحديث حالات التوفر والأسعار المباشرة',
-        'صفحة متجر وورشة رسمية معتمدة'
-      ]
-    },
-    enterprise: {
-      id: 'enterprise',
-      nameAr: 'الشركات والوكالات',
-      nameEn: 'Enterprise',
-      targetAudienceAr: 'شركات التأجير الكبرى، وكالات الآليات، وإدارة الأساطيل',
-      priceMonthlyIqd: 50_000,
-      priceAnnualIqd: 500_000,
-      canPublishSaleListings: true,
-      canPublishMaintenancePosts: true,
-      canManagePartsInventory: true,
-      maxListings: 'unlimited',
-      featuresAr: [
-        'إدراج غير محدود لآليات التأجير والبيع',
-        'إدارة ساحات العمل المتعددة عبر المحافظات',
-        'لوحة تحكم الأسطول وتعيين المشغلين',
-        'تصدير تقارير العقود وسجل الصيانة'
-      ]
-    }
-  }
-};
+```
+┌────────────────────────────────────────────────────────────────────────┐
+│                        HEAVY DUTY Website App                          │
+│                                                                        │
+│   ┌─────────────────────┐               ┌──────────────────────────┐   │
+│   │ LanguageContext     │               │ RouterContext            │   │
+│   │ - locale: 'ar'|'en' │               │ - currentPath: string    │   │
+│   │ - dir: 'rtl'|'ltr'  │               │ - navigate(path: string) │   │
+│   │ - t(key): string    │               │ - shareable URLs / SEO   │   │
+│   └──────────┬──────────┘               └────────────┬─────────────┘   │
+│              │                                       │                 │
+│              └───────────────────┬───────────────────┘                 │
+│                                  │                                     │
+│                     ┌────────────▼────────────┐                        │
+│                     │       Layout.tsx        │                        │
+│                     │ - Header & 3-zone Nav   │                        │
+│                     │ - Language Switcher     │                        │
+│                     │ - Mobile Drawer         │                        │
+│                     │ - Corporate Footer      │                        │
+│                     └────────────┬────────────┘                        │
+│                                  │                                     │
+│         ┌────────────────────────┼────────────────────────┐            │
+│         ▼                        ▼                        ▼            │
+│   ┌───────────┐           ┌──────────────┐         ┌─────────────┐     │
+│   │ HomePage  │           │ ServicePages │         │ Other Pages │     │
+│   │ - Hero    │           │ - Rental     │         │ - About     │     │
+│   │ - Pillars │           │ - Sales      │         │ - HowWorks  │     │
+│   │ - Bento   │           │ - Parts      │         │ - Business  │     │
+│   │ - IraqMap │           │ - Maint      │         │ - Download  │     │
+│   │ - AppCTA  │           └──────────────┘         │ - Contact   │     │
+│   └───────────┘                                    │ - FAQ/Legal │     │
+│                                                    └─────────────┘     │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
-### B. Implementation Sequence
-1. **Central Pricing Module**: Create `src/data/pricingConfig.ts` with the new schema and pricing numbers (10,000, 20,000, 35,000, 50,000 IQD).
-2. **Context & Business Logic**:
-   - Integrate `pricingConfig` into `AppContext.tsx`.
-   - Update `checkSalePublishingEligibility()` to reference `pricingConfig.plans.pro_owner.priceMonthlyIqd`.
-   - Provide an admin updater function `updatePlanPrice(planId, monthlyPrice)`.
-3. **UI Updates & Consistency Audit**:
-   - Replace old pricing references in `SubscriptionPlans.tsx`, `SubscriptionUpgradeModal.tsx`, `OwnerDashboard.tsx`, `CompanyDashboard.tsx`, and `AdminDashboard.tsx`.
-   - Ensure all price displays use `formatIqd()`.
-4. **Maintenance & Shop Features Execution**:
-   - Implement `MaintenancePost` model, mock data, creation modal, and public feed.
-   - Implement `SparePartItem` stock update actions and inventory controls in shop dashboard.
-   - Add dedicated `workshop` and `shop` roles to `RoleSwitcherBar.tsx`.
-5. **Testing & Verification**:
-   - Run `lint_applet` and `compile_applet`.
-   - Verify zero price discrepancies and working upgrade flow.
+### Component & State Mapping
+
+- **`LanguageContext.tsx`**: Holds current language state (`ar` default, `en`), manages `document.documentElement.dir` (`rtl` vs `ltr`) and `lang`, and provides a structured translation lookup dictionary covering all pages, navigation, forms, and footers.
+- **`RouterContext.tsx`**: Listens to browser popstate events, manages `currentPath`, normalizes nested paths (e.g. `/services/rental`), and updates `window.history.pushState` on navigation clicks.
+- **`vercel.json`**: Adds standard SPA rewrite rules (`"source": "/(.*)", "destination": "/index.html"`) to ensure refreshing nested routes on Vercel works seamlessly.
+- **`SEO / Meta Manager`**: Synchronizes `<title>`, `<meta name="description">`, OpenGraph, and JSON-LD schema dynamically upon page transitions.
+
+---
+
+## 5. Implementation Phases & Verification Plan
+
+### Phase 1: Dependency & Vercel Fix
+- Edit `package.json` to bump `devDependencies.esbuild` to `^0.28.2`.
+- Run dependency installation via `install_applet_dependencies` to generate clean lockfile and verify zero ERESOLVE errors.
+- Test baseline compilation via `compile_applet`.
+
+### Phase 2: Brand Identity, Typography & Global Styles
+- Design original vector **HD** monogram logo and corporate typography component.
+- Configure industrial color palette (Industrial Amber Gold, Deep Slate, Neutral Stone/Light Canvas).
+- Update `index.html` title, meta tags, and fonts (`Cairo`, `IBM Plex Sans Arabic`, `Plus Jakarta Sans`).
+- Update `metadata.json` with official HEAVY DUTY identity.
+
+### Phase 3: Localization Engine & Routing Architecture
+- Create `src/i18n/` with complete Arabic & English dictionary for all 12 page views.
+- Implement `LanguageContext` and `RouterContext` with HTML5 History API integration.
+- Create `vercel.json` with SPA rewrite configuration.
+
+### Phase 4: Core Website Views & Components
+- Implement responsive corporate `Header` (3-zone contract, language toggle, download CTA, mobile drawer).
+- Implement `HomePage` with high-impact hero, 4 services showcase, Iraq 18 governorates regional reach, and app preview.
+- Implement 4 dedicated service pages (`/services/rental`, `/services/sales`, `/services/parts`, `/services/maintenance`).
+- Implement `/about`, `/how-it-works`, `/for-businesses`, `/download`, `/contact`, `/faq`, `/privacy`, and `/terms`.
+- Implement corporate `Footer` with dynamic copyright, links, service directory, and social placeholders.
+
+### Phase 5: Verification & Quality Assurance
+- Run `lint_applet` (`tsc --noEmit`) to verify zero TypeScript errors.
+- Run `compile_applet` (`npm run build`) to verify clean Vercel-ready build in `dist/`.
+- Test Arabic RTL and English LTR toggles across all pages.
+- Test responsive layouts on mobile, tablet, and desktop viewports.

@@ -1,6 +1,6 @@
 {
-  "name": "Machinix",
-  "description": "منصة الآليات الثقيلة المتكاملة في العراق — تأجير الآليات، بيع وشراء المعدات، سوق قطع الغيار، ودليل مراكز الصيانة والورش",
+  "name": "HEAVY DUTY",
+  "description": "HEAVY DUTY — Heavy Equipment Marketplace. Official corporate platform connecting equipment rental, machinery sales, spare parts, and maintenance services across Iraq.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"

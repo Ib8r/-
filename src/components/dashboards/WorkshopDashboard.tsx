@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { MaintenancePost } from '../../types';
-import { CreateMaintenancePostModal } from '../maintenance/CreateMaintenancePostModal';
 
 export const WorkshopDashboard: React.FC = () => {
   const {
@@ -10,16 +9,15 @@ export const WorkshopDashboard: React.FC = () => {
     deleteMaintenancePost,
     toggleMaintenancePostStatus,
     inquiries,
+    openCreatePostModal,
   } = useApp();
 
   const [activeTab, setActiveTab] = useState<'posts' | 'inquiries' | 'profile'>('posts');
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  const [editingPost, setEditingPost] = useState<MaintenancePost | undefined>(undefined);
   const [filterSpecialty, setFilterSpecialty] = useState<string>('all');
 
   // Filter posts owned by this workshop/user
   const myPosts = maintenancePosts.filter(
-    (p) => p.centerId === currentUser.id || p.centerId === 'center-01'
+    (p) => (currentUser && p.centerId === currentUser.id) || p.centerId === 'center-01'
   );
 
   const displayedPosts = filterSpecialty === 'all'
@@ -28,17 +26,15 @@ export const WorkshopDashboard: React.FC = () => {
 
   // Workshop-related inquiries
   const myInquiries = inquiries.filter(
-    (inq) => inq.listingTitle?.includes('صيانة') || inq.message?.includes('ورشة') || true
+    (inq: any) => inq.targetTitle?.includes('صيانة') || inq.message?.includes('ورشة') || true
   ).slice(0, 5);
 
   const handleEdit = (post: MaintenancePost) => {
-    setEditingPost(post);
-    setIsCreateModalOpen(true);
+    openCreatePostModal(post);
   };
 
   const handleCreate = () => {
-    setEditingPost(undefined);
-    setIsCreateModalOpen(true);
+    openCreatePostModal();
   };
 
   const publishedCount = myPosts.filter((p) => p.status === 'published').length;
@@ -57,14 +53,14 @@ export const WorkshopDashboard: React.FC = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-2xl font-black">
-                  {currentUser.companyName || currentUser.name}
+                  {currentUser?.companyName || currentUser?.fullName || 'مركز صيانة معتمد'}
                 </h1>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-400/20 text-amber-300 border border-amber-400/30">
                   مركز صيانة معتمد
                 </span>
               </div>
               <p className="text-amber-100 text-sm mt-1">
-                {currentUser.governorate} · لوحة إدارة ورشة الصيانة والمنشورات الترويجية
+                {currentUser?.governorate || 'بغداد'} · لوحة إدارة ورشة الصيانة والمنشورات الترويجية
               </p>
             </div>
           </div>
@@ -288,9 +284,9 @@ export const WorkshopDashboard: React.FC = () => {
                 <div>
                   <div className="flex items-center gap-2 mb-1">
                     <span className="font-bold text-sm text-slate-900 dark:text-white">
-                      {inq.userName || 'عميل تجريبي'}
+                      {inq.requesterName || inq.userName || 'عميل تجريبي'}
                     </span>
-                    <span className="text-xs text-slate-400">({inq.userPhone || '0770XXXXXXX'})</span>
+                    <span className="text-xs text-slate-400">({inq.requesterPhone || inq.userPhone || '0770XXXXXXX'})</span>
                     <span className="text-[10px] px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 font-bold">
                       طلب صيانة
                     </span>
@@ -332,19 +328,19 @@ export const WorkshopDashboard: React.FC = () => {
             <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
               <span className="text-xs text-slate-500 block mb-1">اسم المركز / الورشة:</span>
               <span className="font-bold text-slate-800 dark:text-slate-200">
-                {currentUser.companyName || 'ورشة الفرات الهيدروليكية المتقدمة'}
+                {currentUser?.companyName || currentUser?.fullName || 'ورشة الفرات الهيدروليكية المتقدمة'}
               </span>
             </div>
             <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
               <span className="text-xs text-slate-500 block mb-1">المحافظة والمنطقة:</span>
               <span className="font-bold text-slate-800 dark:text-slate-200">
-                {currentUser.governorate} · المنطقة الصناعية - الشيخ عمر
+                {currentUser?.governorate || 'بغداد'} · المنطقة الصناعية - الشيخ عمر
               </span>
             </div>
             <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
               <span className="text-xs text-slate-500 block mb-1">هاتف الطوارئ / الاستقبال:</span>
               <span className="font-bold text-slate-800 dark:text-slate-200" dir="ltr">
-                {currentUser.phone || '+964 780 123 4567'}
+                {currentUser?.phone || '+964 780 123 4567'}
               </span>
             </div>
             <div className="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl">
@@ -356,16 +352,6 @@ export const WorkshopDashboard: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Create / Edit Modal */}
-      <CreateMaintenancePostModal
-        isOpen={isCreateModalOpen}
-        onClose={() => {
-          setIsCreateModalOpen(false);
-          setEditingPost(undefined);
-        }}
-        initialData={editingPost}
-      />
     </div>
   );
 };

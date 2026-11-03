@@ -234,6 +234,7 @@ export interface SparePartItem {
   createdAt: string;
   // Compatibility Aliases
   title?: string;
+  nameAr?: string;
   oemPartNumber?: string;
   inStock?: boolean;
   stockQuantity?: number;
@@ -345,6 +346,10 @@ export interface ServiceInquiry {
   message: string;
   status: 'sent' | 'responded' | 'closed';
   createdAt: string;
+  // Compatibility Aliases
+  userName?: string;
+  userPhone?: string;
+  listingTitle?: string;
 }
 
 /* =========================================================================

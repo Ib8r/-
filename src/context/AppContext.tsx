@@ -152,6 +152,10 @@ interface AppContextType {
   editingPart: SparePartItem | null;
   openCreatePartModal: (partToEdit?: SparePartItem) => void;
   closeCreatePartModal: () => void;
+  // Aliases for shop management
+  updateSparePartStock: (id: string, availability: PartAvailability, quantity: number) => void;
+  deleteSparePart: (id: string) => void;
+  toggleSparePartStatus: (id: string) => void;
 
   // 4. Maintenance Centers Directory & Workshop Post Publishing
   maintenanceCenters: MaintenanceCenter[];
@@ -167,6 +171,7 @@ interface AppContextType {
   updateMaintenancePost: (id: string, updates: Partial<MaintenancePost>) => void;
   deleteMaintenancePost: (id: string) => void;
   togglePostPublishStatus: (id: string) => void;
+  toggleMaintenancePostStatus: (id: string) => void;
   isCreatePostModalOpen: boolean;
   editingPost: MaintenancePost | null;
   openCreatePostModal: (postToEdit?: MaintenancePost) => void;
@@ -174,6 +179,7 @@ interface AppContextType {
 
   // 5. Inquiries & Direct Contact
   serviceInquiries: ServiceInquiry[];
+  inquiries: ServiceInquiry[];
   sendServiceInquiry: (inquiryData: {
     targetType: InquiryTargetType;
     targetId: string;
@@ -573,7 +579,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
           ...prev.plans,
           [planId]: {
             ...targetPlan,
-            priceMonthlyIqd,
+            priceMonthlyIqd: monthlyPriceIqd,
             priceAnnualIqd: monthlyPriceIqd * 10 // شهران مجاناً
           }
         }
@@ -1188,6 +1194,9 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         deleteSparePartListing,
         updatePartStockAvailability,
         togglePartActiveStatus,
+        updateSparePartStock: updatePartStockAvailability,
+        deleteSparePart: deleteSparePartListing,
+        toggleSparePartStatus: togglePartActiveStatus,
         isCreatePartModalOpen,
         editingPart,
         openCreatePartModal,
@@ -1206,12 +1215,14 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         updateMaintenancePost,
         deleteMaintenancePost,
         togglePostPublishStatus,
+        toggleMaintenancePostStatus: togglePostPublishStatus,
         isCreatePostModalOpen,
         editingPost,
         openCreatePostModal,
         closeCreatePostModal,
         // Inquiries
         serviceInquiries,
+        inquiries: serviceInquiries,
         sendServiceInquiry,
         isInquiryModalOpen,
         inquiryTarget,

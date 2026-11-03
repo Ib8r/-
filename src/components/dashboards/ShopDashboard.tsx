@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { SparePartItem } from '../../types';
-import { CreateSparePartModal } from '../parts/CreateSparePartModal';
 
 export const ShopDashboard: React.FC = () => {
   const {
@@ -10,23 +9,23 @@ export const ShopDashboard: React.FC = () => {
     deleteSparePart,
     updateSparePartStock,
     toggleSparePartStatus,
+    openCreatePartModal,
   } = useApp();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editingPart, setEditingPart] = useState<SparePartItem | undefined>(undefined);
   const [searchQuery, setSearchQuery] = useState('');
   const [filterCondition, setFilterCondition] = useState<string>('all');
   const [filterAvailability, setFilterAvailability] = useState<string>('all');
 
   // Filter parts owned by this shop (or demo fallback)
   const myParts = spareParts.filter(
-    (p) => p.shopId === currentUser.id || p.shopId === 'shop-01'
+    (p) => (currentUser && p.shopId === currentUser.id) || p.shopId === 'shop-01'
   );
 
   const filteredParts = myParts.filter((part) => {
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
-      const matchTitle = part.title.toLowerCase().includes(q);
+      const titleStr = (part.title || part.nameAr || '').toLowerCase();
+      const matchTitle = titleStr.includes(q);
       const matchOem = part.oemPartNumber?.toLowerCase().includes(q);
       const matchBrand = part.brand?.toLowerCase().includes(q);
       if (!matchTitle && !matchOem && !matchBrand) return false;
@@ -37,13 +36,11 @@ export const ShopDashboard: React.FC = () => {
   });
 
   const handleEdit = (part: SparePartItem) => {
-    setEditingPart(part);
-    setIsModalOpen(true);
+    openCreatePartModal(part);
   };
 
   const handleCreate = () => {
-    setEditingPart(undefined);
-    setIsModalOpen(true);
+    openCreatePartModal();
   };
 
   const inStockCount = myParts.filter((p) => p.availability === 'in_stock').length;
@@ -61,14 +58,14 @@ export const ShopDashboard: React.FC = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-2xl font-black">
-                  {currentUser.companyName || currentUser.name}
+                  {currentUser?.companyName || currentUser?.fullName || 'متجر قطع الغيار'}
                 </h1>
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-cyan-400/20 text-cyan-300 border border-cyan-400/30">
                   متجر قطع غيار معتمد
                 </span>
               </div>
               <p className="text-cyan-100 text-sm mt-1">
-                {currentUser.governorate} · لوحة إدارة المخزون والمبيعات المباشرة
+                {currentUser?.governorate || 'بغداد'} · لوحة إدارة المخزون والمبيعات المباشرة
               </p>
             </div>
           </div>
@@ -99,7 +96,7 @@ export const ShopDashboard: React.FC = () => {
           </div>
           <div className="bg-black/25 rounded-xl p-3">
             <div className="text-2xl font-black text-white">
-              {currentUser.governorate}
+              {currentUser?.governorate || 'عموم العراق'}
             </div>
             <div className="text-xs text-cyan-200 mt-0.5">نطاق التوريد الرئيسي</div>
           </div>
@@ -194,14 +191,14 @@ export const ShopDashboard: React.FC = () => {
               >
                 <div className="flex items-start gap-4 flex-1">
                   <img
-                    src={part.images[0] || 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80'}
-                    alt={part.title}
+                    src={part.images?.[0] || 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=400&q=80'}
+                    alt={part.title || part.nameAr || 'قطعة غيار'}
                     className="w-20 h-20 rounded-lg object-cover shrink-0 border border-slate-100 dark:border-slate-800"
                   />
                   <div className="space-y-1 flex-1">
                     <div className="flex flex-wrap items-center gap-2">
                       <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                        {part.title}
+                        {part.title || part.nameAr}
                       </h3>
                       <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full border ${availabilityColor}`}>
                         {availabilityLabel} ({part.quantityAvailable ?? 1} قطعة)
@@ -284,16 +281,6 @@ export const ShopDashboard: React.FC = () => {
           })}
         </div>
       )}
-
-      {/* Create / Edit Modal */}
-      <CreateSparePartModal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false);
-          setEditingPart(undefined);
-        }}
-        initialData={editingPart}
-      />
     </div>
   );
 };

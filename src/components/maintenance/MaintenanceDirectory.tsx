@@ -20,7 +20,6 @@ import {
 import { IRAQI_GOVERNORATES } from '../../data/governorates';
 import { MaintenanceSpecialty, IraqiGovernorate, MaintenanceCenter } from '../../types';
 import { MaintenancePostsFeed } from './MaintenancePostsFeed';
-import { CreateMaintenancePostModal } from './CreateMaintenancePostModal';
 
 export const MaintenanceDirectory: React.FC = () => {
   const {
@@ -30,13 +29,13 @@ export const MaintenanceDirectory: React.FC = () => {
     resetMaintenanceFilters,
     openWorkshopDetails,
     openInquiryModal,
+    openCreatePostModal,
     currentUser,
     currentRole
   } = useApp();
 
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'directory' | 'posts_feed'>('directory');
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const specialtiesList: { id: MaintenanceSpecialty | 'all'; labelAr: string }[] = [
     { id: 'all', labelAr: 'كافة التخصصات الهندسية' },
@@ -77,7 +76,7 @@ export const MaintenanceDirectory: React.FC = () => {
 
           <div className="flex items-center gap-3">
             <button
-              onClick={() => setIsCreateModalOpen(true)}
+              onClick={() => openCreatePostModal()}
               className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold transition-all shadow-sm cursor-pointer"
             >
               <span>+</span>
@@ -124,7 +123,7 @@ export const MaintenanceDirectory: React.FC = () => {
         </div>
 
         {viewMode === 'posts_feed' ? (
-          <MaintenancePostsFeed onOpenCreateModal={() => setIsCreateModalOpen(true)} />
+          <MaintenancePostsFeed />
         ) : (
           /* Layout */
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -279,12 +278,6 @@ export const MaintenanceDirectory: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Create Post Modal */}
-      <CreateMaintenancePostModal
-        isOpen={isCreateModalOpen}
-        onClose={() => setIsCreateModalOpen(false)}
-      />
     </div>
   );
 };

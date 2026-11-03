@@ -17,8 +17,6 @@ import {
 import { IRAQI_GOVERNORATES } from '../../data/governorates';
 import { PartCategory, IraqiGovernorate, SparePartItem } from '../../types';
 import { formatIqd } from '../../utils/formatters';
-import { CreateSparePartModal } from './CreateSparePartModal';
-
 export const PartsMarketplace: React.FC = () => {
   const {
     filteredSpareParts,
@@ -26,11 +24,11 @@ export const PartsMarketplace: React.FC = () => {
     setPartFilterOptions,
     resetPartFilters,
     openPartDetails,
-    openInquiryModal
+    openInquiryModal,
+    openCreatePartModal,
   } = useApp();
 
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
   const categoriesList: { id: PartCategory | 'all'; labelAr: string }[] = [
     { id: 'all', labelAr: 'كافة قطع الغيار' },
@@ -72,7 +70,7 @@ export const PartsMarketplace: React.FC = () => {
 
           <div className="flex items-center gap-3">
             <button
-              onClick={() => setIsCreateModalOpen(true)}
+              onClick={() => openCreatePartModal()}
               className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold transition-all shadow-sm cursor-pointer"
             >
               <span>+</span>
@@ -247,12 +245,6 @@ export const PartsMarketplace: React.FC = () => {
           </div>
         </div>
       )}
-
-      {/* Create Spare Part Modal */}
-      <CreateSparePartModal
-        isOpen={isCreateModalOpen}
-        onClose={() => setIsCreateModalOpen(false)}
-      />
     </div>
   );
 };

@@ -2,20 +2,44 @@
 
 @layer base {
   :root {
-    --font-sans: 'IBM Plex Sans Arabic', 'Cairo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    --font-heading: 'Cairo', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+    --font-arabic-sans: 'IBM Plex Sans Arabic', 'Cairo', system-ui, sans-serif;
+    --font-arabic-heading: 'Cairo', 'IBM Plex Sans Arabic', system-ui, sans-serif;
+    --font-english-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-english-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
 
-  body {
-    font-family: var(--font-sans);
-    direction: rtl;
-    text-align: right;
+  html[dir="rtl"] {
+    font-family: var(--font-arabic-sans);
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+  html[dir="rtl"] h1,
+  html[dir="rtl"] h2,
+  html[dir="rtl"] h3,
+  html[dir="rtl"] h4,
+  html[dir="rtl"] h5,
+  html[dir="rtl"] h6 {
+    font-family: var(--font-arabic-heading);
     letter-spacing: -0.015em;
+  }
+
+  html[dir="ltr"] {
+    font-family: var(--font-english-sans);
+  }
+
+  html[dir="ltr"] h1,
+  html[dir="ltr"] h2,
+  html[dir="ltr"] h3,
+  html[dir="ltr"] h4,
+  html[dir="ltr"] h5,
+  html[dir="ltr"] h6 {
+    font-family: var(--font-english-heading);
+    letter-spacing: -0.02em;
+  }
+
+  body {
+    background-color: #f8fafc;
+    color: #0f172a;
   }
 }
 
@@ -26,11 +50,11 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #f1f5f9;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #94a3b8;
   border-radius: 9999px;
 }
 
