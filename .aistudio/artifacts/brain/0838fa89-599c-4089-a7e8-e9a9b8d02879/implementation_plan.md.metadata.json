@@ -1,6 +1,6 @@
 {
-  "summary": "Architectural implementation plan for transforming the project into the official corporate and app promotional website for HEAVY DUTY (HEAVY EQUIPMENT MARKETPLACE) with bilingual Arabic RTL/English LTR localization, Vercel dependency resolution, and client-side shareable path routing.",
-  "updatedAt": "2026-11-03T19:01:57.524970587Z",
+  "summary": "Architectural plan for packaging the original heavy equipment marketplace mobile application into a self-contained standalone directory (/packages/marketplace-mobile) for future Android/iOS export, while preserving the HEAVY DUTY corporate website intact and Vercel-ready.",
+  "updatedAt": "2026-11-03T19:26:39.372734516Z",
   "requestFeedback": true,
   "userFacing": true
 }

@@ -10,7 +10,11 @@ interface LogoProps {
 
 /**
  * HEAVY DUTY - Official Geometric Logo System
- * Custom HD industrial monogram with precision chamfers and industrial corporate typography.
+ * Colors strictly calibrated to:
+ * - Industrial Amber Gold: #D69A25
+ * - Deep Slate Gray: #303943
+ * - Graphite: #20252B
+ * - Industrial White: #F5F6F7
  */
 export const Logo: React.FC<LogoProps> = ({
   variant = 'full',
@@ -21,29 +25,28 @@ export const Logo: React.FC<LogoProps> = ({
 }) => {
   const isDark = theme === 'dark';
 
-  // Sizing definitions
   const symbolSizeClasses = {
     sm: 'w-7 h-7',
-    md: 'w-9 h-9',
-    lg: 'w-12 h-12',
-    xl: 'w-16 h-16',
+    md: 'w-8 h-8 sm:w-9 sm:h-9',
+    lg: 'w-10 h-10 sm:w-12 sm:h-12',
+    xl: 'w-14 h-14 sm:w-16 sm:h-16',
   }[size];
 
   const textSizeClasses = {
-    sm: 'text-base',
-    md: 'text-xl',
-    lg: 'text-2xl',
-    xl: 'text-3xl',
+    sm: 'text-sm sm:text-base',
+    md: 'text-base sm:text-lg',
+    lg: 'text-xl sm:text-2xl',
+    xl: 'text-2xl sm:text-3xl',
   }[size];
 
   const taglineSizeClasses = {
-    sm: 'text-[9px]',
-    md: 'text-[10px]',
-    lg: 'text-xs',
-    xl: 'text-sm',
+    sm: 'text-[8px]',
+    md: 'text-[9px] sm:text-[10px]',
+    lg: 'text-[10px] sm:text-xs',
+    xl: 'text-xs sm:text-sm',
   }[size];
 
-  // SVG Geometric HD Emblem
+  // SVG Geometric HD Industrial Monogram
   const Emblem = (
     <svg
       viewBox="0 0 48 48"
@@ -55,14 +58,14 @@ export const Logo: React.FC<LogoProps> = ({
       {/* Heavy Industrial Chamfered Shield Background */}
       <polygon
         points="6,6 42,6 42,32 30,44 6,44"
-        fill={isDark ? '#F59E0B' : '#0F172A'}
-        stroke={isDark ? '#D97706' : '#1E293B'}
+        fill={isDark ? '#D69A25' : '#20252B'}
+        stroke={isDark ? '#D69A25' : '#303943'}
         strokeWidth="1.5"
       />
-      {/* High-Tensile Inner Accent Stripe */}
+      {/* High-Tensile Inner Corner Accent */}
       <polygon
         points="34,6 42,6 42,14"
-        fill={isDark ? '#0F172A' : '#F59E0B'}
+        fill={isDark ? '#20252B' : '#D69A25'}
       />
       {/* Precision Geometric 'H' Left Stem */}
       <rect
@@ -70,7 +73,7 @@ export const Logo: React.FC<LogoProps> = ({
         y="12"
         width="6"
         height="24"
-        fill={isDark ? '#0F172A' : '#F59E0B'}
+        fill={isDark ? '#20252B' : '#D69A25'}
       />
       {/* Interlocking 'H' Crossbar */}
       <rect
@@ -78,12 +81,12 @@ export const Logo: React.FC<LogoProps> = ({
         y="21"
         width="6"
         height="6"
-        fill={isDark ? '#0F172A' : '#F59E0B'}
+        fill={isDark ? '#20252B' : '#D69A25'}
       />
       {/* Geometric 'D' Stem & Loop */}
       <path
         d="M24 12H30C34.4183 12 37 14.5 37 19V29C37 33.5 34.4183 36 30 36H24V12ZM30 18H28V30H30C31.8 30 32.5 28.5 32.5 26V22C32.5 19.5 31.8 18 30 18Z"
-        fill={isDark ? '#0F172A' : '#FFFFFF'}
+        fill={isDark ? '#20252B' : '#F5F6F7'}
       />
     </svg>
   );
@@ -93,20 +96,20 @@ export const Logo: React.FC<LogoProps> = ({
   }
 
   return (
-    <div className={`inline-flex items-center gap-3 ${className}`}>
+    <div className={`inline-flex items-center gap-2 sm:gap-2.5 ${className}`}>
       {Emblem}
       <div className="flex flex-col leading-none">
         <span
-          className={`font-black tracking-tight uppercase select-none font-heading ${textSizeClasses} ${
-            isDark ? 'text-white' : 'text-slate-900'
+          className={`font-black tracking-tight uppercase select-none ${textSizeClasses} ${
+            isDark ? 'text-[#F5F6F7]' : 'text-[#20252B]'
           }`}
         >
-          HEAVY <span className="text-amber-500">DUTY</span>
+          HEAVY <span className="text-[#D69A25]">DUTY</span>
         </span>
         {showTagline && (
           <span
-            className={`font-mono uppercase font-bold tracking-widest mt-1 select-none ${taglineSizeClasses} ${
-              isDark ? 'text-slate-400' : 'text-slate-600'
+            className={`font-mono uppercase font-bold tracking-wider mt-0.5 select-none hidden xs:inline-block ${taglineSizeClasses} ${
+              isDark ? 'text-slate-300' : 'text-[#303943]'
             }`}
           >
             Heavy Equipment Marketplace

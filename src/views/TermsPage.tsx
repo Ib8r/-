@@ -7,18 +7,18 @@ export const TermsPage: React.FC = () => {
   const isAr = locale === 'ar';
 
   return (
-    <div className="space-y-16 pb-20">
+    <div className="space-y-10 sm:space-y-12 pb-20">
       {/* Header */}
-      <section className="bg-slate-900 text-white py-16 relative">
+      <section className="bg-white border-b border-[#E2E5E8] py-12 sm:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-3">
-          <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-amber-400 uppercase">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold text-[#D69A25] bg-[#D69A25]/10 border border-[#D69A25]/20 uppercase">
             <FileText className="w-3.5 h-3.5" />
             <span>{isAr ? 'اللوائح والسياسات' : 'LEGAL & TERMS'}</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black font-heading">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#20252B]">
             {isAr ? 'الشروط والأحكام العامة للمنصة' : 'Terms & Conditions of Service'}
           </h1>
-          <p className="text-xs sm:text-sm text-slate-300">
+          <p className="text-xs sm:text-sm text-[#303943]/80">
             {isAr ? 'آخر تحديث: نوفمبر 2026' : 'Last Updated: November 2026'}
           </p>
         </div>
@@ -26,9 +26,9 @@ export const TermsPage: React.FC = () => {
 
       {/* Terms Content */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/80 shadow-xs space-y-8 text-xs sm:text-sm text-slate-700 leading-relaxed">
+        <div className="p-6 sm:p-10 rounded-2xl bg-white border border-[#E2E5E8] shadow-xs space-y-8 text-xs sm:text-sm text-[#303943] leading-relaxed">
           <div className="space-y-3">
-            <h2 className="text-base sm:text-lg font-bold text-slate-900 font-heading">
+            <h2 className="text-base sm:text-lg font-bold text-[#20252B]">
               {isAr ? '1. شروط الاستخدام والأهلية' : '1. Eligibility & Scope'}
             </h2>
             <p>
@@ -38,8 +38,8 @@ export const TermsPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-3 border-t border-slate-100 pt-6">
-            <h2 className="text-base sm:text-lg font-bold text-slate-900 font-heading">
+          <div className="space-y-3 border-t border-[#E2E5E8] pt-6">
+            <h2 className="text-base sm:text-lg font-bold text-[#20252B]">
               {isAr ? '2. طبيعة دور المنصة كصلة وصل تقنية' : '2. Intermediary & Technology Role'}
             </h2>
             <p>
@@ -49,8 +49,8 @@ export const TermsPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-3 border-t border-slate-100 pt-6">
-            <h2 className="text-base sm:text-lg font-bold text-slate-900 font-heading">
+          <div className="space-y-3 border-t border-[#E2E5E8] pt-6">
+            <h2 className="text-base sm:text-lg font-bold text-[#20252B]">
               {isAr ? '3. دقة بيانات المعدات وساعات التشغيل' : '3. Spec Accuracy & Truth in Advertising'}
             </h2>
             <p>
@@ -60,8 +60,8 @@ export const TermsPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-3 border-t border-slate-100 pt-6">
-            <h2 className="text-base sm:text-lg font-bold text-slate-900 font-heading">
+          <div className="space-y-3 border-t border-[#E2E5E8] pt-6">
+            <h2 className="text-base sm:text-lg font-bold text-[#20252B]">
               {isAr ? '4. القانون الحاكم وحل النزاعات' : '4. Governing Jurisdiction'}
             </h2>
             <p>

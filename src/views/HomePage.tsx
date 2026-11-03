@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useRouter } from '../context/RouterContext';
-import { IMAGES } from '../assets/images';
+import { IMAGES, FALLBACK_IMAGES } from '../assets/images';
+import { IndustrialImage } from '../components/common/IndustrialImage';
 import {
   Truck,
   Tag,
@@ -12,12 +13,10 @@ import {
   ArrowLeft,
   Smartphone,
   MapPin,
-  Building2,
-  Users,
-  ShieldCheck,
   ChevronRight,
   Layers,
-  Sparkles
+  Sparkles,
+  ShieldCheck
 } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
@@ -42,8 +41,9 @@ export const HomePage: React.FC = () => {
       desc: t.servicesOverview.rental.desc,
       points: t.servicesOverview.rental.points,
       image: IMAGES.rentalService,
+      fallbackImage: FALLBACK_IMAGES.rentalService,
       icon: Truck,
-      badgeColor: 'text-amber-600 bg-amber-50',
+      badgeColor: 'text-[#D69A25] bg-[#D69A25]/10',
     },
     {
       id: 'sales',
@@ -52,8 +52,9 @@ export const HomePage: React.FC = () => {
       desc: t.servicesOverview.sales.desc,
       points: t.servicesOverview.sales.points,
       image: IMAGES.salesService,
+      fallbackImage: FALLBACK_IMAGES.salesService,
       icon: Tag,
-      badgeColor: 'text-blue-600 bg-blue-50',
+      badgeColor: 'text-[#303943] bg-[#303943]/10',
     },
     {
       id: 'parts',
@@ -62,8 +63,9 @@ export const HomePage: React.FC = () => {
       desc: t.servicesOverview.parts.desc,
       points: t.servicesOverview.parts.points,
       image: IMAGES.partsService,
+      fallbackImage: FALLBACK_IMAGES.partsService,
       icon: Cog,
-      badgeColor: 'text-emerald-600 bg-emerald-50',
+      badgeColor: 'text-[#303943] bg-[#303943]/10',
     },
     {
       id: 'maintenance',
@@ -72,49 +74,40 @@ export const HomePage: React.FC = () => {
       desc: t.servicesOverview.maintenance.desc,
       points: t.servicesOverview.maintenance.points,
       image: IMAGES.maintenanceService,
+      fallbackImage: FALLBACK_IMAGES.maintenanceService,
       icon: Wrench,
-      badgeColor: 'text-orange-600 bg-orange-50',
+      badgeColor: 'text-[#D69A25] bg-[#D69A25]/10',
     },
   ];
 
   return (
-    <div className="space-y-24 pb-20">
-      {/* 1. HERO SECTION */}
-      <section className="relative bg-slate-900 text-white overflow-hidden">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-15 mix-blend-overlay pointer-events-none">
-          <img
-            src={IMAGES.hero}
-            alt="Heavy Construction Equipment"
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-slate-950/80" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-36">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div className="space-y-16 sm:space-y-24 pb-16 w-full max-w-full overflow-x-hidden">
+      {/* 1. BRIGHT CORPORATE HERO SECTION */}
+      <section className="relative bg-[#FFFFFF] border-b border-[#E2E5E8] overflow-hidden">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left/Start Column: Value Proposition */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold font-mono tracking-wide">
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#D69A25]/10 border border-[#D69A25]/30 text-[#D69A25] text-xs font-semibold font-mono tracking-wide">
                 <span>{t.hero.badge}</span>
               </div>
 
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] font-heading text-balance">
+              <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.2] text-[#20252B] font-heading text-balance">
                 {t.hero.headline}{' '}
-                <span className="text-amber-500 underline decoration-amber-500/40 decoration-4 underline-offset-8">
+                <span className="text-[#D69A25]">
                   {t.hero.headlineAccent}
                 </span>
               </h1>
 
-              <p className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl font-normal">
+              <p className="text-sm sm:text-base lg:text-lg text-[#303943] leading-relaxed max-w-2xl font-normal">
                 {t.hero.subheadline}
               </p>
 
               {/* CTAs & Transparent Availability States */}
-              <div className="pt-2 flex flex-wrap items-center gap-4">
+              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                 <button
                   onClick={() => navigate('/services/rental')}
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-slate-950 font-bold text-sm transition-all shadow-md active:scale-98 cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#D69A25] hover:bg-[#C2891E] active:bg-[#B37B17] text-[#20252B] font-bold text-sm transition-all shadow-xs active:scale-98 cursor-pointer"
                 >
                   <span>{t.hero.primaryCta}</span>
                   <ArrowIcon className="w-4 h-4" />
@@ -122,41 +115,44 @@ export const HomePage: React.FC = () => {
 
                 <button
                   onClick={() => navigate('/download')}
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-slate-800/90 hover:bg-slate-700/90 text-white font-semibold text-sm border border-slate-700 transition-all cursor-pointer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#F5F6F7] hover:bg-[#EAECEE] text-[#20252B] font-semibold text-sm border border-[#E2E5E8] transition-all cursor-pointer"
                 >
-                  <Smartphone className="w-4 h-4 text-amber-400" />
+                  <Smartphone className="w-4 h-4 text-[#D69A25]" />
                   <span>{t.hero.secondaryCta}</span>
                 </button>
               </div>
 
-              {/* Verified Status Badges (No fake downloads) */}
-              <div className="pt-4 flex flex-wrap items-center gap-3 text-xs text-slate-400 font-mono">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-800/60 border border-slate-700/60">
-                  <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              {/* Verified Status Badges */}
+              <div className="pt-2 flex flex-wrap items-center gap-2 text-xs text-[#303943] font-mono">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#F5F6F7] border border-[#E2E5E8]">
+                  <span className="w-2 h-2 rounded-full bg-[#D69A25]" />
                   <span>{t.hero.androidStatus}</span>
                 </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-800/60 border border-slate-700/60">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#F5F6F7] border border-[#E2E5E8]">
                   <span className="w-2 h-2 rounded-full bg-slate-400" />
                   <span>{t.hero.iosStatus}</span>
                 </div>
               </div>
             </div>
 
-            {/* Right/End Column: Hero Industrial Photography Card */}
-            <div className="lg:col-span-5">
-              <div className="relative rounded-2xl overflow-hidden border border-slate-700/60 shadow-2xl bg-slate-800">
-                <img
-                  src={IMAGES.hero}
-                  alt="Industrial Machinery Fleet"
-                  className="w-full h-80 sm:h-96 object-cover transform hover:scale-105 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent flex flex-col justify-end p-6">
-                  <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider mb-1">
-                    HEAVY DUTY PLATFORM
+            {/* Right/End Column: Industrial Hero Photography Card */}
+            <div className="lg:col-span-5 w-full">
+              <div className="relative rounded-2xl overflow-hidden border border-[#E2E5E8] shadow-sm bg-[#F5F6F7]">
+                <div className="h-64 sm:h-80 lg:h-96 w-full">
+                  <IndustrialImage
+                    src={IMAGES.hero}
+                    fallbackSrc={FALLBACK_IMAGES.hero}
+                    alt="Heavy Equipment Fleet"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-4 sm:p-5 bg-[#FFFFFF] border-t border-[#E2E5E8] flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#D69A25] uppercase tracking-wider">
+                    <span>HEAVY DUTY PLATFORM</span>
                   </div>
-                  <div className="text-sm font-semibold text-white">
+                  <span className="text-[11px] text-[#303943] font-medium hidden sm:inline-block">
                     {t.hero.ecosystemKicker}
-                  </div>
+                  </span>
                 </div>
               </div>
             </div>
@@ -165,33 +161,33 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 2. PLATFORM INTRODUCTION & ECOSYSTEM */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-xs font-bold font-mono text-amber-600 uppercase tracking-widest">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 sm:mb-14">
+          <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
             {t.intro.tag}
           </span>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 font-heading">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#20252B] font-heading">
             {t.intro.title}
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+          <p className="text-xs sm:text-sm lg:text-base text-[#303943] leading-relaxed">
             {t.intro.description}
           </p>
         </div>
 
         {/* 6 Stakeholder Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {Object.entries(t.intro.audiences).map(([key, item]) => (
             <div
               key={key}
-              className="p-6 rounded-2xl bg-white border border-slate-200/80 hover:border-amber-400/60 transition-all shadow-xs space-y-3"
+              className="p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] hover:border-[#D69A25]/60 transition-all shadow-2xs space-y-3"
             >
-              <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-lg">
-                <CheckCircle2 className="w-5 h-5 text-amber-600" />
+              <div className="w-10 h-10 rounded-xl bg-[#D69A25]/10 text-[#D69A25] flex items-center justify-center font-bold text-lg">
+                <CheckCircle2 className="w-5 h-5 text-[#D69A25]" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 font-heading">
+              <h3 className="text-sm sm:text-base font-bold text-[#20252B] font-heading">
                 {item.title}
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
                 {item.desc}
               </p>
             </div>
@@ -200,55 +196,56 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 3. FOUR MAIN SERVICES CARDS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12">
           <div className="space-y-2">
-            <span className="text-xs font-bold font-mono text-amber-600 uppercase tracking-widest">
+            <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
               {t.servicesOverview.tag}
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 font-heading">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#20252B] font-heading">
               {t.servicesOverview.title}
             </h2>
           </div>
-          <p className="text-sm text-slate-600 max-w-md">
+          <p className="text-xs sm:text-sm text-[#303943] max-w-md">
             {t.servicesOverview.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {services.map((srv) => {
             const Icon = srv.icon;
             return (
               <div
                 key={srv.id}
-                className="group rounded-2xl bg-white border border-slate-200/80 overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between"
+                className="group rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] overflow-hidden shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="relative h-56 sm:h-64 overflow-hidden bg-slate-100">
-                    <img
+                  <div className="relative h-48 sm:h-60 w-full overflow-hidden bg-[#F5F6F7]">
+                    <IndustrialImage
                       src={srv.image}
+                      fallbackSrc={srv.fallbackImage}
                       alt={srv.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute top-4 start-4">
-                      <div className="p-2.5 rounded-xl bg-white/95 backdrop-blur-xs text-slate-900 shadow-sm">
-                        <Icon className="w-5 h-5 text-amber-600" />
+                    <div className="absolute top-3.5 start-3.5">
+                      <div className="p-2.5 rounded-xl bg-[#FFFFFF]/95 backdrop-blur-xs text-[#20252B] shadow-2xs border border-[#E2E5E8]">
+                        <Icon className="w-5 h-5 text-[#D69A25]" />
                       </div>
                     </div>
                   </div>
 
-                  <div className="p-6 sm:p-8 space-y-4">
-                    <h3 className="text-xl font-bold text-slate-900 font-heading">
+                  <div className="p-5 sm:p-7 space-y-3 sm:space-y-4">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#20252B] font-heading">
                       {srv.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
                       {srv.desc}
                     </p>
 
-                    <ul className="space-y-2 pt-2 border-t border-slate-100">
+                    <ul className="space-y-2 pt-2 border-t border-[#F5F6F7]">
                       {srv.points.map((pt, i) => (
-                        <li key={i} className="flex items-center gap-2 text-xs text-slate-700">
-                          <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                        <li key={i} className="flex items-center gap-2 text-xs text-[#303943]">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#D69A25] shrink-0" />
                           <span>{pt}</span>
                         </li>
                       ))}
@@ -256,10 +253,10 @@ export const HomePage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="px-6 pb-6 sm:px-8 sm:pb-8 pt-0">
+                <div className="px-5 pb-5 sm:px-7 sm:pb-7 pt-0">
                   <button
                     onClick={() => navigate(srv.path)}
-                    className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-slate-50 hover:bg-amber-500 hover:text-slate-950 text-slate-800 text-xs font-bold transition-all cursor-pointer group"
+                    className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#F5F6F7] hover:bg-[#D69A25] hover:text-[#20252B] text-[#20252B] text-xs font-bold transition-all cursor-pointer group"
                   >
                     <span>{t.servicesOverview.learnMore}</span>
                     <ArrowIcon className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -271,34 +268,34 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. WHY HEAVY DUTY? */}
-      <section className="bg-slate-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-          <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-xs font-bold font-mono text-amber-400 uppercase tracking-widest">
+      {/* 4. WHY HEAVY DUTY? (Bright Industrial Styling) */}
+      <section className="bg-[#FFFFFF] border-y border-[#E2E5E8] py-14 sm:py-20">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
               {t.whyHeavyDuty.tag}
             </span>
-            <h2 className="text-2xl sm:text-4xl font-extrabold font-heading text-balance">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-[#20252B]">
               {t.whyHeavyDuty.title}
             </h2>
-            <p className="text-sm text-slate-300">
+            <p className="text-xs sm:text-sm text-[#303943]">
               {t.whyHeavyDuty.subtitle}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {t.whyHeavyDuty.points.map((pt, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 space-y-3"
+                className="p-5 sm:p-6 rounded-2xl bg-[#F5F6F7] border border-[#E2E5E8] space-y-2.5"
               >
-                <div className="text-xs font-mono font-bold text-amber-400">
+                <div className="text-xs font-mono font-bold text-[#D69A25]">
                   0{idx + 1}.
                 </div>
-                <h3 className="text-base font-bold text-white font-heading">
+                <h3 className="text-sm sm:text-base font-bold text-[#20252B] font-heading">
                   {pt.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
                   {pt.desc}
                 </p>
               </div>
@@ -307,77 +304,77 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. NATIONWIDE IRAQI COVERAGE */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-12 rounded-3xl bg-amber-500/10 border border-amber-500/20 space-y-8">
-          <div className="max-w-3xl space-y-3">
-            <div className="inline-flex items-center gap-2 text-xs font-bold font-mono text-amber-700 uppercase tracking-widest">
+      {/* 5. NATIONWIDE IRAQI COVERAGE (Full 18 Governorates) */}
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-6 sm:p-10 rounded-3xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-6">
+          <div className="max-w-3xl space-y-2">
+            <div className="inline-flex items-center gap-2 text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
               <MapPin className="w-3.5 h-3.5" />
               <span>{t.iraqCoverage.tag}</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#20252B] font-heading">
               {t.iraqCoverage.title}
             </h2>
-            <p className="text-sm text-slate-700 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
               {t.iraqCoverage.subtitle}
             </p>
           </div>
 
-          {/* 18 Iraqi Governorates Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5">
+          {/* 18 Iraqi Governorates Grid (Responsive 2-col on small mobile, 3-col tablet, 6-col desktop) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-2.5">
             {t.iraqCoverage.governorates.map((gov) => (
               <div
                 key={gov}
-                className="px-3 py-2 rounded-lg bg-white border border-amber-200/60 text-xs font-semibold text-slate-800 text-center shadow-2xs"
+                className="px-2.5 py-2 rounded-lg bg-[#F5F6F7] border border-[#E2E5E8] text-xs font-semibold text-[#20252B] text-center"
               >
                 {gov}
               </div>
             ))}
           </div>
 
-          <p className="text-xs text-slate-500 italic">
+          <p className="text-[11px] text-[#303943] italic">
             {t.iraqCoverage.note}
           </p>
         </div>
       </section>
 
       {/* 6. HOW IT WORKS PREVIEW */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
-          <span className="text-xs font-bold font-mono text-amber-600 uppercase tracking-widest">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-2xl mx-auto space-y-2.5 mb-8 sm:mb-12">
+          <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
             {t.howItWorksPreview.tag}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#20252B] font-heading">
             {t.howItWorksPreview.title}
           </h2>
-          <p className="text-sm text-slate-600">
+          <p className="text-xs sm:text-sm text-[#303943]">
             {t.howItWorksPreview.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {t.howItWorksPreview.steps.map((st) => (
             <div
               key={st.number}
-              className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-4"
+              className="p-6 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-3"
             >
-              <span className="text-3xl font-black font-mono text-amber-500 block">
+              <span className="text-2xl sm:text-3xl font-black font-mono text-[#D69A25] block">
                 {st.number}
               </span>
-              <h3 className="text-base font-bold text-slate-900 font-heading">
+              <h3 className="text-sm sm:text-base font-bold text-[#20252B] font-heading">
                 {st.title}
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
                 {st.desc}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="text-center pt-8">
+        <div className="text-center pt-6">
           <button
             onClick={() => navigate('/how-it-works')}
-            className="text-xs font-bold text-amber-600 hover:text-amber-700 hover:underline cursor-pointer"
+            className="text-xs font-bold text-[#D69A25] hover:text-[#C2891E] hover:underline cursor-pointer"
           >
             {t.howItWorksPreview.fullGuideCta}
           </button>
@@ -385,23 +382,23 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 7. BUSINESS PARTNERSHIP CALLOUT */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-slate-900 text-white p-8 sm:p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="space-y-3 max-w-xl z-10">
-            <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="rounded-3xl bg-[#303943] text-[#F5F6F7] p-6 sm:p-10 relative overflow-hidden flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6">
+          <div className="space-y-2.5 max-w-xl">
+            <span className="text-xs font-mono font-bold text-[#D69A25] uppercase tracking-wider">
               {t.businessCta.tag}
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold font-heading">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold font-heading text-white">
               {t.businessCta.title}
             </h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed">
               {t.businessCta.desc}
             </p>
           </div>
 
           <button
             onClick={() => navigate('/for-businesses')}
-            className="shrink-0 px-6 py-3.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm shadow-md transition-all active:scale-98 cursor-pointer z-10 whitespace-nowrap"
+            className="shrink-0 px-6 py-3.5 rounded-xl bg-[#D69A25] hover:bg-[#C2891E] text-[#20252B] font-bold text-xs sm:text-sm shadow-xs transition-all active:scale-98 cursor-pointer text-center whitespace-nowrap"
           >
             {t.businessCta.cta}
           </button>
@@ -409,20 +406,20 @@ export const HomePage: React.FC = () => {
       </section>
 
       {/* 8. FINAL APP DOWNLOAD PRE-LAUNCH SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200 text-center space-y-6 max-w-3xl mx-auto shadow-xs">
-          <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center mx-auto">
-            <Smartphone className="w-6 h-6 text-amber-600" />
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-6 sm:p-10 rounded-3xl bg-[#FFFFFF] border border-[#E2E5E8] text-center space-y-5 max-w-3xl mx-auto shadow-2xs">
+          <div className="w-12 h-12 rounded-2xl bg-[#D69A25]/10 text-[#D69A25] flex items-center justify-center mx-auto">
+            <Smartphone className="w-6 h-6 text-[#D69A25]" />
           </div>
 
           <div className="space-y-2">
-            <span className="text-xs font-mono font-bold text-amber-600 uppercase tracking-wider">
+            <span className="text-xs font-mono font-bold text-[#D69A25] uppercase tracking-wider">
               {t.appDownloadSection.tag}
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#20252B] font-heading">
               {t.appDownloadSection.title}
             </h2>
-            <p className="text-sm text-slate-600 max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm text-[#303943] max-w-xl mx-auto">
               {t.appDownloadSection.desc}
             </p>
           </div>
@@ -439,28 +436,28 @@ export const HomePage: React.FC = () => {
                 value={notifyEmail}
                 onChange={(e) => setNotifyEmail(e.target.value)}
                 placeholder={t.appDownloadSection.notifyPlaceholder}
-                className="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 bg-slate-50"
+                className="flex-1 px-4 py-2.5 rounded-xl border border-[#E2E5E8] text-xs text-[#20252B] focus:outline-none focus:ring-2 focus:ring-[#D69A25] bg-[#F5F6F7]"
                 required
               />
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors whitespace-nowrap cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-[#303943] hover:bg-[#20252B] text-white font-bold text-xs transition-colors whitespace-nowrap cursor-pointer"
               >
                 {t.appDownloadSection.notifyBtn}
               </button>
             </form>
           )}
 
-          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
-            <span className="text-xs font-mono px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200">
+          <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+            <span className="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#F5F6F7] text-[#303943] border border-[#E2E5E8]">
               {t.appDownloadSection.androidBadge}
             </span>
-            <span className="text-xs font-mono px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200">
+            <span className="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#F5F6F7] text-[#303943] border border-[#E2E5E8]">
               {t.appDownloadSection.iosBadge}
             </span>
           </div>
 
-          <p className="text-[11px] text-slate-400">
+          <p className="text-[11px] text-[#94A3B8]">
             {t.appDownloadSection.disclaimer}
           </p>
         </div>

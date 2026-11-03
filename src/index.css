@@ -2,15 +2,37 @@
 
 @layer base {
   :root {
-    --font-arabic-sans: 'IBM Plex Sans Arabic', 'Cairo', system-ui, sans-serif;
-    --font-arabic-heading: 'Cairo', 'IBM Plex Sans Arabic', system-ui, sans-serif;
-    --font-english-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-    --font-english-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --color-gold: #D69A25;
+    --color-slate-gray: #303943;
+    --color-industrial-white: #F5F6F7;
+    --color-graphite: #20252B;
+
+    --font-arabic: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-english: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
 
-  html[dir="rtl"] {
-    font-family: var(--font-arabic-sans);
+  html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+    background-color: var(--color-industrial-white);
+    color: var(--color-graphite);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html[dir="rtl"],
+  html[dir="rtl"] body {
+    font-family: var(--font-arabic);
   }
 
   html[dir="rtl"] h1,
@@ -19,12 +41,13 @@
   html[dir="rtl"] h4,
   html[dir="rtl"] h5,
   html[dir="rtl"] h6 {
-    font-family: var(--font-arabic-heading);
-    letter-spacing: -0.015em;
+    font-family: var(--font-arabic);
+    font-weight: 700;
   }
 
-  html[dir="ltr"] {
-    font-family: var(--font-english-sans);
+  html[dir="ltr"],
+  html[dir="ltr"] body {
+    font-family: var(--font-english);
   }
 
   html[dir="ltr"] h1,
@@ -33,13 +56,9 @@
   html[dir="ltr"] h4,
   html[dir="ltr"] h5,
   html[dir="ltr"] h6 {
-    font-family: var(--font-english-heading);
-    letter-spacing: -0.02em;
-  }
-
-  body {
-    background-color: #f8fafc;
-    color: #0f172a;
+    font-family: var(--font-english);
+    font-weight: 700;
+    letter-spacing: -0.015em;
   }
 }
 
@@ -50,16 +69,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #EAECEE;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #94a3b8;
+  background: #303943;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #f59e0b;
+  background: #D69A25;
 }
 
 /* Tabular numbers for price and metrics */

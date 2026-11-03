@@ -49,98 +49,98 @@ export const DownloadAppPage: React.FC = () => {
       ];
 
   return (
-    <div className="space-y-20 pb-20">
-      {/* Header Banner */}
-      <section className="bg-slate-900 text-white py-16 sm:py-24 relative overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <span className="text-xs font-mono font-bold text-amber-400 uppercase tracking-widest block">
+    <div className="space-y-16 sm:space-y-20 pb-16 w-full max-w-full overflow-x-hidden">
+      {/* Bright Header Banner */}
+      <section className="bg-[#FFFFFF] border-b border-[#E2E5E8] py-12 sm:py-20">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3 sm:space-y-4">
+          <span className="text-xs font-mono font-bold text-[#D69A25] uppercase tracking-widest block">
             {t.appDownloadSection.tag}
           </span>
-          <h1 className="text-3xl sm:text-5xl font-black font-heading text-balance">
+          <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black font-heading text-[#20252B] text-balance">
             {t.appDownloadSection.title}
           </h1>
-          <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-base text-[#303943] max-w-2xl leading-relaxed">
             {t.appDownloadSection.desc}
           </p>
         </div>
       </section>
 
       {/* App Mockup & Store Cards */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Left Column: Device Mockup Presentation */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-72 sm:w-80 rounded-[40px] border-8 border-slate-900 bg-slate-900 shadow-2xl p-3">
+          <div className="lg:col-span-5 flex justify-center w-full">
+            <div className="relative w-full max-w-[270px] xs:max-w-[290px] sm:max-w-xs rounded-[36px] sm:rounded-[40px] border-6 sm:border-8 border-[#20252B] bg-[#20252B] shadow-lg p-2.5 sm:p-3">
               {/* Device Screen Shell */}
-              <div className="rounded-[30px] bg-slate-950 text-white overflow-hidden p-5 space-y-4 border border-slate-800">
+              <div className="rounded-[26px] sm:rounded-[30px] bg-[#FFFFFF] text-[#20252B] overflow-hidden p-4 space-y-3 border border-[#E2E5E8]">
                 {/* Simulated App Header */}
-                <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-                  <div className="flex items-center gap-2">
-                    <div className="w-6 h-6 rounded-md bg-amber-500 text-slate-950 flex items-center justify-center font-black text-xs">
+                <div className="flex items-center justify-between pb-2.5 border-b border-[#E2E5E8]">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-5 h-5 rounded-md bg-[#D69A25] text-[#20252B] flex items-center justify-center font-black text-[10px]">
                       HD
                     </div>
                     <span className="text-xs font-black tracking-tight">HEAVY DUTY</span>
                   </div>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#D69A25]/15 text-[#D69A25] font-bold">
                     Iraq
                   </span>
                 </div>
 
                 {/* Simulated App Search Bar */}
-                <div className="p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400 flex items-center gap-2">
+                <div className="p-2 rounded-xl bg-[#F5F6F7] border border-[#E2E5E8] text-[11px] text-[#303943] flex items-center gap-1.5">
                   <span>🔍</span>
-                  <span>{isAr ? 'ابحث عن حفارة، لودر، قطعة غيار...' : 'Search excavators, parts...'}</span>
+                  <span className="truncate">{isAr ? 'ابحث عن حفارة، لودر، قطع غيار...' : 'Search excavators, parts...'}</span>
                 </div>
 
                 {/* Simulated 4 Service Icons */}
-                <div className="grid grid-cols-4 gap-2 text-center text-[10px]">
-                  <div className="p-2 rounded-xl bg-slate-900 border border-slate-800">
-                    <div className="text-amber-400 mb-1">🚜</div>
+                <div className="grid grid-cols-4 gap-1.5 text-center text-[9px] font-bold text-[#303943]">
+                  <div className="p-1.5 rounded-lg bg-[#F5F6F7] border border-[#E2E5E8]">
+                    <div className="text-[#D69A25] mb-0.5 text-xs">🚜</div>
                     <span>{isAr ? 'تأجير' : 'Rental'}</span>
                   </div>
-                  <div className="p-2 rounded-xl bg-slate-900 border border-slate-800">
-                    <div className="text-blue-400 mb-1">🏷️</div>
+                  <div className="p-1.5 rounded-lg bg-[#F5F6F7] border border-[#E2E5E8]">
+                    <div className="text-[#303943] mb-0.5 text-xs">🏷️</div>
                     <span>{isAr ? 'بيع' : 'Sales'}</span>
                   </div>
-                  <div className="p-2 rounded-xl bg-slate-900 border border-slate-800">
-                    <div className="text-emerald-400 mb-1">⚙️</div>
+                  <div className="p-1.5 rounded-lg bg-[#F5F6F7] border border-[#E2E5E8]">
+                    <div className="text-[#303943] mb-0.5 text-xs">⚙️</div>
                     <span>{isAr ? 'قطع' : 'Parts'}</span>
                   </div>
-                  <div className="p-2 rounded-xl bg-slate-900 border border-slate-800">
-                    <div className="text-orange-400 mb-1">🛠️</div>
+                  <div className="p-1.5 rounded-lg bg-[#F5F6F7] border border-[#E2E5E8]">
+                    <div className="text-[#D69A25] mb-0.5 text-xs">🛠️</div>
                     <span>{isAr ? 'صيانة' : 'Repairs'}</span>
                   </div>
                 </div>
 
                 {/* Simulated Machine Card */}
-                <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
-                  <div className="h-24 rounded-lg bg-slate-800 flex items-center justify-center text-xs text-slate-500">
+                <div className="p-2.5 rounded-xl bg-[#F5F6F7] border border-[#E2E5E8] space-y-1.5">
+                  <div className="h-20 rounded-lg bg-[#EAECEE] flex items-center justify-center text-[10px] text-[#303943] font-medium text-center p-2">
                     CAT 336D Crawler Excavator
                   </div>
-                  <div className="flex items-center justify-between text-[11px]">
-                    <span className="font-bold text-white">Baghdad · بغداد</span>
-                    <span className="text-amber-400 font-mono font-bold">250,000 IQD/يوم</span>
+                  <div className="flex items-center justify-between text-[10px]">
+                    <span className="font-bold text-[#20252B]">Baghdad · بغداد</span>
+                    <span className="text-[#D69A25] font-mono font-bold">250,000 IQD/يوم</span>
                   </div>
                 </div>
 
                 {/* Coming Soon Notice */}
-                <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-[10px] text-amber-300 text-center font-mono font-bold">
+                <div className="p-2 rounded-lg bg-[#D69A25]/15 border border-[#D69A25]/30 text-[9px] text-[#D69A25] text-center font-mono font-bold">
                   ● {isAr ? 'إصدار أندرويد و iOS قريباً' : 'Android & iOS Release Soon'}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Official App Store Availability Cards */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="space-y-3">
-              <span className="text-xs font-mono font-bold text-amber-600 uppercase tracking-widest block">
+          {/* Right Column: Store Availability Cards */}
+          <div className="lg:col-span-7 space-y-5 sm:space-y-6 w-full">
+            <div className="space-y-2.5">
+              <span className="text-xs font-mono font-bold text-[#D69A25] uppercase tracking-widest block">
                 {isAr ? 'جاهزية متجر التطبيقات' : 'STORE ROLLOUT STATUS'}
               </span>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">
+              <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] font-heading">
                 {isAr ? 'تنزيل رسمي موثوق خالٍ من الروابط العشوائية' : 'Authentic store distribution without unverified download links'}
               </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
                 {isAr
                   ? 'حرصاً على سلامة بيانات المقاولين وسلامة الأجهزة، لا تقوم HEAVY DUTY بنشر ملفات APK خارجية غير معتمدة. يجري اعتماد التطبيق رسمياً على متاجر Google Play و Apple App Store.'
                   : 'To protect client security and ensure device integrity, HEAVY DUTY distributes solely through verified channels. Official store links will activate immediately upon final store review.'}
@@ -150,23 +150,23 @@ export const DownloadAppPage: React.FC = () => {
             {/* Platform Download Tiles */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Android Card */}
-              <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-2xl">🤖</span>
-                  <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-amber-50 text-amber-700 font-bold border border-amber-200">
+                  <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-[#D69A25]/10 text-[#D69A25] font-bold border border-[#D69A25]/20">
                     {isAr ? 'قريباً' : 'Coming Soon'}
                   </span>
                 </div>
-                <h4 className="text-base font-bold text-slate-900 font-heading">
+                <h4 className="text-sm sm:text-base font-bold text-[#20252B] font-heading">
                   Google Play (Android)
                 </h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-[#303943]">
                   {isAr ? 'متوافق مع أجهزة أندرويد للهواتف الذكية والأجهزة اللوحية الميدانية.' : 'Optimized for Android smartphones and rugged field tablets.'}
                 </p>
                 <div className="pt-2">
                   <button
                     disabled
-                    className="w-full py-2.5 rounded-xl bg-slate-100 text-slate-400 text-xs font-bold cursor-not-allowed border border-slate-200"
+                    className="w-full py-2.5 rounded-xl bg-[#F5F6F7] text-[#94A3B8] text-xs font-bold cursor-not-allowed border border-[#E2E5E8]"
                   >
                     Google Play Coming Soon
                   </button>
@@ -174,23 +174,23 @@ export const DownloadAppPage: React.FC = () => {
               </div>
 
               {/* iOS Card */}
-              <div className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs space-y-3">
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-2xl">🍎</span>
-                  <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 font-bold border border-slate-200">
+                  <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-[#F5F6F7] text-[#303943] font-bold border border-[#E2E5E8]">
                     {isAr ? 'قريباً' : 'Coming Soon'}
                   </span>
                 </div>
-                <h4 className="text-base font-bold text-slate-900 font-heading">
+                <h4 className="text-sm sm:text-base font-bold text-[#20252B] font-heading">
                   Apple App Store (iOS)
                 </h4>
-                <p className="text-xs text-slate-600">
+                <p className="text-xs text-[#303943]">
                   {isAr ? 'متوافق مع أجهزة iPhone و iPad للمهندسين ومديري المشاريع.' : 'Engineered for iPhone and iPad for site engineers and managers.'}
                 </p>
                 <div className="pt-2">
                   <button
                     disabled
-                    className="w-full py-2.5 rounded-xl bg-slate-100 text-slate-400 text-xs font-bold cursor-not-allowed border border-slate-200"
+                    className="w-full py-2.5 rounded-xl bg-[#F5F6F7] text-[#94A3B8] text-xs font-bold cursor-not-allowed border border-[#E2E5E8]"
                   >
                     App Store Coming Soon
                   </button>
@@ -199,10 +199,10 @@ export const DownloadAppPage: React.FC = () => {
             </div>
 
             {/* Launch Notification Form */}
-            <div className="p-6 rounded-2xl bg-slate-900 text-white space-y-4">
-              <div className="flex items-center gap-3">
-                <Bell className="w-5 h-5 text-amber-400" />
-                <h4 className="text-sm font-bold font-heading">
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#303943] text-white space-y-3 sm:space-y-4">
+              <div className="flex items-center gap-2.5">
+                <Bell className="w-5 h-5 text-[#D69A25]" />
+                <h4 className="text-xs sm:text-sm font-bold font-heading">
                   {isAr ? 'كن أول من يعلم عند إتاحة التنزيل الرسمي' : 'Be first to know when the app launches'}
                 </h4>
               </div>
@@ -218,12 +218,12 @@ export const DownloadAppPage: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t.appDownloadSection.notifyPlaceholder}
-                    className="flex-1 px-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white focus:outline-none focus:ring-2 focus:ring-amber-500 placeholder:text-slate-400"
+                    className="flex-1 px-4 py-2.5 rounded-xl bg-[#20252B] border border-slate-600 text-xs text-white focus:outline-none focus:ring-2 focus:ring-[#D69A25] placeholder:text-slate-400"
                     required
                   />
                   <button
                     type="submit"
-                    className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs transition-colors whitespace-nowrap cursor-pointer"
+                    className="px-5 py-2.5 rounded-xl bg-[#D69A25] hover:bg-[#C2891E] text-[#20252B] font-bold text-xs transition-colors whitespace-nowrap cursor-pointer min-h-[44px]"
                   >
                     {t.appDownloadSection.notifyBtn}
                   </button>
@@ -235,24 +235,24 @@ export const DownloadAppPage: React.FC = () => {
       </section>
 
       {/* App Key Capabilities */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-xs font-mono font-bold text-amber-600 uppercase tracking-widest block">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
+        <div className="text-center max-w-2xl mx-auto space-y-2">
+          <span className="text-xs font-mono font-bold text-[#D69A25] uppercase tracking-widest block">
             {isAr ? 'مميزات تطبيق الهاتف' : 'MOBILE APP SPECIFICATIONS'}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">
+          <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] font-heading">
             {isAr ? 'مُصمم لبيئة العمل الميدانية ومواقع الإنشاءات' : 'Built for rugged jobsite conditions and fast mobile decisions'}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {appFeatures.map((feat, i) => (
-            <div key={i} className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-2xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold">
-                <CheckCircle2 className="w-5 h-5 text-amber-600" />
+            <div key={i} className="p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-2">
+              <div className="w-10 h-10 rounded-xl bg-[#D69A25]/10 text-[#D69A25] flex items-center justify-center font-bold">
+                <CheckCircle2 className="w-5 h-5 text-[#D69A25]" />
               </div>
-              <h3 className="text-sm font-bold text-slate-900 font-heading">{feat.title}</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">{feat.desc}</p>
+              <h3 className="text-xs sm:text-sm font-bold text-[#20252B] font-heading">{feat.title}</h3>
+              <p className="text-xs text-[#303943] leading-relaxed">{feat.desc}</p>
             </div>
           ))}
         </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useRouter } from '../context/RouterContext';
-import { IMAGES } from '../assets/images';
+import { IMAGES, FALLBACK_IMAGES } from '../assets/images';
+import { IndustrialImage } from '../components/common/IndustrialImage';
 import {
   Cog,
   CheckCircle2,
@@ -116,25 +117,20 @@ export const PartsServicePage: React.FC = () => {
       ];
 
   return (
-    <div className="space-y-20 pb-20">
-      {/* Header Banner */}
-      <section className="bg-slate-900 text-white py-16 sm:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <img src={IMAGES.partsService} alt="Heavy Equipment Spare Parts" className="w-full h-full object-cover" />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-900/90 to-slate-950/80" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold">
+    <div className="space-y-16 sm:space-y-20 pb-16 w-full max-w-full overflow-x-hidden">
+      {/* Bright Header Banner */}
+      <section className="bg-[#FFFFFF] border-b border-[#E2E5E8] py-12 sm:py-20">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3 sm:space-y-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#D69A25]/10 border border-[#D69A25]/30 text-[#D69A25] text-xs font-mono font-bold">
             <Cog className="w-4 h-4" />
             <span>{isAr ? 'الخدمة الثالثة في HEAVY DUTY' : 'CORE SERVICE 03'}</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black font-heading text-balance">
+          <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black font-heading text-[#20252B] text-balance">
             {isAr ? 'سوق قطع الغيار والمكونات الهندسية' : 'Heavy Equipment Spare Parts Marketplace'}
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-base text-[#303943] max-w-2xl leading-relaxed">
             {isAr
               ? 'دليل وسوق رقمي موحد لمتاجر ووكلاء قطع غيار الآليات الثقيلة، مفهرس برقم OEM والموديلات المتوافقة لتقليص فترات تعطل الآليات.'
               : 'A unified digital catalogue linking heavy machinery spare parts stores and importers, indexed by genuine OEM codes to eliminate costly machine downtime.'}
@@ -143,42 +139,49 @@ export const PartsServicePage: React.FC = () => {
       </section>
 
       {/* OEM Precision & Technical Standards */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-7 space-y-6">
-            <span className="text-xs font-bold font-mono text-amber-600 uppercase tracking-widest">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+            <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
               {isAr ? 'دقة البحث وسرعة التوريد' : 'OEM COMPATIBILITY & PRECISION'}
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">
+            <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] font-heading">
               {isAr
                 ? 'العثور على القطعة الصحيحة بأسرع وقت وأقل جهد'
                 : 'Locate the exact OEM component quickly without jobsite delays'}
             </h2>
-            <p className="text-sm text-slate-600 leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
               {isAr
                 ? 'يعاني مهندسو ومقاولو المشاريع في العراق من صعوبة البحث عن قطع الغيار النادرة أو التحقق من مطابقتها الحقيقية لموديل الحفارة أو اللودر. يحل تطبيق HEAVY DUTY هذه المعضلة من خلال الفهرسة الرقمية بأرقام القطع والماركات العالمية مثل CAT، Komatsu، Bosch Rexroth، Cummins، و Donaldson.'
                 : 'Contractors and heavy fleet managers face substantial hurdles locating specialized parts or verifying exact cross-compatibility. HEAVY DUTY solves this through structured indexing by part number and manufacturer brand, linking jobsites directly with verified inventory.'}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-2">
               {valuePillars.map((v, i) => (
-                <div key={i} className="p-4 rounded-xl bg-white border border-slate-200/80 space-y-1 shadow-2xs">
-                  <h4 className="text-sm font-bold text-slate-900 font-heading">{v.title}</h4>
-                  <p className="text-xs text-slate-600 leading-relaxed">{v.desc}</p>
+                <div key={i} className="p-4 rounded-xl bg-[#FFFFFF] border border-[#E2E5E8] space-y-1 shadow-2xs">
+                  <h4 className="text-xs sm:text-sm font-bold text-[#20252B] font-heading">{v.title}</h4>
+                  <p className="text-xs text-[#303943] leading-relaxed">{v.desc}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="lg:col-span-5">
-            <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-lg bg-white">
-              <img src={IMAGES.partsService} alt="Precision spare parts" className="w-full h-80 object-cover" />
-              <div className="p-6 space-y-3 bg-slate-50 border-t border-slate-100">
-                <div className="flex items-center gap-2 text-xs font-bold text-emerald-700">
+          <div className="lg:col-span-5 w-full">
+            <div className="rounded-2xl overflow-hidden border border-[#E2E5E8] shadow-sm bg-[#FFFFFF]">
+              <div className="h-56 sm:h-72 w-full">
+                <IndustrialImage
+                  src={IMAGES.partsService}
+                  fallbackSrc={FALLBACK_IMAGES.partsService}
+                  alt="Precision spare parts"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="p-4 sm:p-5 space-y-2 bg-[#F5F6F7] border-t border-[#E2E5E8]">
+                <div className="flex items-center gap-2 text-xs font-bold text-[#D69A25]">
                   <Smartphone className="w-4 h-4" />
                   <span>{isAr ? 'البحث والتواصل اللحظي عبر التطبيق' : 'Live Part Inquiries in Mobile App'}</span>
                 </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
+                <p className="text-xs text-[#303943] leading-relaxed">
                   {isAr
                     ? 'يستعرض المستخدمون قوائم قطع الغيار، يتحققون من توفرها في المستودعات، ويتواصلون مباشرة مع أصحاب المتاجر عبر الهاتف والواتساب داخل التطبيق.'
                     : 'Users inspect detailed product photos, check real-time store stock availability, and connect directly with store owners via telephone and WhatsApp inside the application.'}
@@ -190,50 +193,50 @@ export const PartsServicePage: React.FC = () => {
       </section>
 
       {/* Spare Parts Classifications Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 sm:space-y-8">
         <div className="space-y-2">
-          <span className="text-xs font-bold font-mono text-amber-600 uppercase tracking-widest">
+          <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
             {isAr ? 'تصنيفات المكونات الهندسية' : 'SPARE PARTS TAXONOMY'}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">
+          <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] font-heading">
             {isAr ? 'شامل لكافة الأنظمة الهيدروليكية والميكانيكية والكهربائية' : 'Complete coverage of hydraulic, powertrain, and electronic assemblies'}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {partCategories.map((cat, idx) => (
-            <div key={idx} className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-2xs space-y-3">
-              <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
-                <Package className="w-5 h-5 text-emerald-600" />
+            <div key={idx} className="p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-2.5">
+              <div className="w-10 h-10 rounded-xl bg-[#D69A25]/10 text-[#D69A25] flex items-center justify-center font-bold">
+                <Package className="w-5 h-5 text-[#D69A25]" />
               </div>
-              <h3 className="text-base font-bold text-slate-900 font-heading">{cat.title}</h3>
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{cat.desc}</p>
+              <h3 className="text-sm sm:text-base font-bold text-[#20252B] font-heading">{cat.title}</h3>
+              <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">{cat.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* CTA Box */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="p-8 rounded-2xl bg-white border border-slate-200 space-y-4 max-w-2xl mx-auto shadow-xs">
-          <h3 className="text-xl font-bold text-slate-900 font-heading">
+      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="p-6 sm:p-8 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] space-y-3 sm:space-y-4 max-w-2xl mx-auto shadow-2xs">
+          <h3 className="text-lg sm:text-xl font-bold text-[#20252B] font-heading">
             {isAr ? 'هل تدير متجر قطع غيار أو توزع مكونات أصلية؟' : 'Operating a spare parts store or importing components?'}
           </h3>
-          <p className="text-xs sm:text-sm text-slate-600">
+          <p className="text-xs sm:text-sm text-[#303943]">
             {isAr
               ? 'انضم كمتجر معتمد لتحويل مخزونك الورقي إلى كتالوج رقمي مرئي للآلاف من مقاولي المشاريع.'
               : 'Join as an accredited parts merchant to digitize your inventory and connect with active buyers.'}
           </p>
-          <div className="pt-2 flex justify-center gap-3">
+          <div className="pt-2 flex flex-col sm:flex-row justify-center gap-3">
             <button
               onClick={() => navigate('/download')}
-              className="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold cursor-pointer"
+              className="px-5 py-2.5 rounded-xl bg-[#D69A25] hover:bg-[#C2891E] text-[#20252B] text-xs font-bold cursor-pointer"
             >
               {isAr ? 'تحميل التطبيق قريباً' : 'Download App Page'}
             </button>
             <button
               onClick={() => navigate('/for-businesses')}
-              className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold cursor-pointer"
+              className="px-5 py-2.5 rounded-xl bg-[#303943] hover:bg-[#20252B] text-white text-xs font-bold cursor-pointer"
             >
               {isAr ? 'بوابة متاجر قطع الغيار' : 'Parts Stores Portal'}
             </button>
