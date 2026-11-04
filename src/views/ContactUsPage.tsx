@@ -46,16 +46,16 @@ export const ContactUsPage: React.FC = () => {
 
   return (
     <div className="space-y-16 sm:space-y-20 pb-16 w-full max-w-full overflow-x-hidden">
-      {/* Bright Header Banner */}
-      <section className="bg-[#FFFFFF] border-b border-[#E2E5E8] py-12 sm:py-20">
+      {/* Header Banner */}
+      <section className="bg-[#FFFFFF] dark:bg-[#20252B] border-b border-[#E2E5E8] dark:border-[#3E4956] py-12 sm:py-20 transition-colors">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3 sm:space-y-4">
           <span className="text-xs font-mono font-bold text-[#D69A25] uppercase tracking-widest block">
             {t.contactPage.tag}
           </span>
-          <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black font-heading text-[#20252B] text-balance">
+          <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black font-heading text-[#20252B] dark:text-[#F5F6F7] text-balance">
             {t.contactPage.title}
           </h1>
-          <p className="text-xs sm:text-base text-[#303943] max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-base text-[#303943] dark:text-[#CBD5E1] max-w-2xl leading-relaxed">
             {t.contactPage.subtitle}
           </p>
         </div>
@@ -65,29 +65,29 @@ export const ContactUsPage: React.FC = () => {
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Form Column */}
-          <div className="lg:col-span-7 bg-[#FFFFFF] p-6 sm:p-10 rounded-3xl border border-[#E2E5E8] shadow-2xs space-y-5 sm:space-y-6">
-            <h2 className="text-lg sm:text-2xl font-bold text-[#20252B] font-heading">
+          <div className="lg:col-span-7 bg-[#FFFFFF] dark:bg-[#2B333D] p-6 sm:p-10 rounded-3xl border border-[#E2E5E8] dark:border-[#3E4956] shadow-2xs space-y-5 sm:space-y-6">
+            <h2 className="text-lg sm:text-2xl font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
               {isAr ? 'نموذج المراسلة الرسمي' : 'Official Message Form'}
             </h2>
 
             {/* Technical Integration Notice */}
-            <div className="p-3.5 sm:p-4 rounded-xl bg-[#D69A25]/10 border border-[#D69A25]/30 text-xs text-[#303943] space-y-1">
+            <div className="p-3.5 sm:p-4 rounded-xl bg-[#D69A25]/10 dark:bg-[#D69A25]/20 border border-[#D69A25]/30 text-xs text-[#303943] dark:text-[#CBD5E1] space-y-1">
               <div className="flex items-center gap-2 text-[#D69A25] font-bold">
                 <ShieldAlert className="w-4 h-4 text-[#D69A25] shrink-0" />
                 <span>{t.contactPage.form.noticeTitle}</span>
               </div>
-              <p className="leading-relaxed text-[11px] text-[#303943]">
+              <p className="leading-relaxed text-[11px] text-[#303943] dark:text-[#CBD5E1]">
                 {t.contactPage.form.noticeDesc}
               </p>
             </div>
 
             {formSubmitted ? (
-              <div className="p-6 sm:p-8 rounded-2xl bg-[#F5F6F7] border border-[#E2E5E8] text-center space-y-3">
-                <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
-                <h4 className="text-base font-bold text-[#20252B] font-heading">
+              <div className="p-6 sm:p-8 rounded-2xl bg-[#F5F6F7] dark:bg-[#20252B] border border-[#E2E5E8] dark:border-[#3E4956] text-center space-y-3">
+                <CheckCircle2 className="w-10 h-10 text-emerald-600 dark:text-emerald-400 mx-auto" />
+                <h4 className="text-base font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
                   {isAr ? 'تم التحقق من بيانات النموذج بنجاح' : 'Form Validated Successfully'}
                 </h4>
-                <p className="text-xs text-[#303943] max-w-md mx-auto">
+                <p className="text-xs text-[#303943] dark:text-[#CBD5E1] max-w-md mx-auto">
                   {isAr
                     ? 'تم فحص وتدقيق كافة المدخلات بنجاح. بمجرد ربط خادم البريد الفعلي للإنتاج (SMTP أو API)، سيتم تسليم هذه الرسائل فورياً إلى صندوق الوارد.'
                     : 'All input parameters have been validated on the client side. Once production SMTP or API endpoints are configured, messages will be delivered directly.'}
@@ -102,21 +102,21 @@ export const ContactUsPage: React.FC = () => {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
                 {validationError && (
-                  <div className="p-3.5 rounded-xl bg-red-50 text-red-700 text-xs font-semibold flex items-center gap-2 border border-red-200">
+                  <div className="p-3.5 rounded-xl bg-red-50 dark:bg-red-950/40 text-red-700 dark:text-red-300 text-xs font-semibold flex items-center gap-2 border border-red-200 dark:border-red-800">
                     <AlertCircle className="w-4 h-4 shrink-0" />
                     <span>{validationError}</span>
                   </div>
                 )}
 
                 <div>
-                  <label className="block text-xs font-bold text-[#303943] mb-1">
+                  <label className="block text-xs font-bold text-[#303943] dark:text-[#CBD5E1] mb-1">
                     {t.contactPage.form.fullName} *
                   </label>
                   <input
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E5E8] text-xs text-[#20252B] bg-[#F5F6F7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#D69A25]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E5E8] dark:border-[#3E4956] text-xs text-[#20252B] dark:text-[#F5F6F7] bg-[#F5F6F7] dark:bg-[#20252B] focus:bg-white dark:focus:bg-[#2B333D] focus:outline-none focus:ring-2 focus:ring-[#D69A25]"
                     placeholder={isAr ? 'الاسم الثلاثي' : 'Full Name'}
                     required
                   />
@@ -124,14 +124,14 @@ export const ContactUsPage: React.FC = () => {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-xs font-bold text-[#303943] mb-1">
+                    <label className="block text-xs font-bold text-[#303943] dark:text-[#CBD5E1] mb-1">
                       {t.contactPage.form.email} *
                     </label>
                     <input
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E5E8] text-xs text-[#20252B] bg-[#F5F6F7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#D69A25]"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E5E8] dark:border-[#3E4956] text-xs text-[#20252B] dark:text-[#F5F6F7] bg-[#F5F6F7] dark:bg-[#20252B] focus:bg-white dark:focus:bg-[#2B333D] focus:outline-none focus:ring-2 focus:ring-[#D69A25]"
                       placeholder="name@domain.com"
                       dir="ltr"
                       required
@@ -139,14 +139,14 @@ export const ContactUsPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#303943] mb-1">
+                    <label className="block text-xs font-bold text-[#303943] dark:text-[#CBD5E1] mb-1">
                       {t.contactPage.form.phone}
                     </label>
                     <input
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E5E8] text-xs text-[#20252B] bg-[#F5F6F7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#D69A25]"
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E5E8] dark:border-[#3E4956] text-xs text-[#20252B] dark:text-[#F5F6F7] bg-[#F5F6F7] dark:bg-[#20252B] focus:bg-white dark:focus:bg-[#2B333D] focus:outline-none focus:ring-2 focus:ring-[#D69A25]"
                       placeholder="+964 780 XXXXXXX"
                       dir="ltr"
                     />
@@ -154,13 +154,13 @@ export const ContactUsPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#303943] mb-1">
+                  <label className="block text-xs font-bold text-[#303943] dark:text-[#CBD5E1] mb-1">
                     {t.contactPage.form.subject}
                   </label>
                   <select
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E5E8] text-xs text-[#20252B] bg-[#F5F6F7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#D69A25]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E5E8] dark:border-[#3E4956] text-xs text-[#20252B] dark:text-[#F5F6F7] bg-[#F5F6F7] dark:bg-[#20252B] focus:bg-white dark:focus:bg-[#2B333D] focus:outline-none focus:ring-2 focus:ring-[#D69A25]"
                   >
                     <option value="general">{t.contactPage.form.subjectOptions.general}</option>
                     <option value="businessPartner">{t.contactPage.form.subjectOptions.businessPartner}</option>
@@ -170,14 +170,14 @@ export const ContactUsPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-[#303943] mb-1">
+                  <label className="block text-xs font-bold text-[#303943] dark:text-[#CBD5E1] mb-1">
                     {t.contactPage.form.message} *
                   </label>
                   <textarea
                     rows={5}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E5E8] text-xs text-[#20252B] bg-[#F5F6F7] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#D69A25]"
+                    className="w-full px-3.5 py-2.5 rounded-xl border border-[#E2E5E8] dark:border-[#3E4956] text-xs text-[#20252B] dark:text-[#F5F6F7] bg-[#F5F6F7] dark:bg-[#20252B] focus:bg-white dark:focus:bg-[#2B333D] focus:outline-none focus:ring-2 focus:ring-[#D69A25]"
                     placeholder={t.contactPage.form.message}
                     required
                   />
@@ -196,7 +196,7 @@ export const ContactUsPage: React.FC = () => {
 
           {/* Corporate Information Column */}
           <div className="lg:col-span-5 space-y-5 sm:space-y-6">
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#303943] text-[#F5F6F7] space-y-5 shadow-2xs">
+            <div className="p-6 sm:p-8 rounded-3xl bg-[#303943] dark:bg-[#20252B] text-[#F5F6F7] space-y-5 shadow-2xs border border-transparent dark:border-[#3E4956]">
               <h3 className="text-lg sm:text-xl font-bold font-heading text-[#D69A25]">
                 {isAr ? 'بيانات المراسلة المعتمدة' : 'Official Channels'}
               </h3>
@@ -211,7 +211,7 @@ export const ContactUsPage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="space-y-1 pt-3 border-t border-slate-600">
+                <div className="space-y-1 pt-3 border-t border-slate-600 dark:border-[#3E4956]">
                   <span className="text-[11px] font-mono text-[#D69A25] uppercase font-bold block">
                     {t.contactPage.info.emailTitle}
                   </span>
@@ -220,7 +220,7 @@ export const ContactUsPage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="space-y-1 pt-3 border-t border-slate-600">
+                <div className="space-y-1 pt-3 border-t border-slate-600 dark:border-[#3E4956]">
                   <span className="text-[11px] font-mono text-[#D69A25] uppercase font-bold block">
                     {t.contactPage.info.coverageTitle}
                   </span>
@@ -229,7 +229,7 @@ export const ContactUsPage: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="space-y-1 pt-3 border-t border-slate-600">
+                <div className="space-y-1 pt-3 border-t border-slate-600 dark:border-[#3E4956]">
                   <span className="text-[11px] font-mono text-[#D69A25] uppercase font-bold block">
                     {t.contactPage.info.workingHoursTitle}
                   </span>
@@ -241,8 +241,8 @@ export const ContactUsPage: React.FC = () => {
             </div>
 
             {/* Verified Market Disclosure */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] text-xs text-[#303943] space-y-1.5 shadow-2xs">
-              <div className="flex items-center gap-2 font-bold text-[#20252B]">
+            <div className="p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] text-xs text-[#303943] dark:text-[#CBD5E1] space-y-1.5 shadow-2xs">
+              <div className="flex items-center gap-2 font-bold text-[#20252B] dark:text-[#F5F6F7]">
                 <CheckCircle2 className="w-4 h-4 text-[#D69A25]" />
                 <span>{isAr ? 'ضمان الخصوصية والتعامل المؤسسي' : 'Privacy & Corporate Disclosures'}</span>
               </div>

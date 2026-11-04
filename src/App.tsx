@@ -4,6 +4,7 @@
  */
 
 import React from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { RouterProvider, useRouter } from './context/RouterContext';
 import { Header } from './components/layout/Header';
@@ -62,8 +63,8 @@ const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans transition-colors">
-      {/* 3-Zone Corporate Header with Language Switcher and Mobile Drawer */}
+    <div className="min-h-screen bg-[#F5F6F7] dark:bg-[#20252B] text-[#20252B] dark:text-[#F5F6F7] flex flex-col font-sans transition-colors duration-250">
+      {/* 3-Zone Corporate Header with Language Switcher, Theme Toggle and Mobile Drawer */}
       <Header />
 
       {/* Main Corporate Route View */}
@@ -79,10 +80,12 @@ const AppContent: React.FC = () => {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <RouterProvider>
-        <AppContent />
-      </RouterProvider>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <RouterProvider>
+          <AppContent />
+        </RouterProvider>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }

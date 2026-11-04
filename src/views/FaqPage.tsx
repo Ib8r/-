@@ -17,16 +17,16 @@ export const FaqPage: React.FC = () => {
 
   return (
     <div className="space-y-16 sm:space-y-20 pb-16 w-full max-w-full overflow-x-hidden">
-      {/* Bright Header Banner */}
-      <section className="bg-[#FFFFFF] border-b border-[#E2E5E8] py-12 sm:py-20">
+      {/* Header Banner */}
+      <section className="bg-[#FFFFFF] dark:bg-[#20252B] border-b border-[#E2E5E8] dark:border-[#3E4956] py-12 sm:py-20 transition-colors">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3 sm:space-y-4">
           <span className="text-xs font-mono font-bold text-[#D69A25] uppercase tracking-widest block">
             {t.faqPage.tag}
           </span>
-          <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black font-heading text-[#20252B] text-balance">
+          <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black font-heading text-[#20252B] dark:text-[#F5F6F7] text-balance">
             {t.faqPage.title}
           </h1>
-          <p className="text-xs sm:text-base text-[#303943] max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-base text-[#303943] dark:text-[#CBD5E1] max-w-2xl leading-relaxed">
             {t.faqPage.subtitle}
           </p>
         </div>
@@ -40,13 +40,13 @@ export const FaqPage: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] overflow-hidden shadow-2xs transition-all"
+                className="rounded-2xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] overflow-hidden shadow-2xs transition-all"
               >
                 <button
                   onClick={() => toggleAccordion(idx)}
-                  className="w-full p-4 sm:p-6 text-start flex items-center justify-between gap-4 cursor-pointer hover:bg-[#F5F6F7] transition-colors"
+                  className="w-full p-4 sm:p-6 text-start flex items-center justify-between gap-4 cursor-pointer hover:bg-[#F5F6F7] dark:hover:bg-[#303943] transition-colors"
                 >
-                  <span className="text-xs sm:text-base font-bold text-[#20252B] font-heading">
+                  <span className="text-xs sm:text-base font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
                     {item.q}
                   </span>
                   <ChevronDown
@@ -57,7 +57,7 @@ export const FaqPage: React.FC = () => {
                 </button>
 
                 {isOpen && (
-                  <div className="px-4 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-[#303943] leading-relaxed border-t border-[#F5F6F7] pt-3 sm:pt-4 animate-in fade-in duration-150">
+                  <div className="px-4 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] leading-relaxed border-t border-[#F5F6F7] dark:border-[#3E4956]/50 pt-3 sm:pt-4 animate-in fade-in duration-150">
                     {item.a}
                   </div>
                 )}
@@ -69,12 +69,12 @@ export const FaqPage: React.FC = () => {
 
       {/* Still Have Questions CTA */}
       <section className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="p-6 sm:p-8 rounded-3xl bg-[#FFFFFF] border border-[#E2E5E8] space-y-3 sm:space-y-4 shadow-2xs">
+        <div className="p-6 sm:p-8 rounded-3xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] space-y-3 sm:space-y-4 shadow-2xs">
           <HelpCircle className="w-8 h-8 text-[#D69A25] mx-auto" />
-          <h3 className="text-base sm:text-lg font-bold text-[#20252B] font-heading">
+          <h3 className="text-base sm:text-lg font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
             {isAr ? 'هل لديك استفسار آخر لم تجد إجابته هنا؟' : 'Have a question not listed here?'}
           </h3>
-          <p className="text-xs sm:text-sm text-[#303943] max-w-md mx-auto">
+          <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] max-w-md mx-auto">
             {isAr
               ? 'فريق العمل مستعد دائماً لتقديم التوضيحات الفنية والإدارية اللازمة لشركائنا والمقاولين.'
               : 'Our corporate team is prepared to provide comprehensive engineering and partnership guidance.'}
@@ -82,7 +82,7 @@ export const FaqPage: React.FC = () => {
           <div className="pt-2">
             <button
               onClick={() => navigate('/contact')}
-              className="px-6 py-2.5 rounded-xl bg-[#303943] hover:bg-[#20252B] text-white text-xs font-bold transition-colors cursor-pointer"
+              className="px-6 py-2.5 rounded-xl bg-[#303943] dark:bg-[#D69A25] hover:bg-[#20252B] dark:hover:bg-[#C2891E] text-white dark:text-[#20252B] text-xs font-bold transition-colors cursor-pointer"
             >
               {isAr ? 'تواصل مع فريق الدعم' : 'Contact Support Team'}
             </button>

@@ -62,19 +62,19 @@ export const AboutUsPage: React.FC = () => {
 
   return (
     <div className="space-y-16 sm:space-y-20 pb-16 w-full max-w-full overflow-x-hidden">
-      {/* Bright Corporate Header Banner */}
-      <section className="bg-[#FFFFFF] border-b border-[#E2E5E8] py-12 sm:py-20">
+      {/* Corporate Header Banner */}
+      <section className="bg-[#FFFFFF] dark:bg-[#20252B] border-b border-[#E2E5E8] dark:border-[#3E4956] py-12 sm:py-20 transition-colors">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3 sm:space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#D69A25]/10 border border-[#D69A25]/30 text-[#D69A25] text-xs font-mono font-bold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#D69A25]/10 dark:bg-[#D69A25]/20 border border-[#D69A25]/30 text-[#D69A25] text-xs font-mono font-bold">
             <Compass className="w-4 h-4" />
             <span>{isAr ? 'عن HEAVY DUTY' : 'CORPORATE PROFILE'}</span>
           </div>
 
-          <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black font-heading text-[#20252B] text-balance">
+          <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black font-heading text-[#20252B] dark:text-[#F5F6F7] text-balance">
             {isAr ? 'البنية التحتية الرقمية لقطاع المعدات الثقيلة' : 'Powering the Heavy Equipment Industry'}
           </h1>
 
-          <p className="text-xs sm:text-base text-[#303943] max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-base text-[#303943] dark:text-[#CBD5E1] max-w-2xl leading-relaxed">
             {isAr
               ? 'تأسست فكرة HEAVY DUTY لتكون المنصة التكنولوجية الرائدة التي توحد وتطور سلاسل الإمداد والتشغيل للمعدات الثقيلة في العراق والمنطقة.'
               : 'Conceived as the leading industrial technology platform unifying and modernizing heavy machinery supply chains, rentals, and engineering services across Iraq and the Arab region.'}
@@ -85,26 +85,26 @@ export const AboutUsPage: React.FC = () => {
       {/* Vision & Mission */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          <div className="p-6 sm:p-10 rounded-3xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-3 sm:space-y-4">
-            <div className="w-12 h-12 rounded-2xl bg-[#D69A25]/10 text-[#D69A25] flex items-center justify-center">
+          <div className="p-6 sm:p-10 rounded-3xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] shadow-2xs space-y-3 sm:space-y-4">
+            <div className="w-12 h-12 rounded-2xl bg-[#D69A25]/10 dark:bg-[#D69A25]/20 text-[#D69A25] flex items-center justify-center">
               <Target className="w-6 h-6 text-[#D69A25]" />
             </div>
             <span className="text-xs font-mono font-bold text-[#D69A25] uppercase tracking-widest block">
               {isAr ? 'رؤيتنا' : 'OUR VISION'}
             </span>
-            <h2 className="text-lg sm:text-2xl font-bold text-[#20252B] font-heading">
+            <h2 className="text-lg sm:text-2xl font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
               {isAr
                 ? 'بناء منظومة رقمية متصلة تبسط وتسهل الوصول إلى الآليات الثقيلة والخدمات الصناعية في كافة أرجاء المنطقة.'
                 : 'To build a connected digital ecosystem that simplifies access to heavy equipment and industrial services across the region.'}
             </h2>
-            <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] leading-relaxed">
               {isAr
                 ? 'نتطلع إلى مستقبل تكون فيه عمليات طلب الآليات، توفير قطع الغيار، وجدولة الصيانة الميدانية مؤتمتة وسريعة بدقة متناهية تخلو من التعقيد التقليدي.'
                 : 'We envision an industrial future where mobilizing machinery, sourcing verified OEM components, and dispatching field technicians are streamlined through intuitive digital systems.'}
             </p>
           </div>
 
-          <div className="p-6 sm:p-10 rounded-3xl bg-[#303943] text-[#F5F6F7] shadow-2xs space-y-3 sm:space-y-4">
+          <div className="p-6 sm:p-10 rounded-3xl bg-[#303943] dark:bg-[#20252B] text-[#F5F6F7] shadow-2xs space-y-3 sm:space-y-4 border border-transparent dark:border-[#3E4956]">
             <div className="w-12 h-12 rounded-2xl bg-[#D69A25]/20 text-[#D69A25] flex items-center justify-center">
               <Compass className="w-6 h-6 text-[#D69A25]" />
             </div>
@@ -127,17 +127,17 @@ export const AboutUsPage: React.FC = () => {
 
       {/* The Industrial Problem We Solve */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-6 sm:p-10 rounded-3xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-4 sm:space-y-6">
+        <div className="p-6 sm:p-10 rounded-3xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] shadow-2xs space-y-4 sm:space-y-6">
           <div className="max-w-3xl space-y-2.5">
             <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
               {isAr ? 'لماذا أنشئت المنصة؟' : 'THE INDUSTRIAL CHALLENGE'}
             </span>
-            <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] font-heading">
+            <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] dark:text-[#F5F6F7] font-heading">
               {isAr
                 ? 'معالجة التشتت في سوق الآليات الثقيلة والحد من خسائر التوقف'
                 : 'Overcoming market fragmentation and eliminating costly jobsite downtime'}
             </h2>
-            <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] leading-relaxed">
               {isAr
                 ? 'يعتمد قطاع الآليات الإنشائية تقليدياً على الاتصالات الشخصية والوسطاء غير الموثوقين، مما يؤدي إلى صعوبة إيجاد المعدات المطلوبة في الوقت المناسب، وتأخر وصول قطع الغيار، وارتفاع تكاليف الشحن العشوائي. جاءت HEAVY DUTY لتضع معياراً تكنولوجياً جديداً يجمع كافة هذه الأطراف في سوق رقمي ذكي.'
                 : 'Historically, heavy machinery mobilization relied on fragmented phone networks, informal brokers, and opaque pricing. This resulted in unexpected jobsite delays, incorrect part procurement, and excessive logistics costs. HEAVY DUTY establishes a transparent, organized digital baseline unifying the sector.'}
@@ -152,19 +152,19 @@ export const AboutUsPage: React.FC = () => {
           <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
             {isAr ? 'قيمنا الجوهرية' : 'CORE VALUES'}
           </span>
-          <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] font-heading">
+          <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] dark:text-[#F5F6F7] font-heading">
             {isAr ? 'مبادئ هندسية وأخلاقية تحكم كل تفاعل' : 'Engineering principles and corporate integrity in every interaction'}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {values.map((v, i) => (
-            <div key={i} className="p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-2.5">
-              <div className="w-10 h-10 rounded-xl bg-[#D69A25]/10 text-[#D69A25] flex items-center justify-center font-bold">
+            <div key={i} className="p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] shadow-2xs space-y-2.5">
+              <div className="w-10 h-10 rounded-xl bg-[#D69A25]/10 dark:bg-[#D69A25]/20 text-[#D69A25] flex items-center justify-center font-bold">
                 <CheckCircle2 className="w-5 h-5 text-[#D69A25]" />
               </div>
-              <h3 className="text-xs sm:text-sm font-bold text-[#20252B] font-heading">{v.title}</h3>
-              <p className="text-xs text-[#303943] leading-relaxed">{v.desc}</p>
+              <h3 className="text-xs sm:text-sm font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">{v.title}</h3>
+              <p className="text-xs text-[#303943] dark:text-[#CBD5E1] leading-relaxed">{v.desc}</p>
             </div>
           ))}
         </div>
@@ -172,7 +172,7 @@ export const AboutUsPage: React.FC = () => {
 
       {/* Iraq Initial Focus & Regional Vision */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-6 sm:p-10 rounded-3xl bg-[#303943] text-[#F5F6F7] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6">
+        <div className="p-6 sm:p-10 rounded-3xl bg-[#303943] dark:bg-[#2B333D] text-[#F5F6F7] flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 border border-transparent dark:border-[#3E4956]">
           <div className="space-y-3 max-w-xl">
             <div className="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#D69A25] uppercase tracking-wider">
               <Globe2 className="w-4 h-4" />
@@ -185,8 +185,8 @@ export const AboutUsPage: React.FC = () => {
             </h3>
             <p className="text-xs sm:text-sm text-[#CBD5E1] leading-relaxed">
               {isAr
-                ? 'نركز في المرحلة الحالية على تلبية الاحتياجات المتنامية لقطاع الإعمار والمشاريع في المحافظات العراقية الـ 18، مستندين إلى بنية برمجية تدعم التوسع الإقليمي المستقبلي نحو الأسواق العربية المجاورة.'
-                : 'Our initial deployment focuses on the expanding infrastructure and reconstruction demands across Iraq’s 18 governorates, supported by scalable multi-currency and multilingual infrastructure prepared for regional growth.'}
+                ? 'نركز في المرحلة الحالية على تلبية الاحتياجات المتنامية لقطاع الإعمار والمشاريع في المحافظات العراقية الـ 19، مستندين إلى بنية برمجية تدعم التوسع الإقليمي المستقبلي نحو الأسواق العربية المجاورة.'
+                : 'Our initial deployment focuses on the expanding infrastructure and reconstruction demands across Iraq’s 19 governorates, supported by scalable multi-currency and multilingual infrastructure prepared for regional growth.'}
             </p>
           </div>
 

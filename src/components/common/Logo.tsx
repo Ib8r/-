@@ -58,14 +58,13 @@ export const Logo: React.FC<LogoProps> = ({
       {/* Heavy Industrial Chamfered Shield Background */}
       <polygon
         points="6,6 42,6 42,32 30,44 6,44"
-        fill={isDark ? '#D69A25' : '#20252B'}
-        stroke={isDark ? '#D69A25' : '#303943'}
+        className="fill-[#20252B] dark:fill-[#D69A25] stroke-[#303943] dark:stroke-[#D69A25]"
         strokeWidth="1.5"
       />
       {/* High-Tensile Inner Corner Accent */}
       <polygon
         points="34,6 42,6 42,14"
-        fill={isDark ? '#20252B' : '#D69A25'}
+        className="fill-[#D69A25] dark:fill-[#20252B]"
       />
       {/* Precision Geometric 'H' Left Stem */}
       <rect
@@ -73,7 +72,7 @@ export const Logo: React.FC<LogoProps> = ({
         y="12"
         width="6"
         height="24"
-        fill={isDark ? '#20252B' : '#D69A25'}
+        className="fill-[#D69A25] dark:fill-[#20252B]"
       />
       {/* Interlocking 'H' Crossbar */}
       <rect
@@ -81,12 +80,12 @@ export const Logo: React.FC<LogoProps> = ({
         y="21"
         width="6"
         height="6"
-        fill={isDark ? '#20252B' : '#D69A25'}
+        className="fill-[#D69A25] dark:fill-[#20252B]"
       />
       {/* Geometric 'D' Stem & Loop */}
       <path
         d="M24 12H30C34.4183 12 37 14.5 37 19V29C37 33.5 34.4183 36 30 36H24V12ZM30 18H28V30H30C31.8 30 32.5 28.5 32.5 26V22C32.5 19.5 31.8 18 30 18Z"
-        fill={isDark ? '#20252B' : '#F5F6F7'}
+        className="fill-[#F5F6F7] dark:fill-[#20252B]"
       />
     </svg>
   );
@@ -100,17 +99,13 @@ export const Logo: React.FC<LogoProps> = ({
       {Emblem}
       <div className="flex flex-col leading-none">
         <span
-          className={`font-black tracking-tight uppercase select-none ${textSizeClasses} ${
-            isDark ? 'text-[#F5F6F7]' : 'text-[#20252B]'
-          }`}
+          className={`font-black tracking-tight uppercase select-none ${textSizeClasses} text-[#20252B] dark:text-[#F5F6F7]`}
         >
           HEAVY <span className="text-[#D69A25]">DUTY</span>
         </span>
         {showTagline && (
           <span
-            className={`font-mono uppercase font-bold tracking-wider mt-0.5 select-none hidden xs:inline-block ${taglineSizeClasses} ${
-              isDark ? 'text-slate-300' : 'text-[#303943]'
-            }`}
+            className={`font-mono uppercase font-bold tracking-wider mt-0.5 select-none hidden xs:inline-block ${taglineSizeClasses} text-[#303943] dark:text-[#CBD5E1]`}
           >
             Heavy Equipment Marketplace
           </span>

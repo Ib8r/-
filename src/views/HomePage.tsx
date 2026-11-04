@@ -3,6 +3,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { useRouter } from '../context/RouterContext';
 import { IMAGES, FALLBACK_IMAGES } from '../assets/images';
 import { IndustrialImage } from '../components/common/IndustrialImage';
+import { InteractiveHeroShowcase } from '../components/home/InteractiveHeroShowcase';
+import { InteractiveIraqMap } from '../components/home/InteractiveIraqMap';
 import {
   Truck,
   Tag,
@@ -12,11 +14,12 @@ import {
   ArrowRight,
   ArrowLeft,
   Smartphone,
-  MapPin,
   ChevronRight,
   Layers,
   Sparkles,
-  ShieldCheck
+  ShieldCheck,
+  Building2,
+  Activity
 } from 'lucide-react';
 
 export const HomePage: React.FC = () => {
@@ -54,7 +57,7 @@ export const HomePage: React.FC = () => {
       image: IMAGES.salesService,
       fallbackImage: FALLBACK_IMAGES.salesService,
       icon: Tag,
-      badgeColor: 'text-[#303943] bg-[#303943]/10',
+      badgeColor: 'text-[#303943] bg-[#303943]/10 dark:text-[#CBD5E1] dark:bg-[#CBD5E1]/10',
     },
     {
       id: 'parts',
@@ -65,7 +68,7 @@ export const HomePage: React.FC = () => {
       image: IMAGES.partsService,
       fallbackImage: FALLBACK_IMAGES.partsService,
       icon: Cog,
-      badgeColor: 'text-[#303943] bg-[#303943]/10',
+      badgeColor: 'text-[#303943] bg-[#303943]/10 dark:text-[#CBD5E1] dark:bg-[#CBD5E1]/10',
     },
     {
       id: 'maintenance',
@@ -81,84 +84,9 @@ export const HomePage: React.FC = () => {
   ];
 
   return (
-    <div className="space-y-16 sm:space-y-24 pb-16 w-full max-w-full overflow-x-hidden">
-      {/* 1. BRIGHT CORPORATE HERO SECTION */}
-      <section className="relative bg-[#FFFFFF] border-b border-[#E2E5E8] overflow-hidden">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-24">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left/Start Column: Value Proposition */}
-            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#D69A25]/10 border border-[#D69A25]/30 text-[#D69A25] text-xs font-semibold font-mono tracking-wide">
-                <span>{t.hero.badge}</span>
-              </div>
-
-              <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.2] text-[#20252B] font-heading text-balance">
-                {t.hero.headline}{' '}
-                <span className="text-[#D69A25]">
-                  {t.hero.headlineAccent}
-                </span>
-              </h1>
-
-              <p className="text-sm sm:text-base lg:text-lg text-[#303943] leading-relaxed max-w-2xl font-normal">
-                {t.hero.subheadline}
-              </p>
-
-              {/* CTAs & Transparent Availability States */}
-              <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                <button
-                  onClick={() => navigate('/services/rental')}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#D69A25] hover:bg-[#C2891E] active:bg-[#B37B17] text-[#20252B] font-bold text-sm transition-all shadow-xs active:scale-98 cursor-pointer"
-                >
-                  <span>{t.hero.primaryCta}</span>
-                  <ArrowIcon className="w-4 h-4" />
-                </button>
-
-                <button
-                  onClick={() => navigate('/download')}
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#F5F6F7] hover:bg-[#EAECEE] text-[#20252B] font-semibold text-sm border border-[#E2E5E8] transition-all cursor-pointer"
-                >
-                  <Smartphone className="w-4 h-4 text-[#D69A25]" />
-                  <span>{t.hero.secondaryCta}</span>
-                </button>
-              </div>
-
-              {/* Verified Status Badges */}
-              <div className="pt-2 flex flex-wrap items-center gap-2 text-xs text-[#303943] font-mono">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#F5F6F7] border border-[#E2E5E8]">
-                  <span className="w-2 h-2 rounded-full bg-[#D69A25]" />
-                  <span>{t.hero.androidStatus}</span>
-                </div>
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#F5F6F7] border border-[#E2E5E8]">
-                  <span className="w-2 h-2 rounded-full bg-slate-400" />
-                  <span>{t.hero.iosStatus}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right/End Column: Industrial Hero Photography Card */}
-            <div className="lg:col-span-5 w-full">
-              <div className="relative rounded-2xl overflow-hidden border border-[#E2E5E8] shadow-sm bg-[#F5F6F7]">
-                <div className="h-64 sm:h-80 lg:h-96 w-full">
-                  <IndustrialImage
-                    src={IMAGES.hero}
-                    fallbackSrc={FALLBACK_IMAGES.hero}
-                    alt="Heavy Equipment Fleet"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="p-4 sm:p-5 bg-[#FFFFFF] border-t border-[#E2E5E8] flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#D69A25] uppercase tracking-wider">
-                    <span>HEAVY DUTY PLATFORM</span>
-                  </div>
-                  <span className="text-[11px] text-[#303943] font-medium hidden sm:inline-block">
-                    {t.hero.ecosystemKicker}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+    <div className="space-y-14 sm:space-y-20 pb-16 w-full max-w-full overflow-x-hidden">
+      {/* 1. INTERACTIVE HERO EXPERIENCE (Gesture-Driven Equipment Showcase) */}
+      <InteractiveHeroShowcase />
 
       {/* 2. PLATFORM INTRODUCTION & ECOSYSTEM */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -166,10 +94,10 @@ export const HomePage: React.FC = () => {
           <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
             {t.intro.tag}
           </span>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#20252B] font-heading">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#20252B] dark:text-[#F5F6F7] font-heading">
             {t.intro.title}
           </h2>
-          <p className="text-xs sm:text-sm lg:text-base text-[#303943] leading-relaxed">
+          <p className="text-xs sm:text-sm lg:text-base text-[#303943] dark:text-[#CBD5E1] leading-relaxed">
             {t.intro.description}
           </p>
         </div>
@@ -179,15 +107,15 @@ export const HomePage: React.FC = () => {
           {Object.entries(t.intro.audiences).map(([key, item]) => (
             <div
               key={key}
-              className="p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] hover:border-[#D69A25]/60 transition-all shadow-2xs space-y-3"
+              className="p-5 sm:p-6 rounded-2xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] hover:border-[#D69A25]/60 transition-all shadow-2xs space-y-3"
             >
-              <div className="w-10 h-10 rounded-xl bg-[#D69A25]/10 text-[#D69A25] flex items-center justify-center font-bold text-lg">
+              <div className="w-10 h-10 rounded-xl bg-[#D69A25]/10 dark:bg-[#D69A25]/20 text-[#D69A25] flex items-center justify-center font-bold text-lg">
                 <CheckCircle2 className="w-5 h-5 text-[#D69A25]" />
               </div>
-              <h3 className="text-sm sm:text-base font-bold text-[#20252B] font-heading">
+              <h3 className="text-sm sm:text-base font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
                 {item.title}
               </h3>
-              <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] leading-relaxed">
                 {item.desc}
               </p>
             </div>
@@ -202,11 +130,11 @@ export const HomePage: React.FC = () => {
             <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
               {t.servicesOverview.tag}
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#20252B] font-heading">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#20252B] dark:text-[#F5F6F7] font-heading">
               {t.servicesOverview.title}
             </h2>
           </div>
-          <p className="text-xs sm:text-sm text-[#303943] max-w-md">
+          <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] max-w-md">
             {t.servicesOverview.subtitle}
           </p>
         </div>
@@ -217,34 +145,34 @@ export const HomePage: React.FC = () => {
             return (
               <div
                 key={srv.id}
-                className="group rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] overflow-hidden shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between"
+                className="group rounded-2xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] overflow-hidden shadow-2xs hover:shadow-xs transition-all flex flex-col justify-between"
               >
                 <div>
-                  <div className="relative h-48 sm:h-60 w-full overflow-hidden bg-[#F5F6F7]">
+                  <div className="relative h-48 sm:h-60 w-full overflow-hidden bg-[#F5F6F7] dark:bg-[#20252B]">
                     <IndustrialImage
                       src={srv.image}
                       fallbackSrc={srv.fallbackImage}
                       alt={srv.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
                     />
                     <div className="absolute top-3.5 start-3.5">
-                      <div className="p-2.5 rounded-xl bg-[#FFFFFF]/95 backdrop-blur-xs text-[#20252B] shadow-2xs border border-[#E2E5E8]">
+                      <div className="p-2.5 rounded-xl bg-[#FFFFFF]/95 dark:bg-[#2B333D]/95 backdrop-blur-xs text-[#20252B] dark:text-[#F5F6F7] shadow-2xs border border-[#E2E5E8] dark:border-[#3E4956]">
                         <Icon className="w-5 h-5 text-[#D69A25]" />
                       </div>
                     </div>
                   </div>
 
                   <div className="p-5 sm:p-7 space-y-3 sm:space-y-4">
-                    <h3 className="text-lg sm:text-xl font-bold text-[#20252B] font-heading">
+                    <h3 className="text-lg sm:text-xl font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
                       {srv.title}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] leading-relaxed">
                       {srv.desc}
                     </p>
 
-                    <ul className="space-y-2 pt-2 border-t border-[#F5F6F7]">
+                    <ul className="space-y-2 pt-2 border-t border-[#F5F6F7] dark:border-[#3E4956]/50">
                       {srv.points.map((pt, i) => (
-                        <li key={i} className="flex items-center gap-2 text-xs text-[#303943]">
+                        <li key={i} className="flex items-center gap-2 text-xs text-[#303943] dark:text-[#CBD5E1]">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#D69A25] shrink-0" />
                           <span>{pt}</span>
                         </li>
@@ -256,7 +184,7 @@ export const HomePage: React.FC = () => {
                 <div className="px-5 pb-5 sm:px-7 sm:pb-7 pt-0">
                   <button
                     onClick={() => navigate(srv.path)}
-                    className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#F5F6F7] hover:bg-[#D69A25] hover:text-[#20252B] text-[#20252B] text-xs font-bold transition-all cursor-pointer group"
+                    className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#F5F6F7] dark:bg-[#20252B] hover:bg-[#D69A25] hover:text-[#20252B] text-[#20252B] dark:text-[#F5F6F7] text-xs font-bold transition-all cursor-pointer group"
                   >
                     <span>{t.servicesOverview.learnMore}</span>
                     <ArrowIcon className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -268,17 +196,17 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. WHY HEAVY DUTY? (Bright Industrial Styling) */}
-      <section className="bg-[#FFFFFF] border-y border-[#E2E5E8] py-14 sm:py-20">
+      {/* 4. WHY HEAVY DUTY? (Engineering Standards) */}
+      <section className="bg-[#FFFFFF] dark:bg-[#20252B] border-y border-[#E2E5E8] dark:border-[#3E4956] py-14 sm:py-20 transition-colors">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
               {t.whyHeavyDuty.tag}
             </span>
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-[#20252B]">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold font-heading text-[#20252B] dark:text-[#F5F6F7]">
               {t.whyHeavyDuty.title}
             </h2>
-            <p className="text-xs sm:text-sm text-[#303943]">
+            <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1]">
               {t.whyHeavyDuty.subtitle}
             </p>
           </div>
@@ -287,15 +215,15 @@ export const HomePage: React.FC = () => {
             {t.whyHeavyDuty.points.map((pt, idx) => (
               <div
                 key={idx}
-                className="p-5 sm:p-6 rounded-2xl bg-[#F5F6F7] border border-[#E2E5E8] space-y-2.5"
+                className="p-5 sm:p-6 rounded-2xl bg-[#F5F6F7] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] space-y-2.5"
               >
                 <div className="text-xs font-mono font-bold text-[#D69A25]">
                   0{idx + 1}.
                 </div>
-                <h3 className="text-sm sm:text-base font-bold text-[#20252B] font-heading">
+                <h3 className="text-sm sm:text-base font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
                   {pt.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] leading-relaxed">
                   {pt.desc}
                 </p>
               </div>
@@ -304,39 +232,8 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. NATIONWIDE IRAQI COVERAGE (Full 18 Governorates) */}
-      <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-6 sm:p-10 rounded-3xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-6">
-          <div className="max-w-3xl space-y-2">
-            <div className="inline-flex items-center gap-2 text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
-              <MapPin className="w-3.5 h-3.5" />
-              <span>{t.iraqCoverage.tag}</span>
-            </div>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#20252B] font-heading">
-              {t.iraqCoverage.title}
-            </h2>
-            <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
-              {t.iraqCoverage.subtitle}
-            </p>
-          </div>
-
-          {/* 18 Iraqi Governorates Grid (Responsive 2-col on small mobile, 3-col tablet, 6-col desktop) */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-2.5">
-            {t.iraqCoverage.governorates.map((gov) => (
-              <div
-                key={gov}
-                className="px-2.5 py-2 rounded-lg bg-[#F5F6F7] border border-[#E2E5E8] text-xs font-semibold text-[#20252B] text-center"
-              >
-                {gov}
-              </div>
-            ))}
-          </div>
-
-          <p className="text-[11px] text-[#303943] italic">
-            {t.iraqCoverage.note}
-          </p>
-        </div>
-      </section>
+      {/* 5. INTERACTIVE IRAQ GEOGRAPHIC MAP & EXPANSION NETWORK */}
+      <InteractiveIraqMap />
 
       {/* 6. HOW IT WORKS PREVIEW */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -344,10 +241,10 @@ export const HomePage: React.FC = () => {
           <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
             {t.howItWorksPreview.tag}
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#20252B] font-heading">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#20252B] dark:text-[#F5F6F7] font-heading">
             {t.howItWorksPreview.title}
           </h2>
-          <p className="text-xs sm:text-sm text-[#303943]">
+          <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1]">
             {t.howItWorksPreview.subtitle}
           </p>
         </div>
@@ -356,15 +253,15 @@ export const HomePage: React.FC = () => {
           {t.howItWorksPreview.steps.map((st) => (
             <div
               key={st.number}
-              className="p-6 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-3"
+              className="p-6 rounded-2xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] shadow-2xs space-y-3"
             >
               <span className="text-2xl sm:text-3xl font-black font-mono text-[#D69A25] block">
                 {st.number}
               </span>
-              <h3 className="text-sm sm:text-base font-bold text-[#20252B] font-heading">
+              <h3 className="text-sm sm:text-base font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
                 {st.title}
               </h3>
-              <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] leading-relaxed">
                 {st.desc}
               </p>
             </div>
@@ -383,7 +280,7 @@ export const HomePage: React.FC = () => {
 
       {/* 7. BUSINESS PARTNERSHIP CALLOUT */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl bg-[#303943] text-[#F5F6F7] p-6 sm:p-10 relative overflow-hidden flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6">
+        <div className="rounded-3xl bg-[#303943] dark:bg-[#2B333D] text-[#F5F6F7] p-6 sm:p-10 relative overflow-hidden flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 border border-[#E2E5E8]/20 dark:border-[#3E4956]">
           <div className="space-y-2.5 max-w-xl">
             <span className="text-xs font-mono font-bold text-[#D69A25] uppercase tracking-wider">
               {t.businessCta.tag}
@@ -407,8 +304,8 @@ export const HomePage: React.FC = () => {
 
       {/* 8. FINAL APP DOWNLOAD PRE-LAUNCH SECTION */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="p-6 sm:p-10 rounded-3xl bg-[#FFFFFF] border border-[#E2E5E8] text-center space-y-5 max-w-3xl mx-auto shadow-2xs">
-          <div className="w-12 h-12 rounded-2xl bg-[#D69A25]/10 text-[#D69A25] flex items-center justify-center mx-auto">
+        <div className="p-6 sm:p-10 rounded-3xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] text-center space-y-5 max-w-3xl mx-auto shadow-2xs">
+          <div className="w-12 h-12 rounded-2xl bg-[#D69A25]/10 dark:bg-[#D69A25]/20 text-[#D69A25] flex items-center justify-center mx-auto">
             <Smartphone className="w-6 h-6 text-[#D69A25]" />
           </div>
 
@@ -416,17 +313,17 @@ export const HomePage: React.FC = () => {
             <span className="text-xs font-mono font-bold text-[#D69A25] uppercase tracking-wider">
               {t.appDownloadSection.tag}
             </span>
-            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#20252B] font-heading">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#20252B] dark:text-[#F5F6F7] font-heading">
               {t.appDownloadSection.title}
             </h2>
-            <p className="text-xs sm:text-sm text-[#303943] max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] max-w-xl mx-auto">
               {t.appDownloadSection.desc}
             </p>
           </div>
 
           {/* Email Notification Form */}
           {notified ? (
-            <div className="p-4 rounded-xl bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
+            <div className="p-4 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 text-xs font-bold border border-emerald-200 dark:border-emerald-800">
               {t.appDownloadSection.notifySuccess}
             </div>
           ) : (
@@ -436,12 +333,12 @@ export const HomePage: React.FC = () => {
                 value={notifyEmail}
                 onChange={(e) => setNotifyEmail(e.target.value)}
                 placeholder={t.appDownloadSection.notifyPlaceholder}
-                className="flex-1 px-4 py-2.5 rounded-xl border border-[#E2E5E8] text-xs text-[#20252B] focus:outline-none focus:ring-2 focus:ring-[#D69A25] bg-[#F5F6F7]"
+                className="flex-1 px-4 py-2.5 rounded-xl border border-[#E2E5E8] dark:border-[#3E4956] text-xs text-[#20252B] dark:text-[#F5F6F7] focus:outline-none focus:ring-2 focus:ring-[#D69A25] bg-[#F5F6F7] dark:bg-[#20252B]"
                 required
               />
               <button
                 type="submit"
-                className="px-5 py-2.5 rounded-xl bg-[#303943] hover:bg-[#20252B] text-white font-bold text-xs transition-colors whitespace-nowrap cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-[#303943] dark:bg-[#D69A25] hover:bg-[#20252B] dark:hover:bg-[#C2891E] text-white dark:text-[#20252B] font-bold text-xs transition-colors whitespace-nowrap cursor-pointer"
               >
                 {t.appDownloadSection.notifyBtn}
               </button>
@@ -449,10 +346,10 @@ export const HomePage: React.FC = () => {
           )}
 
           <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
-            <span className="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#F5F6F7] text-[#303943] border border-[#E2E5E8]">
+            <span className="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#F5F6F7] dark:bg-[#20252B] text-[#303943] dark:text-[#CBD5E1] border border-[#E2E5E8] dark:border-[#3E4956]">
               {t.appDownloadSection.androidBadge}
             </span>
-            <span className="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#F5F6F7] text-[#303943] border border-[#E2E5E8]">
+            <span className="text-xs font-mono px-3 py-1.5 rounded-lg bg-[#F5F6F7] dark:bg-[#20252B] text-[#303943] dark:text-[#CBD5E1] border border-[#E2E5E8] dark:border-[#3E4956]">
               {t.appDownloadSection.iosBadge}
             </span>
           </div>

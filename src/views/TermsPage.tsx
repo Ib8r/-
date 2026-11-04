@@ -9,16 +9,16 @@ export const TermsPage: React.FC = () => {
   return (
     <div className="space-y-10 sm:space-y-12 pb-20">
       {/* Header */}
-      <section className="bg-white border-b border-[#E2E5E8] py-12 sm:py-16">
+      <section className="bg-[#FFFFFF] dark:bg-[#20252B] border-b border-[#E2E5E8] dark:border-[#3E4956] py-12 sm:py-16 transition-colors">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold text-[#D69A25] bg-[#D69A25]/10 border border-[#D69A25]/20 uppercase">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold text-[#D69A25] bg-[#D69A25]/10 dark:bg-[#D69A25]/20 border border-[#D69A25]/20 uppercase">
             <FileText className="w-3.5 h-3.5" />
             <span>{isAr ? 'اللوائح والسياسات' : 'LEGAL & TERMS'}</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#20252B]">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#20252B] dark:text-[#F5F6F7] font-heading">
             {isAr ? 'الشروط والأحكام العامة للمنصة' : 'Terms & Conditions of Service'}
           </h1>
-          <p className="text-xs sm:text-sm text-[#303943]/80">
+          <p className="text-xs sm:text-sm text-[#303943]/80 dark:text-[#CBD5E1]">
             {isAr ? 'آخر تحديث: نوفمبر 2026' : 'Last Updated: November 2026'}
           </p>
         </div>
@@ -26,9 +26,9 @@ export const TermsPage: React.FC = () => {
 
       {/* Terms Content */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6">
-        <div className="p-6 sm:p-10 rounded-2xl bg-white border border-[#E2E5E8] shadow-xs space-y-8 text-xs sm:text-sm text-[#303943] leading-relaxed">
+        <div className="p-6 sm:p-10 rounded-2xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] shadow-xs space-y-8 text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] leading-relaxed">
           <div className="space-y-3">
-            <h2 className="text-base sm:text-lg font-bold text-[#20252B]">
+            <h2 className="text-base sm:text-lg font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
               {isAr ? '1. شروط الاستخدام والأهلية' : '1. Eligibility & Scope'}
             </h2>
             <p>
@@ -38,8 +38,8 @@ export const TermsPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-3 border-t border-[#E2E5E8] pt-6">
-            <h2 className="text-base sm:text-lg font-bold text-[#20252B]">
+          <div className="space-y-3 border-t border-[#E2E5E8] dark:border-[#3E4956] pt-6">
+            <h2 className="text-base sm:text-lg font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
               {isAr ? '2. طبيعة دور المنصة كصلة وصل تقنية' : '2. Intermediary & Technology Role'}
             </h2>
             <p>
@@ -49,8 +49,8 @@ export const TermsPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-3 border-t border-[#E2E5E8] pt-6">
-            <h2 className="text-base sm:text-lg font-bold text-[#20252B]">
+          <div className="space-y-3 border-t border-[#E2E5E8] dark:border-[#3E4956] pt-6">
+            <h2 className="text-base sm:text-lg font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
               {isAr ? '3. دقة بيانات المعدات وساعات التشغيل' : '3. Spec Accuracy & Truth in Advertising'}
             </h2>
             <p>
@@ -60,8 +60,8 @@ export const TermsPage: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-3 border-t border-[#E2E5E8] pt-6">
-            <h2 className="text-base sm:text-lg font-bold text-[#20252B]">
+          <div className="space-y-3 border-t border-[#E2E5E8] dark:border-[#3E4956] pt-6">
+            <h2 className="text-base sm:text-lg font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
               {isAr ? '4. القانون الحاكم وحل النزاعات' : '4. Governing Jurisdiction'}
             </h2>
             <p>

@@ -59,22 +59,22 @@ export const RentalServicePage: React.FC = () => {
 
   return (
     <div className="space-y-16 sm:space-y-20 pb-16 w-full max-w-full overflow-x-hidden">
-      {/* Bright Header Banner */}
-      <section className="bg-[#FFFFFF] border-b border-[#E2E5E8] py-12 sm:py-20">
+      {/* Header Banner */}
+      <section className="bg-[#FFFFFF] dark:bg-[#20252B] border-b border-[#E2E5E8] dark:border-[#3E4956] py-12 sm:py-20 transition-colors">
         <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-3 sm:space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#D69A25]/10 border border-[#D69A25]/30 text-[#D69A25] text-xs font-mono font-bold">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#D69A25]/10 dark:bg-[#D69A25]/20 border border-[#D69A25]/30 text-[#D69A25] text-xs font-mono font-bold">
             <Truck className="w-4 h-4" />
             <span>{isAr ? 'الخدمة الأولى في HEAVY DUTY' : 'CORE SERVICE 01'}</span>
           </div>
 
-          <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black font-heading text-[#20252B] text-balance">
+          <h1 className="text-2xl xs:text-3xl sm:text-5xl font-black font-heading text-[#20252B] dark:text-[#F5F6F7] text-balance">
             {isAr ? 'تأجير المعدات والآليات الثقيلة' : 'Heavy Equipment Rental Marketplace'}
           </h1>
 
-          <p className="text-xs sm:text-base text-[#303943] max-w-2xl leading-relaxed">
+          <p className="text-xs sm:text-base text-[#303943] dark:text-[#CBD5E1] max-w-2xl leading-relaxed">
             {isAr
-              ? 'الربط المباشر بين مقاولي المشاريع وشركات الإنشاءات وبين ملاك الآليات الفرديين وشركات التأجير المعتمدة في كافة محافظات العراق الـ 18.'
-              : 'Connecting construction contractors and developers directly with verified equipment owners and certified fleet rental companies across all 18 Iraqi governorates.'}
+              ? 'الربط المباشر بين مقاولي المشاريع وشركات الإنشاءات وبين ملاك الآليات الفرديين وشركات التأجير المعتمدة في كافة محافظات العراق الـ 19.'
+              : 'Connecting construction contractors and developers directly with verified equipment owners and certified fleet rental companies across all 19 Iraqi governorates.'}
           </p>
         </div>
       </section>
@@ -86,12 +86,12 @@ export const RentalServicePage: React.FC = () => {
             <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
               {isAr ? 'مفهوم الخدمة ومزاياها' : 'RENTAL CONCEPT & VALUE'}
             </span>
-            <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] font-heading">
+            <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] dark:text-[#F5F6F7] font-heading">
               {isAr
                 ? 'استئجار المعدة المناسبة لمشروعك في المكان والوقت المحدد'
                 : 'Mobilize the right machinery for your jobsite at the right time'}
             </h2>
-            <p className="text-xs sm:text-sm text-[#303943] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1] leading-relaxed">
               {isAr
                 ? 'يوفر تطبيق HEAVY DUTY تجربة استكشاف متطورة تمكن المهندسين ومديري المشاريع من تصفية الآليات بحسب المحافظة والمدينة وسنة الصنع والمواصفات الفنية، مع استعراض خيارات الأسعار اليومية والأسبوعية والشهرية بالدينار العراقي (IQD).'
                 : 'The HEAVY DUTY application delivers a refined discovery experience allowing engineers and project managers to filter machinery by governorate, city, manufacture year, and technical specs, reviewing transparent daily, weekly, and monthly rates in Iraqi Dinars (IQD).'}
@@ -100,16 +100,16 @@ export const RentalServicePage: React.FC = () => {
             {/* Terms Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 pt-2">
               {rentalTerms.map((term, i) => (
-                <div key={i} className="p-4 rounded-xl bg-[#FFFFFF] border border-[#E2E5E8] space-y-1 shadow-2xs">
-                  <h4 className="text-xs sm:text-sm font-bold text-[#20252B] font-heading">{term.title}</h4>
-                  <p className="text-xs text-[#303943] leading-relaxed">{term.desc}</p>
+                <div key={i} className="p-4 rounded-xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] space-y-1 shadow-2xs">
+                  <h4 className="text-xs sm:text-sm font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">{term.title}</h4>
+                  <p className="text-xs text-[#303943] dark:text-[#CBD5E1] leading-relaxed">{term.desc}</p>
                 </div>
               ))}
             </div>
           </div>
 
           <div className="lg:col-span-5 w-full">
-            <div className="rounded-2xl overflow-hidden border border-[#E2E5E8] shadow-sm bg-[#FFFFFF]">
+            <div className="rounded-2xl overflow-hidden border border-[#E2E5E8] dark:border-[#3E4956] shadow-sm bg-[#FFFFFF] dark:bg-[#2B333D]">
               <div className="h-56 sm:h-72 w-full">
                 <IndustrialImage
                   src={IMAGES.rentalService}
@@ -118,12 +118,12 @@ export const RentalServicePage: React.FC = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-4 sm:p-5 space-y-2 bg-[#F5F6F7] border-t border-[#E2E5E8]">
+              <div className="p-4 sm:p-5 space-y-2 bg-[#F5F6F7] dark:bg-[#20252B] border-t border-[#E2E5E8] dark:border-[#3E4956]">
                 <div className="flex items-center gap-2 text-xs font-bold text-[#D69A25]">
                   <Smartphone className="w-4 h-4" />
                   <span>{isAr ? 'العمليات تتم عبر التطبيق الميداني' : 'Executed Inside the Mobile App'}</span>
                 </div>
-                <p className="text-xs text-[#303943] leading-relaxed">
+                <p className="text-xs text-[#303943] dark:text-[#CBD5E1] leading-relaxed">
                   {isAr
                     ? 'يتم تقديم طلبات الاستئجار، معاينة جداول التوفر، والاتصال المباشر بالملاك والشركات حصرياً داخل تطبيق HEAVY DUTY للهواتف الذكية.'
                     : 'Rental requests, availability calendars, and direct provider telephone/WhatsApp communication are managed inside the HEAVY DUTY mobile application.'}
@@ -140,17 +140,17 @@ export const RentalServicePage: React.FC = () => {
           <span className="text-xs font-bold font-mono text-[#D69A25] uppercase tracking-widest">
             {isAr ? 'فئات الآليات المشمولة' : 'SUPPORTED MACHINERY CATEGORIES'}
           </span>
-          <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] font-heading">
+          <h2 className="text-xl sm:text-3xl font-extrabold text-[#20252B] dark:text-[#F5F6F7] font-heading">
             {isAr ? 'تنوع هندسي يلبي كافة تخصصات البناء والتشييد' : 'Comprehensive fleet diversity for civil and industrial infrastructure'}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {categories.map((cat, idx) => (
-            <div key={idx} className="p-4 sm:p-5 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] shadow-2xs space-y-1.5">
+            <div key={idx} className="p-4 sm:p-5 rounded-2xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] shadow-2xs space-y-1.5">
               <div className="text-xs font-mono font-bold text-[#D69A25]">0{idx + 1}.</div>
-              <h3 className="text-xs sm:text-sm font-bold text-[#20252B] font-heading">{cat.name}</h3>
-              <p className="text-xs text-[#303943] leading-relaxed">{cat.desc}</p>
+              <h3 className="text-xs sm:text-sm font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">{cat.name}</h3>
+              <p className="text-xs text-[#303943] dark:text-[#CBD5E1] leading-relaxed">{cat.desc}</p>
             </div>
           ))}
         </div>
@@ -159,7 +159,7 @@ export const RentalServicePage: React.FC = () => {
       {/* Dual Value Matrix */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#303943] text-[#F5F6F7] space-y-3 sm:space-y-4 shadow-2xs">
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#303943] dark:bg-[#20252B] text-[#F5F6F7] space-y-3 sm:space-y-4 shadow-2xs border border-transparent dark:border-[#3E4956]">
             <h3 className="text-lg sm:text-xl font-bold font-heading text-[#D69A25]">
               {isAr ? 'مزايا التأجير للمقاولين والزبائن' : 'Benefits for Contractors & Clients'}
             </h3>
@@ -179,11 +179,11 @@ export const RentalServicePage: React.FC = () => {
             </ul>
           </div>
 
-          <div className="p-6 sm:p-8 rounded-3xl bg-[#FFFFFF] border border-[#E2E5E8] text-[#20252B] space-y-3 sm:space-y-4 shadow-2xs">
-            <h3 className="text-lg sm:text-xl font-bold font-heading text-[#20252B]">
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] text-[#20252B] dark:text-[#F5F6F7] space-y-3 sm:space-y-4 shadow-2xs">
+            <h3 className="text-lg sm:text-xl font-bold font-heading text-[#20252B] dark:text-[#F5F6F7]">
               {isAr ? 'مزايا التأجير لملاك الآليات والشركات' : 'Benefits for Equipment Owners & Fleets'}
             </h3>
-            <ul className="space-y-2.5 text-xs sm:text-sm text-[#303943]">
+            <ul className="space-y-2.5 text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1]">
               <li className="flex items-start gap-2">
                 <CheckCircle2 className="w-4 h-4 text-[#D69A25] shrink-0 mt-0.5" />
                 <span>{isAr ? 'تشغيل مستمر للآليات والحد من فترات التوقف في الساحات.' : 'Maximize fleet utilization and eliminate idle parking downtime.'}</span>
@@ -203,11 +203,11 @@ export const RentalServicePage: React.FC = () => {
 
       {/* CTA Box */}
       <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="p-6 sm:p-8 rounded-2xl bg-[#FFFFFF] border border-[#E2E5E8] space-y-3 sm:space-y-4 max-w-2xl mx-auto shadow-2xs">
-          <h3 className="text-lg sm:text-xl font-bold text-[#20252B] font-heading">
+        <div className="p-6 sm:p-8 rounded-2xl bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] space-y-3 sm:space-y-4 max-w-2xl mx-auto shadow-2xs">
+          <h3 className="text-lg sm:text-xl font-bold text-[#20252B] dark:text-[#F5F6F7] font-heading">
             {isAr ? 'هل تبحث عن تأجير معدة أو ترغب بإدراج أسطولك؟' : 'Ready to rent equipment or list your fleet?'}
           </h3>
-          <p className="text-xs sm:text-sm text-[#303943]">
+          <p className="text-xs sm:text-sm text-[#303943] dark:text-[#CBD5E1]">
             {isAr
               ? 'تجري العمليات التشغيلية وتفاصيل العقود حصرياً من خلال تطبيق HEAVY DUTY. سجل بريدك ليصلك تنبيه الإطلاق.'
               : 'All operational listings and requests are managed in the mobile application. Register to receive the official launch alert.'}
@@ -221,7 +221,7 @@ export const RentalServicePage: React.FC = () => {
             </button>
             <button
               onClick={() => navigate('/for-businesses')}
-              className="px-5 py-2.5 rounded-xl bg-[#303943] hover:bg-[#20252B] text-white text-xs font-bold cursor-pointer"
+              className="px-5 py-2.5 rounded-xl bg-[#303943] dark:bg-[#20252B] hover:bg-[#20252B] text-white text-xs font-bold cursor-pointer border border-transparent dark:border-[#3E4956]"
             >
               {isAr ? 'انضم كشركة تأجير' : 'Join as Rental Fleet'}
             </button>
