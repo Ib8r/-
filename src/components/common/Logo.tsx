@@ -18,12 +18,14 @@ interface LogoProps {
  */
 export const Logo: React.FC<LogoProps> = ({
   variant = 'full',
-  theme = 'light',
+  theme,
   size = 'md',
   className = '',
   showTagline = true,
 }) => {
-  const isDark = theme === 'dark';
+  // If an explicit theme is passed ('dark' or 'light'), honor it directly.
+  const isExplicitDark = theme === 'dark';
+  const isExplicitLight = theme === 'light';
 
   const symbolSizeClasses = {
     sm: 'w-7 h-7',
@@ -58,34 +60,34 @@ export const Logo: React.FC<LogoProps> = ({
       {/* Heavy Industrial Chamfered Shield Background */}
       <polygon
         points="6,6 42,6 42,32 30,44 6,44"
-        className="fill-[#20252B] dark:fill-[#D69A25] stroke-[#303943] dark:stroke-[#D69A25]"
+        className="fill-[#D69A25] stroke-[#D69A25]"
         strokeWidth="1.5"
       />
       {/* High-Tensile Inner Corner Accent */}
       <polygon
         points="34,6 42,6 42,14"
-        className="fill-[#D69A25] dark:fill-[#20252B]"
+        className="fill-[#20252B]/25"
       />
-      {/* Precision Geometric 'H' Left Stem */}
+      {/* Precision Geometric 'H' Left Stem - Deep Slate Gray #303943 */}
       <rect
         x="12"
         y="12"
         width="6"
         height="24"
-        className="fill-[#D69A25] dark:fill-[#20252B]"
+        className="fill-[#303943]"
       />
-      {/* Interlocking 'H' Crossbar */}
+      {/* Interlocking 'H' Crossbar - Deep Slate Gray #303943 */}
       <rect
         x="18"
         y="21"
         width="6"
         height="6"
-        className="fill-[#D69A25] dark:fill-[#20252B]"
+        className="fill-[#303943]"
       />
-      {/* Geometric 'D' Stem & Loop */}
+      {/* Geometric 'D' Stem & Loop - White #FFFFFF */}
       <path
         d="M24 12H30C34.4183 12 37 14.5 37 19V29C37 33.5 34.4183 36 30 36H24V12ZM30 18H28V30H30C31.8 30 32.5 28.5 32.5 26V22C32.5 19.5 31.8 18 30 18Z"
-        className="fill-[#F5F6F7] dark:fill-[#20252B]"
+        className="fill-[#FFFFFF]"
       />
     </svg>
   );
@@ -94,18 +96,30 @@ export const Logo: React.FC<LogoProps> = ({
     return <div className={`inline-flex items-center ${className}`}>{Emblem}</div>;
   }
 
+  const heavyTextColorClass = isExplicitDark
+    ? 'text-[#F5F6F7]'
+    : isExplicitLight
+    ? 'text-[#20252B]'
+    : 'text-[#20252B] dark:text-[#F5F6F7]';
+
+  const taglineTextColorClass = isExplicitDark
+    ? 'text-[#CBD5E1]'
+    : isExplicitLight
+    ? 'text-[#303943]'
+    : 'text-[#303943] dark:text-[#CBD5E1]';
+
   return (
     <div className={`inline-flex items-center gap-2 sm:gap-2.5 ${className}`}>
       {Emblem}
       <div className="flex flex-col leading-none">
         <span
-          className={`font-black tracking-tight uppercase select-none ${textSizeClasses} text-[#20252B] dark:text-[#F5F6F7]`}
+          className={`font-black tracking-tight uppercase select-none ${textSizeClasses} ${heavyTextColorClass}`}
         >
           HEAVY <span className="text-[#D69A25]">DUTY</span>
         </span>
         {showTagline && (
           <span
-            className={`font-mono uppercase font-bold tracking-wider mt-0.5 select-none hidden xs:inline-block ${taglineSizeClasses} text-[#303943] dark:text-[#CBD5E1]`}
+            className={`font-mono uppercase font-bold tracking-wider mt-0.5 select-none hidden xs:inline-block ${taglineSizeClasses} ${taglineTextColorClass}`}
           >
             Heavy Equipment Marketplace
           </span>

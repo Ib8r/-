@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Logo } from '../common/Logo';
 import { useLanguage } from '../../context/LanguageContext';
 import { useRouter } from '../../context/RouterContext';
@@ -6,41 +6,85 @@ import { useTheme } from '../../context/ThemeContext';
 import { Globe, Menu, X, ChevronDown, Smartphone, Sun, Moon } from 'lucide-react';
 
 export const Header: React.FC = () => {
-  const { t, toggleLocale } = useLanguage();
+  const { locale, setLocale, locales } = useLanguage();
   const { currentPath, navigate } = useRouter();
-  const { theme, isDark, toggleTheme } = useTheme();
+  const { isDark, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [mobileLangDropdownOpen, setMobileLangDropdownOpen] = useState(false);
+  const desktopLangRef = useRef<HTMLDivElement>(null);
+  const mobileLangRef = useRef<HTMLDivElement>(null);
 
+  // Close language dropdowns on click outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (desktopLangRef.current && !desktopLangRef.current.contains(event.target as Node)) {
+        setLangDropdownOpen(false);
+      }
+      if (mobileLangRef.current && !mobileLangRef.current.contains(event.target as Node)) {
+        setMobileLangDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Strict 5-Item Main Navigation (Section 8)
+  // 1. Home ("الرئيسية")
+  // 2. Categories ("الفئات") -> /services/rental
+  // 3. Features ("المزايا") -> /how-it-works
+  // 4. About Us ("معلومات عنا") -> /about
+  // 5. Contact Us ("اتصل بنا") -> /contact
   const navLinks = [
-    { path: '/', label: t.nav.home },
-    { path: '/about', label: t.nav.about },
     {
-      path: '/services',
-      label: t.nav.services,
-      hasChildren: true,
-      children: [
-        { path: '/services/rental', label: t.nav.rental },
-        { path: '/services/sales', label: t.nav.sales },
-        { path: '/services/parts', label: t.nav.parts },
-        { path: '/services/maintenance', label: t.nav.maintenance },
-      ],
+      path: '/',
+      labelAr: 'الرئيسية',
+      labelEn: 'Home',
+      labelKu: 'سەرەکی',
     },
-    { path: '/how-it-works', label: t.nav.howItWorks },
-    { path: '/for-businesses', label: t.nav.forBusinesses },
-    { path: '/contact', label: t.nav.contact },
+    {
+      path: '/services/rental',
+      labelAr: 'الفئات',
+      labelEn: 'Categories',
+      labelKu: 'فئات',
+    },
+    {
+      path: '/how-it-works',
+      labelAr: 'المزايا',
+      labelEn: 'Features',
+      labelKu: 'تایبەتمەندییەکان',
+    },
+    {
+      path: '/about',
+      labelAr: 'معلومات عنا',
+      labelEn: 'About Us',
+      labelKu: 'دەربارەمان',
+    },
+    {
+      path: '/contact',
+      labelAr: 'اتصل بنا',
+      labelEn: 'Contact Us',
+      labelKu: 'پەیوەندی',
+    },
   ];
+
+  const getNavLabel = (item: typeof navLinks[0]) => {
+    if (locale === 'ku') return item.labelKu;
+    if (locale === 'en') return item.labelEn;
+    return item.labelAr;
+  };
 
   const handleNavClick = (path: string) => {
     navigate(path);
     setMobileMenuOpen(false);
-    setServicesDropdownOpen(false);
   };
 
   const isCurrentActive = (path: string) => {
     if (path === '/') return currentPath === '/';
-    return currentPath.startsWith(path);
+    return currentPath === path || currentPath.startsWith(path);
   };
+
+  const currentLangLabel = locales.find((l) => l.code === locale)?.label || 'العربية';
 
   return (
     <header className="sticky top-0 z-50 bg-[#FFFFFF] dark:bg-[#20252B] border-b border-[#E2E5E8] dark:border-[#3E4956] shadow-2xs transition-colors duration-250">
@@ -57,72 +101,24 @@ export const Header: React.FC = () => {
             <Logo variant="full" size="md" showTagline={true} />
           </div>
 
-          {/* Zone 2: Navigation Links (Desktop) */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-            {navLinks.map((item) => {
-              if (item.hasChildren) {
-                return (
-                  <div
-                    key={item.path}
-                    className="relative"
-                    onMouseEnter={() => setServicesDropdownOpen(true)}
-                    onMouseLeave={() => setServicesDropdownOpen(false)}
-                  >
-                    <button
-                      onClick={() => handleNavClick('/services/rental')}
-                      className={`inline-flex items-center gap-1.5 py-2 text-sm font-semibold tracking-tight transition-colors whitespace-nowrap cursor-pointer ${
-                        isCurrentActive('/services')
-                          ? 'text-[#D69A25] font-bold'
-                          : 'text-[#303943] dark:text-[#CBD5E1] hover:text-[#D69A25]'
-                      }`}
-                    >
-                      <span>{item.label}</span>
-                      <ChevronDown
-                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                          servicesDropdownOpen ? 'rotate-180 text-[#D69A25]' : 'text-slate-400'
-                        }`}
-                      />
-                    </button>
-
-                    {/* Services Dropdown Menu */}
-                    {servicesDropdownOpen && (
-                      <div className="absolute top-full start-0 w-64 bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] rounded-xl shadow-lg py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-                        {item.children?.map((sub) => (
-                          <button
-                            key={sub.path}
-                            onClick={() => handleNavClick(sub.path)}
-                            className={`w-full text-start px-4 py-2.5 text-xs font-semibold transition-colors block cursor-pointer ${
-                              currentPath === sub.path
-                                ? 'bg-[#D69A25]/10 text-[#D69A25] font-bold'
-                                : 'text-[#303943] dark:text-[#CBD5E1] hover:bg-[#F5F6F7] dark:hover:bg-[#303943] hover:text-[#D69A25]'
-                            }`}
-                          >
-                            {sub.label}
-                          </button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-
-              return (
-                <button
-                  key={item.path}
-                  onClick={() => handleNavClick(item.path)}
-                  className={`py-2 text-sm font-semibold tracking-tight transition-colors whitespace-nowrap cursor-pointer ${
-                    isCurrentActive(item.path)
-                      ? 'text-[#D69A25] font-bold border-b-2 border-[#D69A25]'
-                      : 'text-[#303943] dark:text-[#CBD5E1] hover:text-[#D69A25]'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
+          {/* Zone 2: Navigation Links (Desktop - Strictly 5 Items) */}
+          <nav aria-label="Main Navigation" className="hidden lg:flex items-center gap-6 xl:gap-8">
+            {navLinks.map((item) => (
+              <button
+                key={item.path}
+                onClick={() => handleNavClick(item.path)}
+                className={`py-2 text-sm font-semibold tracking-tight transition-colors whitespace-nowrap cursor-pointer ${
+                  isCurrentActive(item.path)
+                    ? 'text-[#D69A25] font-bold border-b-2 border-[#D69A25]'
+                    : 'text-[#303943] dark:text-[#CBD5E1] hover:text-[#D69A25]'
+                }`}
+              >
+                {getNavLabel(item)}
+              </button>
+            ))}
           </nav>
 
-          {/* Zone 3: Actions (Desktop Only - lg screens) */}
+          {/* Zone 3: Actions (Desktop) */}
           <div className="hidden lg:flex items-center gap-2.5 shrink-0">
             {/* Theme Toggle Button (Light / Dark) */}
             <button
@@ -138,16 +134,49 @@ export const Header: React.FC = () => {
               )}
             </button>
 
-            {/* Language Toggle Button */}
-            <button
-              onClick={toggleLocale}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#E2E5E8] dark:border-[#3E4956] hover:border-[#303943]/30 bg-[#F5F6F7] dark:bg-[#2B333D] hover:bg-[#EAECEE] dark:hover:bg-[#303943] text-xs font-semibold text-[#303943] dark:text-[#CBD5E1] transition-all cursor-pointer"
-              title="تبديل اللغة / Switch Language"
-              aria-label="Switch Language"
-            >
-              <Globe className="w-3.5 h-3.5 text-[#D69A25]" />
-              <span className="font-mono">{t.nav.langSwitch}</span>
-            </button>
+            {/* Language Selector Proper Dropdown (Desktop) */}
+            <div className="relative" ref={desktopLangRef}>
+              <button
+                type="button"
+                onClick={() => setLangDropdownOpen(!langDropdownOpen)}
+                aria-haspopup="listbox"
+                aria-expanded={langDropdownOpen}
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg border border-[#E2E5E8] dark:border-[#3E4956] hover:border-[#D69A25]/50 bg-[#F5F6F7] dark:bg-[#2B333D] hover:bg-[#EAECEE] dark:hover:bg-[#303943] text-xs font-semibold text-[#303943] dark:text-[#CBD5E1] transition-all cursor-pointer"
+                title="اختر اللغة / Select Language"
+                aria-label="Select Language"
+              >
+                <Globe className="w-3.5 h-3.5 text-[#D69A25]" />
+                <span className="font-semibold">{currentLangLabel}</span>
+                <ChevronDown className={`w-3 h-3 opacity-60 transition-transform ${langDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {langDropdownOpen && (
+                <div
+                  role="listbox"
+                  className="absolute top-full end-0 mt-1 w-36 bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] rounded-xl shadow-lg py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
+                >
+                  {locales.map((l) => (
+                    <button
+                      key={l.code}
+                      role="option"
+                      aria-selected={locale === l.code}
+                      onClick={() => {
+                        setLocale(l.code);
+                        setLangDropdownOpen(false);
+                      }}
+                      className={`w-full text-start px-3.5 py-2 text-xs font-semibold transition-colors flex items-center justify-between cursor-pointer ${
+                        locale === l.code
+                          ? 'bg-[#D69A25]/15 text-[#D69A25] font-bold'
+                          : 'text-[#303943] dark:text-[#CBD5E1] hover:bg-[#F5F6F7] dark:hover:bg-[#303943]'
+                      }`}
+                    >
+                      <span>{l.label}</span>
+                      {locale === l.code && <span className="w-1.5 h-1.5 rounded-full bg-[#D69A25]" />}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Primary Action: Download App CTA */}
             <button
@@ -155,11 +184,11 @@ export const Header: React.FC = () => {
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#D69A25] hover:bg-[#C2891E] active:bg-[#B37B17] text-[#20252B] text-xs font-bold transition-all shadow-xs cursor-pointer whitespace-nowrap"
             >
               <Smartphone className="w-4 h-4" />
-              <span>{t.nav.downloadApp}</span>
+              <span>{locale === 'ku' ? 'داگرتنی ئەپ' : locale === 'en' ? 'Download App' : 'تحميل التطبيق'}</span>
             </button>
           </div>
 
-          {/* Mobile Right Bar: Theme + Language Switcher + Hamburger */}
+          {/* Mobile Right Bar: Theme + Language Dropdown Trigger + Hamburger */}
           <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden shrink-0">
             {/* Mobile Theme Toggle */}
             <button
@@ -170,15 +199,49 @@ export const Header: React.FC = () => {
               {isDark ? <Sun className="w-3.5 h-3.5 text-[#D69A25]" /> : <Moon className="w-3.5 h-3.5 text-[#303943]" />}
             </button>
 
-            {/* Mobile Language Switcher */}
-            <button
-              onClick={toggleLocale}
-              className="inline-flex items-center gap-1 px-2 py-1.5 rounded-md border border-[#E2E5E8] dark:border-[#3E4956] bg-[#F5F6F7] dark:bg-[#2B333D] text-[11px] font-semibold text-[#303943] dark:text-[#CBD5E1]"
-              aria-label="Switch Language"
-            >
-              <Globe className="w-3 h-3 text-[#D69A25]" />
-              <span className="font-mono">{t.nav.langSwitch}</span>
-            </button>
+            {/* Mobile Language Selector Dropdown (Does not cycle on click; opens menu) */}
+            <div className="relative" ref={mobileLangRef}>
+              <button
+                type="button"
+                onClick={() => setMobileLangDropdownOpen(!mobileLangDropdownOpen)}
+                aria-haspopup="listbox"
+                aria-expanded={mobileLangDropdownOpen}
+                className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-md border border-[#E2E5E8] dark:border-[#3E4956] bg-[#F5F6F7] dark:bg-[#2B333D] text-[11px] font-semibold text-[#303943] dark:text-[#CBD5E1] cursor-pointer"
+                aria-label="Select Language"
+                title="اختر اللغة"
+              >
+                <Globe className="w-3 h-3 text-[#D69A25]" />
+                <span className="font-bold">{currentLangLabel}</span>
+                <ChevronDown className={`w-2.5 h-2.5 opacity-60 transition-transform ${mobileLangDropdownOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {mobileLangDropdownOpen && (
+                <div
+                  role="listbox"
+                  className="absolute top-full end-0 mt-1 w-32 bg-[#FFFFFF] dark:bg-[#2B333D] border border-[#E2E5E8] dark:border-[#3E4956] rounded-xl shadow-lg py-1 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
+                >
+                  {locales.map((l) => (
+                    <button
+                      key={l.code}
+                      role="option"
+                      aria-selected={locale === l.code}
+                      onClick={() => {
+                        setLocale(l.code);
+                        setMobileLangDropdownOpen(false);
+                      }}
+                      className={`w-full text-start px-3 py-2 text-xs font-semibold transition-colors flex items-center justify-between cursor-pointer ${
+                        locale === l.code
+                          ? 'bg-[#D69A25]/15 text-[#D69A25] font-bold'
+                          : 'text-[#303943] dark:text-[#CBD5E1] hover:bg-[#F5F6F7] dark:hover:bg-[#303943]'
+                      }`}
+                    >
+                      <span>{l.label}</span>
+                      {locale === l.code && <span className="w-1.5 h-1.5 rounded-full bg-[#D69A25]" />}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Mobile Menu Hamburger */}
             <button
@@ -192,50 +255,23 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu */}
+      {/* Mobile Drawer Menu (Strictly Same 5 Items) */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#FFFFFF] dark:bg-[#20252B] border-b border-[#E2E5E8] dark:border-[#3E4956] shadow-md px-4 pt-3 pb-6 animate-in fade-in slide-in-from-top-2 duration-150">
           <div className="space-y-1">
-            {navLinks.map((item) => {
-              if (item.hasChildren) {
-                return (
-                  <div key={item.path} className="py-2 border-b border-[#F5F6F7] dark:border-[#3E4956]/50">
-                    <span className="block px-3 py-1 text-xs font-bold uppercase tracking-wider text-slate-400">
-                      {item.label}
-                    </span>
-                    <div className="mt-1 space-y-1 ps-3">
-                      {item.children?.map((sub) => (
-                        <button
-                          key={sub.path}
-                          onClick={() => handleNavClick(sub.path)}
-                          className={`w-full text-start px-3 py-2.5 rounded-lg text-xs font-semibold block min-h-[44px] flex items-center ${
-                            currentPath === sub.path
-                              ? 'bg-[#D69A25]/10 text-[#D69A25] font-bold'
-                              : 'text-[#303943] dark:text-[#CBD5E1] hover:bg-[#F5F6F7] dark:hover:bg-[#2B333D]'
-                          }`}
-                        >
-                          {sub.label}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                );
-              }
-
-              return (
-                <button
-                  key={item.path}
-                  onClick={() => handleNavClick(item.path)}
-                  className={`w-full text-start px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors block min-h-[44px] flex items-center ${
-                    isCurrentActive(item.path)
-                      ? 'bg-[#D69A25]/10 text-[#D69A25] font-bold'
-                      : 'text-[#303943] dark:text-[#CBD5E1] hover:bg-[#F5F6F7] dark:hover:bg-[#2B333D]'
-                  }`}
-                >
-                  {item.label}
-                </button>
-              );
-            })}
+            {navLinks.map((item) => (
+              <button
+                key={item.path}
+                onClick={() => handleNavClick(item.path)}
+                className={`w-full text-start px-3 py-2.5 rounded-lg text-sm font-semibold transition-colors block min-h-[44px] flex items-center ${
+                  isCurrentActive(item.path)
+                    ? 'bg-[#D69A25]/10 text-[#D69A25] font-bold'
+                    : 'text-[#303943] dark:text-[#CBD5E1] hover:bg-[#F5F6F7] dark:hover:bg-[#2B333D]'
+                }`}
+              >
+                {getNavLabel(item)}
+              </button>
+            ))}
           </div>
 
           <div className="mt-5 pt-4 border-t border-[#E2E5E8] dark:border-[#3E4956] flex flex-col gap-3">
@@ -244,7 +280,7 @@ export const Header: React.FC = () => {
               className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#D69A25] hover:bg-[#C2891E] text-[#20252B] font-bold text-sm shadow-xs min-h-[44px]"
             >
               <Smartphone className="w-4 h-4" />
-              <span>{t.nav.downloadApp}</span>
+              <span>{locale === 'ku' ? 'داگرتنی ئەپ' : locale === 'en' ? 'Download App' : 'تحميل التطبيق'}</span>
             </button>
           </div>
         </div>

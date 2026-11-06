@@ -25,6 +25,8 @@ import { FaqPage } from './views/FaqPage';
 import { PrivacyPolicyPage } from './views/PrivacyPolicyPage';
 import { TermsPage } from './views/TermsPage';
 
+import { BackToHomeBar } from './components/common/BackToHomeBar';
+
 const AppContent: React.FC = () => {
   const { currentPath } = useRouter();
 
@@ -66,6 +68,9 @@ const AppContent: React.FC = () => {
     <div className="min-h-screen bg-[#F5F6F7] dark:bg-[#20252B] text-[#20252B] dark:text-[#F5F6F7] flex flex-col font-sans transition-colors duration-250">
       {/* 3-Zone Corporate Header with Language Switcher, Theme Toggle and Mobile Drawer */}
       <Header />
+
+      {/* Subtle Back to Home Breadcrumb for Internal Pages */}
+      <BackToHomeBar />
 
       {/* Main Corporate Route View */}
       <main className="flex-1">

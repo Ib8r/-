@@ -1,0 +1,813 @@
+HEAVY DUTY — FINAL MASTER PROMPT
+
+Complete Website Refinement, Premium Visual Design & Interactive Experience
+
+PROJECT OBJECTIVE
+
+Refine the existing HEAVY DUTY website into a premium, modern, professional promotional website for the HEAVY DUTY mobile application.
+
+The website is primarily a marketing, branding, and promotional platform. It is NOT intended to operate as an independent equipment marketplace or a complex business management platform.
+
+Its purpose is to introduce the application, communicate its value, showcase its four main services, build trust, and encourage visitors to download or learn more about the application.
+
+The current website contains too much information, unnecessary details, and visually crowded sections. Simplify the content and interface significantly while maintaining its essential identity, functionality, and important information.
+
+Do not rebuild the project from scratch. Inspect the existing codebase first, then improve the current implementation.
+
+---
+
+1. SIMPLIFY THE ENTIRE WEBSITE
+
+This is one of the highest-priority requirements.
+
+Transform the website into a clean, premium, conversion-focused promotional experience.
+
+- Remove unnecessary information and repetitive explanations.
+- Replace long paragraphs with concise descriptions.
+- Eliminate duplicated content.
+- Avoid excessive statistics, tables, technical specifications, and unnecessary cards.
+- Avoid operational details that belong inside the application.
+- Maintain a clear visual hierarchy and sufficient whitespace.
+- Make each section communicate one clear message.
+- Prioritize visual storytelling, professional equipment photography, and concise text.
+- Keep visitors focused on the application and its benefits.
+
+The website should introduce and promote the four services, not reproduce their complete operational experience.
+
+For example, show professional service overviews with relevant images, short descriptions, and clear calls to action instead of complicated rental forms or extensive machinery specifications.
+
+Do not fill empty space with unnecessary content.
+
+---
+
+2. PRESERVE THE EXISTING PROJECT
+
+Before making changes:
+
+1. Inspect the existing React application, components, routes, styling, and assets.
+2. Identify existing features and their dependencies.
+3. Preserve the existing project architecture wherever possible.
+4. Improve existing components instead of unnecessarily replacing them.
+5. Do not delete working functionality.
+6. Do not break existing routes, navigation, language switching, or theme switching.
+7. Do not introduce unnecessary dependencies.
+8. Do not replace the website with a generic template.
+
+The result must remain the existing HEAVY DUTY website, professionally refined.
+
+---
+
+3. BRAND IDENTITY AND DESIGN SYSTEM
+
+Preserve the established HEAVY DUTY visual identity.
+
+Official brand colors
+
+- Industrial Amber Gold: "#D69A25"
+- Deep Slate Gray: "#303943"
+- Industrial White: "#F5F6F7"
+- Graphite: "#20252B"
+
+Do not randomly change the established brand palette.
+
+Typography
+
+- Arabic: IBM Plex Sans Arabic.
+- English: Plus Jakarta Sans.
+
+Ensure consistent typography, appropriate font weights, clear headings, readable body text, and balanced spacing.
+
+Design direction
+
+Use a premium industrial corporate aesthetic inspired by professional international technology and industrial brands.
+
+The design should feel:
+
+- Professional.
+- Modern.
+- Clean.
+- Elegant.
+- Trustworthy.
+- Minimalist.
+- Visually balanced.
+
+Avoid an excessively dark interface, unnecessary gradients, oversized decorative elements, and excessive visual effects.
+
+Maintain a bright, clean, sophisticated appearance in Light Mode.
+
+---
+
+4. LOGO AND BRAND VISIBILITY
+
+Preserve the existing HEAVY DUTY logo and its visual identity.
+
+Fix the logo visibility issue in Dark Mode:
+
+- The word HEAVY must remain clearly visible.
+- The word DUTY must preserve its established amber-gold appearance.
+- Ensure sufficient contrast against both light and dark backgrounds.
+- Do not allow any part of the logo to disappear or become difficult to read.
+
+Do not redesign the logo unnecessarily.
+
+---
+
+5. LIGHT MODE AND DARK MODE
+
+Maintain both Light Mode and Dark Mode.
+
+Requirements:
+
+- Both themes must have carefully balanced contrast.
+- Preserve the official brand identity.
+- Ensure all text, icons, buttons, borders, and backgrounds remain readable.
+- Fix visibility problems in both themes.
+- Save the user's selected theme.
+- Ensure the theme switch works consistently across all pages.
+
+Map styling
+
+Light Mode:
+
+- Use clearly visible slate or graphite geographical boundaries.
+- Avoid white boundaries that disappear against the background.
+- Use restrained gold and teal accents for interactions.
+- Keep the map clean, elegant, and readable.
+
+Dark Mode:
+
+- Use the premium neon color system described in Section 8.
+- Ensure the complete geographical map is illuminated consistently.
+- Avoid excessive brightness and visual noise.
+
+---
+
+6. WEBSITE STRUCTURE AND PROMOTIONAL CONTENT
+
+Preserve the existing essential website pages and navigation, but simplify their content.
+
+The existing pages include:
+
+1. Home
+2. About Us
+3. Equipment Rental
+4. Buy & Sell Equipment
+5. Spare Parts
+6. Maintenance Services
+7. How It Works
+8. For Businesses
+9. Download App
+10. Contact Us
+11. FAQ
+12. Privacy Policy
+13. Terms & Conditions
+
+Do not automatically remove these pages.
+
+Keep informational and promotional pages concise and useful.
+
+Homepage priorities
+
+1. Professional hero section with the HEAVY DUTY identity.
+2. A strong, concise headline explaining the application.
+3. A short description of its value.
+4. A professional application preview or device mockup.
+5. A clear Download App call to action.
+6. A clean overview of the four main services.
+7. A concise explanation of the application benefits.
+8. An interactive Iraq coverage map.
+9. A short section for businesses and customers.
+10. A clean, compact footer.
+
+Do not force every possible section into the homepage.
+
+Maintain a balanced layout and avoid unnecessary scrolling.
+
+---
+
+7. THE FOUR MAIN SERVICES
+
+Present the four main services using clean, attractive, visually consistent promotional cards.
+
+Service 1 — Equipment Rental
+
+Show professional heavy-equipment imagery and a concise explanation of the rental service.
+
+Service 2 — Buy & Sell Equipment
+
+Introduce the ability to discover new and used heavy equipment through the application.
+
+Service 3 — Spare Parts
+
+Show how users can discover spare parts and connect with relevant sellers.
+
+Service 4 — Maintenance Services
+
+Introduce maintenance centers and their services.
+
+Design requirements
+
+- Use one appropriate image for each service.
+- Keep descriptions short and meaningful.
+- Use consistent card dimensions and spacing.
+- Avoid unnecessary specifications and long lists.
+- Use subtle interactive effects.
+- Provide clear links or calls to action directing visitors to relevant application information.
+
+Do not make these sections look like a complicated operational marketplace.
+
+---
+
+8. INTERACTIVE IRAQ MAP — 19 GOVERNORATES
+
+Improve the existing Iraq map significantly.
+
+This is an important visual feature and must look geographically accurate and professionally designed.
+
+8.1 Geographic accuracy
+
+- Display the current 19-governorate administrative structure of Iraq, including Halabja.
+- Use accurate and reliable geographical boundary data.
+- Prefer verified GeoJSON or equivalent geographical datasets.
+- Do not manually draw approximate governorate shapes.
+- Do not generate fictional boundaries.
+- Do not substitute random points or decorative shapes for real geographical boundaries.
+- Preserve correct geographical proportions.
+
+8.2 Map visual appearance
+
+- Use a modern, transparent, clean map.
+- Do not fill every governorate with a different bright color.
+- Use clearly defined governorate boundaries.
+- Display the correct Arabic governorate names.
+- Keep labels readable and positioned accurately.
+- Avoid overlapping labels.
+- Ensure governorate names are perfectly centered horizontally and vertically inside their associated label backgrounds or name strips.
+
+8.3 PREMIUM NEON COLOR SYSTEM — ALL MAP LINES
+
+Apply a carefully art-directed color system inspired by luxury industrial technology interfaces.
+
+The result must feel sophisticated, calm, elegant, and comfortable to look at.
+
+Avoid gaming-style neon, excessive saturation, rainbow effects, and random colors.
+
+Official map and interaction palette
+
+Color| HEX| Purpose
+Champagne Gold| "#D6A64A"| Primary geographical boundary lines
+Soft Champagne Light| "#F2D9A0"| Subtle inner highlights
+Muted Teal| "#69BDB5"| Hover and exploratory interaction
+Soft Aqua| "#A2DAD1"| Selected governorate
+Warm Ivory| "#E9E5DC"| Governorate labels and important text
+Deep Graphite| "#20252B"| Dark map background
+
+Dark Mode — Complete Neon Map
+
+The neon effect must not be limited to selected governorates.
+
+Every geographical line forming the Iraq map must have a coordinated, professional neon appearance.
+
+This includes:
+
+1. The complete external outline of Iraq.
+2. All internal governorate boundaries.
+3. Every line separating neighboring governorates.
+4. All geographical boundary lines belonging to the actual map.
+
+Neon visual treatment
+
+- Use Champagne Gold "#D6A64A" as the primary neon color.
+- Apply a crisp golden core line.
+- Add a subtle, controlled outer glow.
+- Use multiple carefully balanced glow layers to create depth and luminosity.
+- Use Soft Champagne Light "#F2D9A0" sparingly for refined highlights.
+- Make the external Iraq outline slightly more prominent than the internal boundaries.
+- Keep all internal governorate borders luminous and clearly distinguishable.
+- Use smooth, continuous-looking lines without unwanted gaps or broken sections.
+- Preserve the original geographical geometry and accurate boundary positions.
+- Maintain consistent glow intensity across the entire map.
+
+Important visual balance
+
+The glow should resemble a premium futuristic industrial technology interface, not an exaggerated gaming effect.
+
+Avoid:
+
+- Excessively thick glowing lines.
+- Large blurry halos that hide geographical details.
+- Randomly colored boundaries.
+- Different neon colors for individual governorates.
+- Overexposed highlights.
+- Glow effects that make neighboring boundaries merge visually.
+
+The map must remain readable and geographically precise even with neon effects enabled.
+
+Light Mode
+
+- Use Slate/Graphite geographical boundaries for clear visibility.
+- Use Muted Teal for hover states.
+- Use Champagne Gold and Soft Aqua selectively for selected states and accents.
+- Avoid strong neon halos on bright backgrounds.
+- Preserve the same accurate map geometry.
+
+8.4 CRITICAL FIX — GEOGRAPHICALLY ACCURATE GOVERNORATE LABEL POSITIONING
+
+The current map has a serious label-positioning problem: several governorate names and their markers appear outside their actual geographical boundaries or are incorrectly positioned.
+
+Fix the underlying positioning logic, not just the visual appearance.
+
+Requirements:
+
+1. Use the actual geographic polygon geometry of each governorate to determine its correct label position.
+2. Associate every governorate label and marker with its correct governorate data. Never assign approximate or arbitrary coordinates.
+3. Place each governorate name inside its corresponding geographical boundary whenever reasonably possible.
+4. Calculate suitable label positions using reliable geographical methods, such as polygon interior points or appropriate label-point algorithms.
+5. Do not simply use polygon bounding-box centers when they may fall outside irregular governorate shapes.
+6. For small or closely spaced governorates, use intelligent collision avoidance and carefully designed label placement without confusing their geographical associations.
+7. Prevent labels from appearing outside Iraq's national boundaries.
+8. Prevent labels and markers from overlapping neighboring governorate names, map boundaries, or important visual elements.
+9. Keep every label centered horizontally and vertically within its associated label background.
+10. Ensure label positions remain correct when the map is resized, zoomed, or displayed on different mobile and desktop screen sizes.
+11. Preserve original geographical boundaries and proportions. Never distort or move governorate polygons to accommodate labels.
+12. If a label cannot reasonably fit inside a small governorate, use a short, subtle leader line connecting the label to its correct geographical location. Keep the label close to its governorate and make the association unmistakable.
+13. Verify all 19 governorate labels individually against the actual geographical data.
+14. Ensure markers, labels, and governorate polygons use the same geographical coordinate reference system and correct map transformations.
+15. Do not manually shift labels to visually convenient but geographically incorrect positions.
+
+Final acceptance requirement
+
+Every governorate name must clearly identify the correct governorate, remain visually connected to its actual geographical location, and never appear randomly outside the map.
+
+Test all 19 labels individually on mobile screens before declaring the issue fixed.
+
+8.5 Interactive map behavior and colors
+
+Use the following consistent interaction system:
+
+Interaction state| Color and behavior
+Normal| Champagne Gold geographical lines
+Hover| Muted Teal "#69BDB5" with subtle glow
+Selected| Soft Aqua "#A2DAD1"
+Selected governorate fill| Very subtle translucent Aqua
+Return to normal| Smooth transition back to Champagne Gold
+
+Requirements:
+
+- Every governorate must be individually clickable.
+- Highlight the selected governorate.
+- Update the associated information panel when a governorate is selected.
+- Apply a controlled neon highlight to the selected governorate's boundaries in Dark Mode.
+- Do not assign a different neon color to every governorate.
+- Use color consistently to communicate interaction states.
+- Keep governorate names legible and visually distinct from neon lines.
+- Maintain smooth transitions.
+- Ensure the map works correctly with Arabic RTL and English LTR.
+
+Coverage statement
+
+Arabic:
+
+"تغطية شاملة لجميع أنحاء العراق — والتوسع العالمي قريباً."
+
+English:
+
+"Comprehensive coverage across Iraq — Global expansion coming soon."
+
+Do not display flags of other countries.
+
+Do not introduce country selectors or mention specific foreign countries.
+
+Do not invent coverage statistics, equipment counts, company counts, or other unsupported figures.
+
+---
+
+9. EQUIPMENT SHOWCASE — INDEPENDENT INTERACTIVE ELEMENTS
+
+Improve the existing equipment showcase experience.
+
+The current implementation has a problem where multiple elements move together as one large block.
+
+This must be corrected.
+
+Required behavior
+
+Each visual element must be independently implemented:
+
+- Equipment image.
+- Equipment category title.
+- Description.
+- Specifications.
+- Category label.
+- Category indicator.
+
+Use a shared state such as "activeCategory" to synchronize the displayed content.
+
+However, each component must have its own layout and transition behavior.
+
+When the visitor swipes horizontally:
+
+- The equipment image must change.
+- The title must update.
+- The description must update.
+- The specifications must update.
+- The category label and indicator must update.
+
+All content must correspond to the same selected category.
+
+Do not move the entire section or webpage as one object.
+
+Interaction
+
+- Support natural touch swiping on mobile devices.
+- Support mouse dragging on desktop.
+- Do not display traditional arrow controls.
+- Do not add unnecessary visible navigation buttons.
+- Allow visitors to explore the equipment naturally by swiping.
+- Preserve normal vertical page scrolling.
+- Prevent accidental horizontal page movement.
+
+---
+
+10. EQUIPMENT CATEGORIES AND REAL IMAGES
+
+The equipment showcase must use different images for different categories.
+
+Do not reuse one excavator image for every category.
+
+Include these eight categories:
+
+1. Hydraulic Excavators.
+2. Bulldozers.
+3. Wheel Loaders.
+4. Cranes.
+5. Dump Trucks.
+6. Heavy Transportation Trucks.
+7. Agricultural Tractors and Machinery.
+8. Generators and Power Equipment.
+
+Image requirements
+
+- Use a different, relevant image for each category.
+- Use high-quality professional industrial photography.
+- Maintain consistent image quality and visual style.
+- Ensure correct image-to-category mapping.
+- Use suitable image dimensions and cropping.
+- Preload adjacent images to prevent blank frames during transitions.
+- Avoid stretched, distorted, low-quality, or unrelated images.
+
+If the current assets are insufficient, use suitable licensed imagery or create original visual assets.
+
+Do not claim that missing images have been implemented.
+
+---
+
+11. PROFESSIONAL SLIDE-STYLE ANIMATIONS
+
+Improve the equipment showcase transitions to feel like a premium presentation or professional product showcase.
+
+Image transitions
+
+- The outgoing image should slide in the direction of the swipe.
+- The incoming image should enter smoothly from the opposite direction.
+- Use a subtle crossfade.
+- Apply natural easing with smooth acceleration and deceleration.
+- Prevent flickering and blank frames.
+- Prevent sudden layout shifts.
+- Maintain a stable image container size.
+
+Text transitions
+
+The following elements should transition independently:
+
+- Category title.
+- Description.
+- Specifications.
+- Category indicator.
+
+Keep their transitions synchronized with the selected equipment image.
+
+Animation style
+
+Smooth, elegant, natural, professional, and controlled.
+
+Avoid exaggerated zoom, bouncing, excessive rotation, or distracting movement.
+
+---
+
+12. AUTOMATIC AND MANUAL SHOWCASE CONTROL
+
+Allow the equipment showcase to advance automatically at a slow, comfortable pace.
+
+At the same time, visitors must retain complete manual control.
+
+Requirements:
+
+- Automatic transitions must be subtle.
+- Stop automatic movement immediately when the visitor interacts.
+- Never interrupt an active swipe gesture.
+- Resume automatic movement only after a reasonable period of inactivity.
+- Preload upcoming images.
+- Respect the user's reduced-motion accessibility preference.
+- Prevent automatic transitions from causing unexpected page movement.
+
+---
+
+13. INTERACTIVE BUSINESS AND CUSTOMER CARDS
+
+Improve the cards representing construction companies, equipment owners, businesses, and customers.
+
+These elements should feel interactive without making the interface crowded.
+
+On click or tap
+
+- Apply a subtle visual response.
+- Highlight the selected card.
+- Use a controlled border glow or soft elevation effect.
+- Provide smooth transitions.
+
+On desktop hover
+
+- Apply a subtle hover response.
+- Maintain consistent card dimensions.
+- Avoid excessive scaling or movement.
+
+Use the same restrained interaction philosophy as the map.
+
+Do not add unnecessary information to these cards.
+
+---
+
+14. PROFESSIONAL FOOTER REDESIGN
+
+The current footer contains too much vertically arranged information.
+
+Redesign it into a clean, compact, professional footer.
+
+Use balanced columns on desktop, with a responsive stacked layout on mobile.
+
+Column 1 — Brand
+
+- HEAVY DUTY logo.
+- One short brand description.
+
+Column 2 — Quick Links
+
+- About Us.
+- Services.
+- How It Works.
+- FAQ.
+
+Column 3 — Services
+
+- Equipment Rental.
+- Buy & Sell.
+- Spare Parts.
+- Maintenance.
+
+Column 4 — Contact
+
+- Phone number, if officially provided.
+- Email address, if officially provided.
+- Verified social media links, if available.
+
+Do not invent contact details or add unnecessary paragraphs.
+
+Maintain comfortable spacing and correct RTL/LTR column ordering.
+
+---
+
+15. GLOBAL MOTION AND INTERACTION DESIGN
+
+Apply a consistent motion system across the website.
+
+Possible effects:
+
+- Subtle section reveal during scrolling.
+- Smooth page transitions.
+- Gentle card hover effects.
+- Soft button interactions.
+- Controlled border highlights.
+- Smooth interactive map selection.
+- Consistent image transitions.
+
+Avoid unnecessary animation on every element.
+
+Animations should support usability and visual quality, not distract from the content.
+
+Use performance-friendly techniques and respect reduced-motion preferences.
+
+---
+
+16. RESPONSIVE DESIGN
+
+The website must work correctly on:
+
+- Small mobile screens.
+- Standard Android phones.
+- iPhones.
+- Tablets.
+- Desktop screens.
+- Large monitors.
+
+Test widths starting from approximately 320px and extending to large desktop resolutions.
+
+Requirements:
+
+- No horizontal overflow.
+- No overlapping text.
+- No clipped buttons.
+- No broken images.
+- No distorted map proportions.
+- No excessive vertical spacing.
+- No crowded mobile navigation.
+- Correct Arabic RTL alignment.
+- Correct English LTR alignment.
+- Correct geographical map labels at every supported screen size.
+- Consistent neon map appearance without clipping or unexpected glow overflow.
+
+Prioritize the mobile experience because many visitors will access the website through smartphones.
+
+---
+
+17. LANGUAGE AND ACCESSIBILITY
+
+Maintain complete Arabic and English support.
+
+Arabic:
+
+- RTL layout.
+- IBM Plex Sans Arabic.
+- Correct alignment and spacing.
+
+English:
+
+- LTR layout.
+- Plus Jakarta Sans.
+- Correct alignment and spacing.
+
+Ensure all visible content, navigation, labels, buttons, and essential messages are properly localized.
+
+Maintain appropriate color contrast, accessible interaction targets, and keyboard accessibility where applicable.
+
+Do not rely on color alone to communicate selected or interactive states.
+
+---
+
+18. APP PROMOTION AND CALLS TO ACTION
+
+The primary purpose of this website is to promote the HEAVY DUTY application.
+
+Use clear calls to action such as:
+
+- Discover the App.
+- Explore Our Services.
+- Download the App.
+- Contact Us.
+
+Keep the download section visually prominent but not excessively large.
+
+If official application download links are not available:
+
+- Display Android App Coming Soon.
+- Display iOS App Coming Soon.
+
+Do not create fake download buttons or nonfunctional links.
+
+Do not claim that the application is available for download unless a verified official link exists.
+
+---
+
+19. PERFORMANCE AND CODE QUALITY
+
+Maintain a clean and maintainable implementation.
+
+Requirements:
+
+- Reuse existing components where appropriate.
+- Separate independent interactive components.
+- Keep React state management predictable.
+- Avoid unnecessary re-renders.
+- Optimize image loading.
+- Preload important showcase images.
+- Use GPU-friendly animations where appropriate.
+- Clean up event listeners and animation resources.
+- Avoid unnecessary libraries.
+- Preserve existing routing and deployment compatibility.
+
+For the map neon effect, use an efficient rendering approach that preserves geographical line precision and avoids expensive repeated rendering.
+
+Do not sacrifice performance for visual effects.
+
+---
+
+20. STRICT FINAL TESTING AND VERIFICATION
+
+Before considering the task complete, test the actual implementation.
+
+Visual tests
+
+- Brand colors.
+- Typography.
+- Logo visibility.
+- Light Mode.
+- Dark Mode.
+- Footer layout.
+- Content density.
+- Mobile responsiveness.
+
+Map tests
+
+- Correct 19-governorate structure.
+- Accurate geographical boundaries.
+- Correct governorate names.
+- Correct label positioning.
+- Labels remain associated with their correct governorates.
+- No labels randomly positioned outside the map.
+- No overlapping labels.
+- Centered labels.
+- Neon glow on the complete external outline of Iraq.
+- Neon glow on every internal governorate boundary.
+- Consistent Champagne Gold neon treatment across all map lines.
+- Subtle Soft Champagne Light highlights.
+- No excessive glow or merged neighboring boundaries.
+- Muted Teal hover effect.
+- Soft Aqua selected-governorate effect.
+- Clear boundaries in Light Mode.
+- Individual governorate interaction.
+- Correct label placement after resizing and zooming.
+- Verify all 19 governorates individually.
+
+Equipment showcase tests
+
+- Correct image for each category.
+- Independent component transitions.
+- Correct synchronized content.
+- Touch swipe.
+- Mouse drag.
+- No unwanted vertical scroll interference.
+- No blank image frames.
+- No layout shifts.
+- Automatic and manual controls working together.
+
+General interaction tests
+
+- Business and customer card interactions.
+- Navigation.
+- Language switching.
+- Theme switching.
+- Download links.
+- Contact links.
+- Footer links.
+
+Technical tests
+
+- Run the production build.
+- Fix compilation errors.
+- Fix console errors.
+- Fix broken routes.
+- Check for missing assets.
+- Verify that existing functionality remains intact.
+
+Do not report a test as successful unless it was actually performed.
+
+---
+
+21. FINAL DELIVERY REPORT
+
+After implementation, provide a concise report containing:
+
+1. What was actually improved.
+2. Which sections were simplified.
+3. What was changed in the visual design.
+4. Whether the Iraq map uses verified geographical data.
+5. Whether all 19 governorates are correctly represented.
+6. Whether all 19 governorate labels were individually checked for geographical accuracy.
+7. Whether the complete map outline and all internal governorate lines have the intended neon glow in Dark Mode.
+8. Whether Light Mode boundaries remain clear and readable.
+9. Whether the neon effect preserves geographical precision.
+10. Whether hover and selected-governorate colors work correctly.
+11. Whether all eight equipment categories have their own correct images.
+12. Which interactions and animations were tested.
+13. Whether the production build completed successfully.
+14. Any remaining limitations or missing assets.
+
+Clearly distinguish completed work from anything that still requires configuration or external resources.
+
+Never claim that something works if it has not been implemented and tested.
+
+---
+
+FINAL DESIGN PRINCIPLE
+
+The most important requirement is to make HEAVY DUTY look like a premium international industrial technology brand.
+
+Less unnecessary information. More clarity. Better visual hierarchy. Better photography. More elegant interactions. More precise geographical data. Beautiful, carefully selected neon colors.
+
+The visitor should understand what HEAVY DUTY is, what it offers, and why the application is useful within a few seconds.
+
+The Iraq map must be a standout visual element: precise geographical boundaries, refined Champagne Gold neon illumination, and subtle Teal/Aqua interaction states.
+
+Do not turn the website into a complicated marketplace, dashboard, or information-heavy portal.
+
+Preserve the existing brand identity and essential content while transforming the overall experience into a clean, modern, visually impressive promotional website.
